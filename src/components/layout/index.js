@@ -13,7 +13,13 @@ const InnerLayout = ({ toggleTheme, theme }) => {
         <Outlet />
       </div>
       <Footer />
-      <MessengerCustomerChat pageId="100091334610479" appId="792875765800347" />
+      <MessengerCustomerChat
+        pageId="100091334610479"
+        appId="792875765800347"
+        logged_in_greeting="Hi! How can we help you today?"
+        logged_out_greeting="Hi! Please log in to chat with us."
+        greeting_dialog_display="hide"
+      />
     </div>
   );
 };
