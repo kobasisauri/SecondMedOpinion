@@ -1,0 +1,52 @@
+.container {
+  background: #4e483d;
+  padding: 8px 0;
+
+  .wrapper {
+    width: 100%;
+    max-width: 1920px;
+    padding: 0 7%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+
+    a {
+      color: #000;
+    }
+  }
+
+  .email {
+    margin-bottom: 10px;
+  }
+
+  .email,
+  .text {
+    color: #fff;
+  }
+}
+
+@media only screen and (min-width: 660px) {
+  .container {
+    .wrapper {
+      flex-direction: row;
+    }
+
+    .logo {
+      text-align: left;
+    }
+
+    .logo,
+    .email {
+      margin-bottom: 0;
+    }
+  }
+}

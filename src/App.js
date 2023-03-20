@@ -1,23 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { Route, Navigate, Routes } from "react-router-dom";
+
+import InnerLayout from "./components/layout/";
+
+import { Home, AboutUs, ContactUs, MRI, Error, Shop } from "./pages";
+import styles from "./App.module.scss";
 
 function App() {
+  const [theme, setTheme] = useState("light");
+  useEffect(() => {
+    setTheme(JSON.parse(localStorage.getItem("theme")));
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+
+    localStorage.setItem(
+      "theme",
+      JSON.stringify(theme === "light" ? "dark" : "light")
+    );
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className={styles[theme]}>
+      <Routes>
+        <Route path="/" element={<Navigate replace="true" to="/home" />} />
+
+        <Route
+          path="/"
+          element={<InnerLayout toggleTheme={toggleTheme} theme={theme} />}
         >
-          Learn React
-        </a>
-      </header>
+          <Route path="/home" element={<Home />} />
+          <Route path="/mri" element={<MRI />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+
+          <Route path="/404" element={<Error />} />
+          <Route path="/*" element={<Navigate replace to="/404" />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
