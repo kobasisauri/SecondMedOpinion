@@ -19,6 +19,9 @@ const InnerLayout = ({ toggleTheme, theme }) => {
         logged_in_greeting="Hi! How can we help you today?"
         logged_out_greeting="Hi! Please log in to chat with us."
         greeting_dialog_display="hide"
+        xfbml={true}
+        // Add the x_fb_lsd parameter with a random value
+        xfbmlParameters={{ x_fb_lsd: Math.random().toString() }}
       />
     </div>
   );
