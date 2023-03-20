@@ -14,7 +14,6 @@ const InnerLayout = ({ toggleTheme, theme }) => {
       </div>
       <Footer />
       <MessengerCustomerChat pageId="100091334610479" appId="792875765800347" />
-      ,
     </div>
   );
 };
