@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import styles from "./styles.module.scss";
-import MessengerCustomerChat from "react-messenger-customer-chat";
+import CostomerChat from "../UI/CostomerChat";
 
 const InnerLayout = ({ toggleTheme, theme }) => {
   return (
@@ -12,17 +12,8 @@ const InnerLayout = ({ toggleTheme, theme }) => {
       <div className={styles.wrapper}>
         <Outlet />
       </div>
+      <CostomerChat />
       <Footer />
-      <MessengerCustomerChat
-        pageId="100091334610479"
-        appId="792875765800347"
-        logged_in_greeting="Hi! How can we help you today?"
-        logged_out_greeting="Hi! Please log in to chat with us."
-        greeting_dialog_display="hide"
-        xfbml={true}
-        // Add the x_fb_lsd parameter with a random value
-        xfbmlParameters={{ x_fb_lsd: Math.random().toString() }}
-      />
     </div>
   );
 };
