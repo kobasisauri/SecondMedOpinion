@@ -107,6 +107,26 @@
     }
   }
 }
+.section5 {
+  margin-top: 5rem;
+  div {
+    position: relative;
+    // height: 500px;
+    width: 100%;
+    p {
+      position: absolute;
+      z-index: 9;
+      bottom: 10%;
+      left: 50px;
+      font-size: 32px;
+      // font-weight: bold;
+    }
+    img {
+      object-fit: fill;
+      width: 100%;
+    }
+  }
+}
 
 @media only screen and (min-width: 1400px) {
   .section2 {

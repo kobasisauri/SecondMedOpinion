@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
-
+import Slider from "react-slick";
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import MainPic from "../../assets/logo-bg.jpg";
 import HomeSecondPic from "../../assets/home.jpg";
+
+import Test1 from "../../assets/test1.jpg";
+import Test2 from "../../assets/test2.jpg";
+import Test3 from "../../assets/test3.jpg";
+
 import ContactImage from "../../assets/contact-us.png";
 import styles from "./Home.module.scss";
 
@@ -18,6 +23,43 @@ const Home = () => {
       setTheme("#e3e3e3");
     }
   }, [color]);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 4000,
+    autoplaySpeed: 1000,
+    cssEase: "linear",
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <div>
@@ -53,6 +95,35 @@ const Home = () => {
         </div>
       </div>
       <hr />
+
+      <div className={styles.section5}>
+        <Slider {...settings}>
+          <div>
+            <img src={Test1} alt="doctor" />
+            <p>guram ragacashvili</p>
+          </div>
+          <div>
+            <img src={Test2} alt="doctor" />
+            <p>guram ragacashvili</p>
+          </div>
+          <div>
+            <img src={Test3} alt="doctor" />
+            <p>guram ragacashvili</p>
+          </div>
+          <div>
+            <img src={Test1} alt="doctor" />
+            <p>guram ragacashvili</p>
+          </div>
+          <div>
+            <img src={Test2} alt="doctor" />
+            <p>guram ragacashvili</p>
+          </div>
+          <div>
+            <img src={Test3} alt="doctor" />
+            <p>guram ragacashvili</p>
+          </div>
+        </Slider>
+      </div>
 
       <div className={styles.section3}>
         <h3>How to navigate!</h3>
