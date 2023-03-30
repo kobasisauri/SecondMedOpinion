@@ -10,11 +10,11 @@ const Footer = () => {
         <div className={styles.wrapper}>
           <div className={styles.logo}>
             <Link to="/">
-              ARVICISAXEli <br /> GEFICEBI
+              EXPERT MED <br /> OPINION
             </Link>
           </div>
 
-          <div className={styles.email}>contact@arvicisaxeli.com</div>
+          <div className={styles.email}>expertmedopinion@gmail.com</div>
 
           <div className={styles.text}>TBILISI</div>
         </div>

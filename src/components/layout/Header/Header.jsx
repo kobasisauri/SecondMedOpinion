@@ -58,11 +58,11 @@ const IOSSwitch = styled((props) => (
 }));
 
 const navs = [
-  { item: "HOME", link: "home" },
+  { item: "Home", link: "home" },
+  { item: "About Us", link: "about-us" },
   { item: "MRI", link: "mri" },
-  { item: "SHOP", link: "shop" },
-  { item: "ABOUT US", link: "about-us" },
-  { item: "CONTACT US", link: "contact-us" },
+  { item: "Computer Tomography (CT)", link: "computer-tomography" },
+  { item: "Contact Us", link: "contact-us" },
 ];
 
 const Header = ({ toggleTheme, theme, className }) => {
@@ -75,7 +75,7 @@ const Header = ({ toggleTheme, theme, className }) => {
           <div className={`${styles.container} ${styles[className]}`}>
             <div className={styles.logo}>
               <Link to="/">
-                ARVICISAXEli <br /> GEFICEBI
+                EXPERT MED <br /> OPINION
               </Link>
             </div>
 

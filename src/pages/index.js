@@ -3,7 +3,7 @@ import ContactUs from "./contact-us";
 import MRI from "./mri";
 
 import Error from "./error";
-import Shop from "./shop";
+import ComputerTomography from "./computer-tomografy";
 import Home from "./home";
 
-export { AboutUs, ContactUs, Error, MRI, Shop, Home };
+export { AboutUs, ContactUs, Error, MRI, ComputerTomography, Home };

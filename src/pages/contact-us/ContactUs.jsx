@@ -37,9 +37,10 @@ const ContactUs = () => {
 
           <div className={styles["inner-wrapper"]}>
             <form className={styles.form}>
+              <p>Full Name</p>
               <TextField
                 id="outlined-basic"
-                label="Name*"
+                label="What's your full name?"
                 variant="outlined"
                 sx={{
                   width: "360px",
@@ -48,9 +49,10 @@ const ContactUs = () => {
                   },
                 }}
               />
+              <p>Email address</p>
               <TextField
                 id="outlined-basic"
-                label="E-Mail*"
+                label="example@gmail.com"
                 variant="outlined"
                 sx={{
                   width: "360px",
@@ -59,9 +61,10 @@ const ContactUs = () => {
                   },
                 }}
               />
+              <p>Message</p>
               <TextField
                 id="outlined-multiline-static"
-                label="Message*"
+                label="Write your message for team here"
                 multiline
                 rows={3}
                 sx={{

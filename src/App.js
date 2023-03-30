@@ -3,7 +3,14 @@ import { Route, Navigate, Routes } from "react-router-dom";
 
 import InnerLayout from "./components/layout/";
 
-import { Home, AboutUs, ContactUs, MRI, Error, Shop } from "./pages";
+import {
+  Home,
+  AboutUs,
+  ContactUs,
+  MRI,
+  Error,
+  ComputerTomography,
+} from "./pages";
 import styles from "./App.module.scss";
 
 function App() {
@@ -32,7 +39,7 @@ function App() {
         >
           <Route path="/home" element={<Home />} />
           <Route path="/mri" element={<MRI />} />
-          <Route path="/shop" element={<Shop />} />
+          <Route path="/computer-tomography" element={<ComputerTomography />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact-us" element={<ContactUs />} />
 
