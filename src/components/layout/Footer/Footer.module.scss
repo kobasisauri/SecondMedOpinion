@@ -26,11 +26,18 @@
 
   .email {
     margin-bottom: 10px;
+    color: #fff;
   }
 
-  .email,
   .text {
-    color: #fff;
+    width: 80px;
+
+    display: flex;
+    justify-content: space-between;
+
+    img {
+      height: 32px;
+    }
   }
 }
 

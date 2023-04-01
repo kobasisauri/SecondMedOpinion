@@ -60,7 +60,7 @@ const IOSSwitch = styled((props) => (
 const navs = [
   { item: "Home", link: "home" },
   { item: "About Us", link: "about-us" },
-  { item: "MRI", link: "mri" },
+  { item: "Magnetic Resonance Imaging (MRI)", link: "mri" },
   { item: "Computer Tomography (CT)", link: "computer-tomography" },
   { item: "Contact Us", link: "contact-us" },
 ];
