@@ -1,3 +1,36 @@
+.top-header {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  background-color: rgb(82, 188, 223);
+  padding: 4px 0;
+  div {
+    display: flex;
+    justify-content: end;
+    padding-right: 8%;
+  }
+
+  div img {
+    padding: 0 5px;
+    height: 24px;
+    cursor: pointer;
+  }
+  div div {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+
+    img {
+      padding: 0 5px;
+      height: 12px;
+    }
+  }
+  .call {
+    height: 14px;
+    cursor: pointer;
+  }
+}
+
 .header-container {
   position: sticky;
   top: 0;
@@ -8,7 +41,7 @@
   box-shadow: 0 0.0625rem 0 0 rgb(0 0 0 / 15%);
 
   .logo {
-    font-size: 26px;
+    font-size: 16px;
   }
 
   .logo a {
@@ -98,14 +131,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 2px 0;
 
   .items {
     display: none;
     justify-content: space-between;
-    width: 870px;
+    width: 800px;
     color: black;
-    font-size: 18px;
+    font-size: 16px;
 
     div {
       padding: 0 20px;

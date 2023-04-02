@@ -8,6 +8,8 @@ import HomeSecondPic from "../../assets/home.jpg";
 import Test1 from "../../assets/test1.jpg";
 import Test2 from "../../assets/test2.jpg";
 import Test3 from "../../assets/test3.jpg";
+import TestClinic1 from "../../assets/testclinic1.jpg";
+import TestClinic2 from "../../assets/testclinic2.jpg";
 
 import ContactImage from "../../assets/contact-us.png";
 import styles from "./Home.module.scss";
@@ -39,6 +41,7 @@ const Home = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 3,
+
           infinite: true,
           dots: true,
         },
@@ -60,11 +63,64 @@ const Home = () => {
       },
     ],
   };
+  const settings2 = {
+    dots: true,
+    fade: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+  };
 
   return (
     <div>
-      <div className={styles.container}>
+      {/* <div className={styles.container}>
         <img className={styles["main-image"]} src={MainPic} alt="main-logo" />
+      </div> */}
+
+      <div className={styles.container}>
+        <Slider {...settings2}>
+          <div>
+            <img
+              className={styles["main-image"]}
+              src={MainPic}
+              alt="main-logo"
+            />
+          </div>
+          <div>
+            <img
+              className={styles["main-image"]}
+              src={TestClinic1}
+              alt="main-logo"
+            />
+          </div>
+          <div>
+            <img
+              className={styles["main-image"]}
+              src={TestClinic2}
+              alt="main-logo"
+            />
+          </div>
+        </Slider>
+
+        <div style={{ maxWidth: "1920px", padding: "0 7%" }}>
+          <h2>Company is aboyt...</h2>
+          <p>
+            კომპანიის სექონდ მედ ოფინიონის მიზანია, დავეხმაროთ საქართველოს
+            პაციენტებს მოისმინონ და მიიღონ უცხლოელი ექიმების სამედიცინო დასკვნა
+            და შეხედულება ქვეყნიდან გაუსვლელად უმოკლეს ვადაში, რაც დაეხმარება
+            ექსპერტებს დაადასტურონ ან დასვან დიაგნოზი, რაც ძალიან მნიშვნელივანია
+            განსაკუთრებით რთულ შემთხვევებში. ამ კუთხით დავეხმაროთ პაციენტებს
+            ჩვენი განვითარებადი ქვეყნიდან, მიიღონ კვალიფიციური მეორე აზრი მათი
+            ჯანმრთელობის შესახებ. ჩვენმა გუნდმა გადაწყვიტა ფოკუსირება თავიდანვე
+            რენტგენოლოგიის სფეროზე, კომპიუტერულ ტომოგრაფიაზე და
+            მაგნიტორეზონანსულ ტომოგრაფიაზე და შემდგომში გაგვეფართოებინა სფერო.
+            ჩვენ გვჯერა, რომ დღესდღეობით სწორი დიაგნოზის საფუძველია
+            რენტგენოლოგიური დასკვნების პროფესიული ინტერპრეტაცია და ექსპერტიზისა
+            და გამოცდილების ხარისხი.
+          </p>
+        </div>
       </div>
 
       <div className={styles.section2}>

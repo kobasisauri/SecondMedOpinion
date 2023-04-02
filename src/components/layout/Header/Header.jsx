@@ -5,6 +5,13 @@ import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import styles from "./Header.module.scss";
 
+import WhiteLogo from "../../../assets/white-logo.png";
+import BlackLogo from "../../../assets/black-logo.png";
+import Fb from "../../../assets/fb.png";
+import Instagram from "../../../assets/insta.png";
+import CallIcon from "../../../assets/call-icon.png";
+import GeorgiaIcon from "../../../assets/georgia-icon.png";
+
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
@@ -70,12 +77,33 @@ const Header = ({ toggleTheme, theme, className }) => {
 
   return (
     <>
+      <div className={styles["top-header"]}>
+        <div className={styles.wrapper}>
+          <a href="https://www.facebook.com/secondmedopinion/" target="blank">
+            <img src={Fb} alt="facebook icon" />
+          </a>
+          <a href="https://www.facebook.com/secondmedopinion/" target="blank">
+            <img src={Instagram} alt="instagram icon" />
+          </a>
+          <div>
+            +995 333 333 333
+            <img className={styles.call} src={CallIcon} alt="call-icon" />
+          </div>
+          <img src={GeorgiaIcon} alt="flag" />
+        </div>
+      </div>
+
       <div className={`${styles["header-container"]} ${styles[theme]}`}>
         <div className={styles.wrapper}>
           <div className={`${styles.container} ${styles[className]}`}>
             <div className={styles.logo}>
               <Link to="/">
-                EXPERT MED <br /> OPINION
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <img src={BlackLogo} alt="logo" style={{ height: "64px" }} />
+                  <div>
+                    <b>EXPERT</b> MED <br /> OPINION
+                  </div>
+                </div>
               </Link>
             </div>
 
