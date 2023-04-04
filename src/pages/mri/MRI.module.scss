@@ -1,0 +1,145 @@
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+
+  .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    img {
+      //   max-height: 470px;
+      //   height: 100%;
+      width: 100%;
+      border-radius: 1rem;
+    }
+
+    .info-text {
+      margin-top: 1rem;
+      width: 100%;
+      line-height: 1.5rem;
+      padding: 0 0 0 1.5rem;
+
+      h2 {
+        text-align: center;
+        // margin-top: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      span {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .items {
+    padding-top: 2rem;
+
+    .item {
+      cursor: pointer;
+      margin-top: 2rem;
+      height: 200px;
+      border-radius: 1rem;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      display: flex;
+      overflow-x: scroll;
+      overflow-y: hidden;
+
+      &::-webkit-scrollbar {
+        height: 5px;
+      }
+      &::-webkit-scrollbar-track {
+        border-radius: 8px;
+        background-color: #dadada;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background-color: #949fa5;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: #7d858a;
+      }
+
+      .image {
+        height: 100%;
+
+        img {
+          height: 100%;
+          border-radius: 1rem;
+        }
+      }
+
+      .main {
+        white-space: nowrap;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1rem 0rem 1rem 2rem;
+        width: 200px;
+
+        .name {
+          font-size: 18px;
+          width: 100%;
+        }
+        .job {
+          font-size: 18px;
+        }
+      }
+
+      .description {
+        white-space: nowrap;
+        box-sizing: border-box;
+        margin: 0 auto;
+        width: 600px;
+        padding: 1rem 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .experiance {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .container {
+    .info {
+      img {
+        width: 80%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 836px) {
+  .container {
+    .items {
+      .item {
+        overflow-x: visible;
+      }
+    }
+  }
+}
+@media only screen and (min-width: 1100px) {
+  .container {
+    .info {
+      flex-wrap: nowrap;
+      justify-content: space-between;
+
+      img {
+        width: 60%;
+        border-radius: 1rem;
+      }
+      .info-text {
+        margin-top: 0rem;
+        width: 45%;
+      }
+    }
+  }
+}
