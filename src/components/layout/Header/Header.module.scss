@@ -1,12 +1,12 @@
 .top-header {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   width: 100%;
   background-color: rgb(82, 188, 223);
   padding: 4px 0;
   div {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     padding-right: 8%;
   }
 
