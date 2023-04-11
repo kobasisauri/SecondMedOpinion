@@ -1,13 +1,16 @@
 .top-header {
   display: flex;
   justify-content: flex-end;
-  width: 100%;
   background-color: rgb(82, 188, 223);
   padding: 4px 0;
+
   div {
     display: flex;
     justify-content: flex-end;
-    padding-right: 8%;
+  }
+
+  i {
+    font-size: 17px;
   }
 
   div img {
@@ -15,16 +18,7 @@
     height: 24px;
     cursor: pointer;
   }
-  div div {
-    display: flex;
-    align-items: center;
-    padding: 0 5px;
 
-    img {
-      padding: 0 5px;
-      height: 12px;
-    }
-  }
   .call {
     height: 14px;
     cursor: pointer;

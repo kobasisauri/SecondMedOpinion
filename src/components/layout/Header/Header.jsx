@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import styles from "./Header.module.scss";
 
-import WhiteLogo from "../../../assets/white-logo.png";
+// import WhiteLogo from "../../../assets/white-logo.png";s
 import BlackLogo from "../../../assets/black-logo.png";
-import Fb from "../../../assets/fb.png";
-import Instagram from "../../../assets/insta.png";
-import CallIcon from "../../../assets/call-icon.png";
+// import Fb from "../../../assets/fb.png";
+// import Instagram from "../../../assets/insta.png";
+// import CallIcon from "../../../assets/call-icon.png";
 import GeorgiaIcon from "../../../assets/georgia-icon.png";
 
 const IOSSwitch = styled((props) => (
@@ -66,13 +67,14 @@ const IOSSwitch = styled((props) => (
 
 const navs = [
   { item: "Home", link: "home" },
-  { item: "About Us", link: "about-us" },
-  { item: "Magnetic Resonance Imaging (MRI)", link: "mri" },
-  { item: "Computer Tomography (CT)", link: "computer-tomography" },
-  { item: "Contact Us", link: "contact-us" },
+  { item: "AboutUs", link: "about-us" },
+  { item: "MRI", link: "mri" },
+  { item: "CT", link: "computer-tomography" },
+  { item: "ContactUs", link: "contact-us" },
 ];
 
 const Header = ({ toggleTheme, theme, className }) => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
   return (
@@ -80,16 +82,26 @@ const Header = ({ toggleTheme, theme, className }) => {
       <div className={styles["top-header"]}>
         <div className={styles.wrapper}>
           <a href="https://www.facebook.com/secondmedopinion/" target="blank">
-            <img src={Fb} alt="facebook icon" />
+            {/* <img src={Fb} alt="facebook icon" /> */}
+            <i className="bi bi-facebook" />
           </a>
-          <a href="https://www.facebook.com/secondmedopinion/" target="blank">
-            <img src={Instagram} alt="instagram icon" />
+          <a
+            href="https://www.facebook.com/secondmedopinion/"
+            target="blank"
+            className="ms-3"
+          >
+            {/* <img src={Instagram} alt="instagram icon" /> */}
+            <i className="bi bi-instagram" />
           </a>
-          <div>
+
+          <div className="ms-3">
             +995 333 333 333
-            <img className={styles.call} src={CallIcon} alt="call-icon" />
+            <i className="bi bi-telephone-fill ms-1" />
+            {/* <i className="bi bi-telephone ms-1" /> */}
+            {/* <img className={styles.call} src={CallIcon} alt="call-icon" /> */}
           </div>
-          <img src={GeorgiaIcon} alt="flag" />
+
+          <img src={GeorgiaIcon} alt="flag" className="ms-3" />
         </div>
       </div>
 
@@ -116,7 +128,7 @@ const Header = ({ toggleTheme, theme, className }) => {
                       `${isPending ? "pending" : isActive ? styles.active : ""}`
                     }
                   >
-                    {nav.item}
+                    {t(nav.item)}
                   </NavLink>
                 </div>
               ))}
@@ -158,7 +170,7 @@ const Header = ({ toggleTheme, theme, className }) => {
                   `${isPending ? "pending" : isActive ? styles.active : ""}`
                 }
               >
-                {nav.item}
+                {t(nav.item)}
               </NavLink>
             </div>
           ))}

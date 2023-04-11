@@ -1,0 +1,109 @@
+$primary-color: #2c73d4;
+$secondary-color: #bdbdbd;
+$success-color: #00a793;
+$danger-color: #e54c37;
+$warning-color: #e5b437;
+$info-color: #26c6da;
+$light-color: #f7f8fa;
+$elegant-color: #161728;
+$elegant-color-active: #2b2b3a;
+
+$light-blue: #3988f6;
+$purple: #9837e5;
+
+$theme-colors: (
+  "primary": $primary-color,
+  "secondary": $secondary-color,
+  "success": $success-color,
+  "info": $info-color,
+  "warning": $warning-color,
+  "danger": $danger-color,
+  "light": $light-color,
+  "elegant": $elegant-color,
+);
+
+$text-color: #212529;
+$text-light: #fff;
+$text-light2: #b9b9be;
+$text-light3: #cacacd;
+$text-secondary: #636363;
+$text-secondary2: #95959c;
+$border-color: #eff1f4;
+$border-color2: #e5e2e9;
+$border-color3: #eaebed;
+$bg-secondary: #f7f7f7;
+$disabled-color: #f7f7f7;
+$font-size: 1rem;
+$font-size-sm: $font-size * 0.875;
+$font-size-lg: $font-size * 1.25;
+$font-family: "Noto Sans", sans-serif, "Noto Sans Georgian", sans-serif;
+
+// button options
+$btn-padding-y: 13.5px;
+$btn-padding-x: 50px;
+$btn-font-size: 0.9rem;
+
+$btn-padding-y-sm: 9px;
+$btn-padding-x-sm: 20px;
+$btn-font-size-sm: 0.85rem;
+
+$btn-border-width: 1px;
+$btn-border-radius: 5px;
+$btn-background-disabled: #eeeeee;
+$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+$button-variants: (
+  primary: (
+    background: $primary-color,
+    color: #fff,
+    background-disabled: $btn-background-disabled,
+    color-disabled: $text-color,
+  ),
+  success: (
+    background: $success-color,
+    color: #fff,
+    background-disabled: $btn-background-disabled,
+    color-disabled: $text-color,
+  ),
+  danger: (
+    background: $danger-color,
+    color: #fff,
+    background-disabled: $btn-background-disabled,
+    color-disabled: $text-color,
+  ),
+  light-blue: (
+    background: $light-blue,
+    color: #fff,
+    background-disabled: $btn-background-disabled,
+    color-disabled: $text-color,
+  ),
+  plain: (
+    background: #fff,
+    color: $text-color,
+    background-disabled: #fff,
+    color-disabled: $text-secondary,
+  ),
+  outline: (
+    background: #fff,
+    color: $text-color,
+    background-disabled: $btn-background-disabled,
+    color-disabled: $text-color,
+    border-color: $border-color2,
+  ),
+  outline-primary: (
+    background: transparent,
+    background-hover: $primary-color,
+    color: $primary-color,
+    color-hover: #fff,
+    background-disabled: $btn-background-disabled,
+    color-disabled: $text-color,
+    border-color: $primary-color,
+  ),
+);
+
+// statuses color
+$status-working: #e5d437;
+$status-in-progress: #00a793;
+$status-completed: #3a74d2;
+$status-canceled: #e54c37;

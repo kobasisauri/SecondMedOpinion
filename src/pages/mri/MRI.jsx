@@ -28,7 +28,7 @@ const MRI = () => {
       <div className={styles.items}>
         <div className={styles.item}>
           <div className={styles.image}>
-            <img src={Doctor1} />
+            <img src={Doctor1} alt="doctor" />
           </div>
 
           <div className={styles.main}>
@@ -44,7 +44,7 @@ const MRI = () => {
         </div>
         <div className={styles.item}>
           <div className={styles.image}>
-            <img src={Doctor1} />
+            <img src={Doctor1} alt="doctor" />
           </div>
 
           <div className={styles.main}>

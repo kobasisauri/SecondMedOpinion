@@ -184,6 +184,7 @@ const Home = () => {
       <div className={styles.section3}>
         <h3>How to navigate!</h3>
         <iframe
+          title="iframe"
           className={styles.video}
           frameborder="0"
           scrolling="no"

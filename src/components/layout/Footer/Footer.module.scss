@@ -30,13 +30,11 @@
   }
 
   .text {
-    width: 80px;
-
     display: flex;
-    justify-content: space-between;
 
-    img {
-      height: 32px;
+    i {
+      font-size: 20px;
+      color: #fff;
     }
   }
 }
