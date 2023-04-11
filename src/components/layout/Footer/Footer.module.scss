@@ -1,6 +1,7 @@
 .container {
   background: #4e483d;
-  padding: 8px 0;
+  padding-top: 2px;
+  padding-bottom: 4px;
 
   .wrapper {
     width: 100%;
@@ -20,7 +21,12 @@
     text-align: center;
 
     a {
-      color: #000;
+      color: #fff;
+      font-size: 16px;
+      line-height: 18px;
+      div {
+        color: #fff;
+      }
     }
   }
 
@@ -31,10 +37,12 @@
 
   .text {
     display: flex;
+    width: 30px;
 
     i {
       font-size: 20px;
       color: #fff;
+      padding: 0 0.5rem;
     }
   }
 }
