@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Fade } from "react-reveal";
 // import Fb from "../../../assets/fb.png";
 // import Instagram from "../../../assets/insta.png";
-
 import styles from "./Footer.module.scss";
 
 const Footer = () => {
