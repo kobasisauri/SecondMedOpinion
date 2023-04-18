@@ -1,9 +1,13 @@
 import { create } from "zustand";
 
 const useStore = create((set) => ({
-  theme: "dark",
+  theme: "light",
   setTheme: (theme) => {
     set(() => ({ theme: theme }));
+  },
+  loading: false,
+  setLoading: (load) => {
+    set(() => ({ loading: load }));
   },
 }));
 

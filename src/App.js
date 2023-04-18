@@ -10,6 +10,7 @@ import {
   Error,
   ComputerTomography,
   Form,
+  Resume,
 } from "./pages";
 import styles from "./App.module.scss";
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/" element={<InnerLayout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/mri" element={<MRI />} />
+          <Route path="/mri/:id" element={<Resume />} />
           <Route path="/computer-tomography" element={<ComputerTomography />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact-us" element={<ContactUs />} />

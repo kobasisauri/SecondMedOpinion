@@ -2,11 +2,9 @@ import React, { useState, useRef, useCallback } from "react";
 import { Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import styles from "./Select.module.scss";
-// import Toggle from "./Toggle";
+
 import useOnClickOutside from "../../../hooks/on-click-outside";
-// import GeorgiaIcon from "../../../assets/georgia-icon.png";
-// import RussiaIcon from "../../../assets/russia-icon.png";
-// import USAIcon from "../../../assets/USA-icon.png";
+
 import geo from "../../../assets/georgia.svg";
 import uk from "../../../assets/uk.svg";
 import ru from "../../../assets/russia.svg";

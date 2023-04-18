@@ -1,13 +1,9 @@
-import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Test from "../../assets/testclinic1.jpg";
+import data from "../../static/short-data";
 import styles from "./MRI.module.scss";
 
-import Doctor1 from "../../assets/doctors/dimitriN1.jpg";
-
-const items = [1, 2, 3, 4, 5];
-
 const MRI = () => {
-  const [open, setOpen] = useState(false);
   return (
     <div className={styles.container}>
       <div className={styles.info}>
@@ -30,32 +26,32 @@ const MRI = () => {
       </div>
 
       <div className={styles.items}>
-        {items.map((item, i) => (
-          <>
-            <div
-              key={i}
-              className={styles.item}
-              onClick={() => {
-                setOpen(!open);
-              }}
-            >
-              <div className={styles.image}>
-                <img src={Doctor1} alt="doctor" />
+        {data.map((item) => (
+          <div key={item.id} className={styles.item}>
+            <div className={styles.image}>
+              <img src={item.image} alt="doctor" />
+            </div>
+
+            <div className={`d-flex justify-content-between ${styles.main}`}>
+              <div className={styles["personal-data"]}>
+                <p className={styles.name}>
+                  {item.firstname} {item.lastname}
+                </p>
+                <p className={styles.job}>{item.profession}</p>
+                <p className={styles.country}>{item.country}</p>
               </div>
 
-              <div className={styles.main}>
-                <p className={styles.name}>Dimitri Vladimirovich</p>
-                <p className={styles.job}>Radiologist</p>
-                <p className={styles.job}>Age: 29</p>
-              </div>
               <div className={styles.description}>
-                <p className={styles.experiance}>Work experience:</p>
-                <p>Radiologist: City Clinical Hospital N40 DZM</p>
-                <p>Radiologist: Children's Clinical Hospital N9</p>
+                <p className={styles.experiance}>Work experience</p>
+                <p style={{ wordBreak: "break-word" }}>{item.experiance}</p>
+              </div>
+
+              <div className={styles.links}>
+                <Link to={`/mri/${item.id}`}>რეზიუმე</Link>
+                <Link to="/form">აპლიკაცია</Link>
               </div>
             </div>
-            {/* {open && <div>makoce</div>} */}
-          </>
+          </div>
         ))}
       </div>
     </div>
