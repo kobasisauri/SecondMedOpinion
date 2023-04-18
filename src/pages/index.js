@@ -5,5 +5,6 @@ import MRI from "./mri";
 import Error from "./error";
 import ComputerTomography from "./computer-tomografy";
 import Home from "./home";
+import Form from "./form";
 
-export { AboutUs, ContactUs, Error, MRI, ComputerTomography, Home };
+export { AboutUs, ContactUs, Error, MRI, ComputerTomography, Home, Form };

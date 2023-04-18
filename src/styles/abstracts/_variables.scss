@@ -103,7 +103,18 @@ $button-variants: (
 );
 
 // statuses color
-$status-working: #e5d437;
-$status-in-progress: #00a793;
-$status-completed: #3a74d2;
-$status-canceled: #e54c37;
+// $status-working: #e5d437;
+// $status-in-progress: #00a793;
+// $status-completed: #3a74d2;
+// $status-canceled: #e54c37;
+
+$body-color: #f7faff;
+$body-secondary: #1a1a50;
+$nav-border: #005aff;
+$text-hover-color: hsl(211, 97%, 60%);
+
+$dark-color: #0b0b31; //#03071c
+$dark-text-color: #e3e3e3;
+$dark-secondary: #06062a;
+$dark-border: #26264b;
+$dark-nav-color: hsl(215.82deg 100% 78.34%);

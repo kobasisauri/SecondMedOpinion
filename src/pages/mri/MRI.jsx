@@ -54,7 +54,7 @@ const MRI = () => {
                 <p>Radiologist: Children's Clinical Hospital N9</p>
               </div>
             </div>
-            {open && <div>makoce</div>}
+            {/* {open && <div>makoce</div>} */}
           </>
         ))}
       </div>

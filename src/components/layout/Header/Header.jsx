@@ -1,69 +1,14 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { styled } from "@mui/material/styles";
-import Switch from "@mui/material/Switch";
+import { IOSSwitch } from "./ThemeSwitch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import styles from "./Header.module.scss";
-
-// import WhiteLogo from "../../../assets/white-logo.png";s
-import BlackLogo from "../../../assets/black-logo.png";
-// import Fb from "../../../assets/fb.png";
-// import Instagram from "../../../assets/insta.png";
-// import CallIcon from "../../../assets/call-icon.png";
-import GeorgiaIcon from "../../../assets/georgia-icon.png";
-
-const IOSSwitch = styled((props) => (
-  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
-))(({ theme }) => ({
-  width: 42,
-  height: 26,
-  padding: 0,
-  "& .MuiSwitch-switchBase": {
-    padding: 0,
-    margin: 2,
-    transitionDuration: "300ms",
-    "&.Mui-checked": {
-      transform: "translateX(16px)",
-      color: "#fff",
-      "& + .MuiSwitch-track": {
-        backgroundColor:
-          theme.palette.mode === "dark" ? "#2ECA45" : "rgb(157, 151, 142)",
-        opacity: 1,
-        border: 0,
-      },
-      "&.Mui-disabled + .MuiSwitch-track": {
-        opacity: 0.5,
-      },
-    },
-    "&.Mui-focusVisible .MuiSwitch-thumb": {
-      color: "#33cf4d",
-      border: "6px solid #fff",
-    },
-    "&.Mui-disabled .MuiSwitch-thumb": {
-      color:
-        theme.palette.mode === "light"
-          ? theme.palette.grey[100]
-          : theme.palette.grey[600],
-    },
-    "&.Mui-disabled + .MuiSwitch-track": {
-      opacity: theme.palette.mode === "light" ? 0.7 : 0.3,
-    },
-  },
-  "& .MuiSwitch-thumb": {
-    boxSizing: "border-box",
-    width: 22,
-    height: 22,
-  },
-  "& .MuiSwitch-track": {
-    borderRadius: 26 / 2,
-    backgroundColor: theme.palette.mode === "light" ? "#E9E9EA" : "#39393D",
-    opacity: 1,
-    transition: theme.transitions.create(["background-color"], {
-      duration: 500,
-    }),
-  },
-}));
+import useStore from "../../../stores/store";
+import WhiteLogo from "../../../assets/white-logo.png";
+// import BlackLogo from "../../../assets/black-logo.png";
+// import GeorgiaIcon from "../../../assets/georgia-icon.png";
+import Select from "./Select";
 
 const navs = [
   { item: "Home", link: "home" },
@@ -73,35 +18,44 @@ const navs = [
   { item: "ContactUs", link: "contact-us" },
 ];
 
-const Header = ({ toggleTheme, theme, className }) => {
+const Header = ({ className }) => {
+  const { theme, setTheme } = useStore((state) => state);
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+
+    localStorage.setItem(
+      "theme",
+      JSON.stringify(theme === "light" ? "dark" : "light")
+    );
+  };
+
   return (
     <>
-      <div className={styles["top-header"]}>
-        <div className={styles.wrapper}>
+      <div className={`${styles["top-header"]} ${styles[theme]}`}>
+        <div className={`${styles.wrapper} d-flex justify-content-end`}>
           <a href="https://www.facebook.com/secondmedopinion/" target="blank">
-            {/* <img src={Fb} alt="facebook icon" /> */}
             <i className="bi bi-facebook" />
           </a>
+
           <a
             href="https://www.facebook.com/secondmedopinion/"
             target="blank"
             className="ms-3"
           >
-            {/* <img src={Instagram} alt="instagram icon" /> */}
             <i className="bi bi-instagram" />
           </a>
 
           <div className="ms-3">
             +995 333 333 333
             <i className="bi bi-telephone-fill ms-1" />
-            {/* <i className="bi bi-telephone ms-1" /> */}
-            {/* <img className={styles.call} src={CallIcon} alt="call-icon" /> */}
           </div>
 
-          <img src={GeorgiaIcon} alt="flag" className="ms-3" />
+          {/* <img src={GeorgiaIcon} alt="flag" className="ms-3" /> */}
+
+          <Select />
         </div>
       </div>
 
@@ -111,7 +65,7 @@ const Header = ({ toggleTheme, theme, className }) => {
             <div className={styles.logo}>
               <Link to="/">
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <img src={BlackLogo} alt="logo" style={{ height: "64px" }} />
+                  <img src={WhiteLogo} alt="logo" style={{ height: "64px" }} />
                   <div>
                     <b>EXPERT</b> MED <br /> OPINION
                   </div>

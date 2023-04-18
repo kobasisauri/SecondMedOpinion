@@ -1,0 +1,54 @@
+@import "../../../styles/abstracts/_variables";
+
+.extended-select {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  background-color: $dark-border;
+
+  img {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.dropdown {
+  &-menu {
+    background: #fff;
+    box-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.1);
+    overflow: auto;
+    line-height: normal;
+    border-radius: 4px;
+    padding: 0 !important;
+    min-width: unset !important;
+
+    .item {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      background: #fff;
+      cursor: pointer;
+      color: red;
+      font-size: 12px;
+      line-height: 16px;
+
+      img {
+        height: 20px;
+        width: 20px;
+        margin-left: 4px;
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: red; // $text-color
+        background: darken(#fff, 2%);
+      }
+
+      input[type="checkbox"],
+      input[type="checkbox"] + label {
+        cursor: pointer;
+      }
+    }
+  }
+}

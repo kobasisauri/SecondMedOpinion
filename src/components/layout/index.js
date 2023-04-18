@@ -5,10 +5,10 @@ import Footer from "./Footer";
 import styles from "./styles.module.scss";
 import CostomerChat from "../UI/CostomerChat";
 
-const InnerLayout = ({ toggleTheme, theme }) => {
+const InnerLayout = () => {
   return (
     <div className={styles.container}>
-      <Header toggleTheme={toggleTheme} theme={theme} />
+      <Header />
       <div className={styles.wrapper}>
         <Outlet />
       </div>

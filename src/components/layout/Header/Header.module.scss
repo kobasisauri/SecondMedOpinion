@@ -1,27 +1,42 @@
+@import "../../../styles/abstracts/_variables";
+
 .top-header {
   display: flex;
   justify-content: flex-end;
-  background-color: rgb(82, 188, 223);
+  background-color: $body-secondary;
+  border-bottom: 1px solid $nav-border;
+  color: #fff;
   padding: 4px 0;
 
-  div {
-    display: flex;
-    justify-content: flex-end;
+  a {
+    color: #fff;
+
+    &:hover {
+      color: $text-hover-color;
+    }
   }
 
   i {
     font-size: 17px;
   }
 
-  div img {
-    padding: 0 5px;
-    height: 24px;
-    cursor: pointer;
-  }
-
   .call {
     height: 14px;
     cursor: pointer;
+  }
+
+  &.dark {
+    background-color: $dark-secondary;
+    border-bottom: 1px solid $dark-border;
+    color: $dark-nav-color;
+
+    a {
+      color: $dark-nav-color;
+
+      &:hover {
+        color: $text-hover-color;
+      }
+    }
   }
 }
 
@@ -29,17 +44,21 @@
   position: sticky;
   top: 0;
   left: 0;
-  // background-color: #e3e3e3;
-  background-color: #fff;
+  background-color: $body-secondary;
+  color: #fff;
   z-index: 999;
   box-shadow: 0 0.0625rem 0 0 rgb(0 0 0 / 15%);
+
+  a {
+    color: #fff;
+  }
 
   .logo {
     font-size: 16px;
   }
 
   .logo a {
-    color: #181717;
+    color: #fff;
   }
 
   .last-child-wrapper {
@@ -92,19 +111,19 @@
     }
   }
 
-  .burger-wrapper dsiv {
-    border-bottom-color: #000;
+  .burger-wrapper div {
+    border-bottom-color: #fff;
   }
 
   &.dark {
-    background-color: #1f1e1e;
+    background-color: $dark-secondary;
 
-    .logo a {
-      color: #e3e3e3;
+    a {
+      color: $dark-nav-color;
     }
 
     .burger-wrapper div {
-      border-bottom-color: #e3e3e3;
+      border-bottom-color: $dark-nav-color;
     }
   }
 }
@@ -130,7 +149,7 @@
   .items {
     display: none;
     justify-content: space-between;
-    width: 800px;
+    // width: 800px;
     color: black;
     font-size: 16px;
 
@@ -140,11 +159,11 @@
       font-weight: 500;
 
       a:hover {
-        color: rgb(157, 151, 142);
+        color: $text-hover-color;
       }
 
       a.active {
-        color: #777575;
+        color: $text-hover-color;
       }
     }
   }
@@ -163,7 +182,20 @@
   padding-bottom: 10px;
   z-index: 999;
   animation: 0.5s sideBar;
-  background-color: #e3e3e3;
+  background-color: $body-secondary;
+  color: #fff;
+
+  a {
+    color: #fff;
+
+    &:hover {
+      color: $text-hover-color;
+    }
+
+    &.active {
+      color: $text-hover-color;
+    }
+  }
 
   div {
     margin-top: 20px;
@@ -171,7 +203,15 @@
   }
 
   &.dark {
-    background-color: #1f1e1e;
+    background-color: $dark-secondary;
+
+    .logo a {
+      color: $dark-nav-color;
+    }
+
+    .burger-wrapper div {
+      border-bottom-color: $dark-nav-color;
+    }
   }
 }
 
