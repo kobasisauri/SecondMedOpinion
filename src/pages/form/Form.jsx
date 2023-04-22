@@ -16,13 +16,15 @@ let validationSchema = Yup.object().shape(validations);
 const researchTypes = [
   { label: "თავი", value: "თავი" },
   { label: "გული", value: "გული" },
-  { label: "ტრაკი", value: "ტრაკი" },
+  { label: "ფეხი", value: "ფეხი" },
 ];
 
 const contrastTypes = [
-  { label: "კონტრასტ", value: "კონტრასტ" },
-  { label: "არა კონტრასტ", value: "არა კონტრასტ" },
+  { label: "კონტრასტული", value: "კონტრასტული" },
+  { label: "არა კონტრასტული", value: "არა კონტრასტული" },
 ];
+
+const doctors = [{ label: "Андрей Сергеевич", value: "Андрей Сергеевич" }];
 
 const DataForm = () => {
   const { t } = useTranslation();
@@ -66,8 +68,9 @@ const DataForm = () => {
         <Row>
           <Col xs="6">
             <UIFormControl
+              label={"First Name"}
               className="mb-4"
-              placeholder={t("Name")}
+              placeholder={t("Enter your firstname")}
               name="firstName"
               value={values.firstName}
               handleChange={handleChange}
@@ -78,8 +81,9 @@ const DataForm = () => {
           </Col>
           <Col xs="6">
             <UIFormControl
+              label={"Lastname"}
               className="mb-4"
-              placeholder={t("LastName")}
+              placeholder={t("Enter your Lastname")}
               name="lastName"
               value={values.lastName}
               handleChange={handleChange}
@@ -89,7 +93,34 @@ const DataForm = () => {
             />
           </Col>
 
-          <Col xs="12" className="mb-4">
+          <Col xs="6">
+            <UIFormControl
+              label={"E-mail"}
+              className="mb-4"
+              placeholder={t("Enter your email address")}
+              name="email"
+              value={values.email}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              isInvalid={touched.email && errors.email}
+              errorMSG={errors.email}
+            />
+          </Col>
+
+          <Col xs="6">
+            <DatepickerItem
+              label={"Birthday"}
+              className="mb-4"
+              placeholder={"dd/mm/yyyy"}
+              name="birthday"
+              isInvalid={touched.birthday && errors.birthday}
+              errorMSG={errors.birthday}
+              valChange={(date) => setFieldValue("birthday", date)}
+              setTouched={setFieldTouched}
+            />
+          </Col>
+
+          <Col xs="6" className="mb-4 d-flex align-items-center">
             <Form.Check
               inline
               label={t("Female")}
@@ -116,22 +147,27 @@ const DataForm = () => {
             )}
           </Col>
 
-          {values.gender === "female" && (
-            <Col xs="12">
-              <DatepickerItem
+          <Row>
+            <Col xs="6">
+              <UISelect
+                label="Choose a doctor"
                 className="mb-4"
-                placeholder={t("period")}
-                name="period"
-                isInvalid={touched.period && errors.period}
-                errorMSG={errors.period}
-                valChange={(date) => setFieldValue("period", date)}
-                setTouched={setFieldTouched}
+                fetchedData={doctors}
+                placeholder="doctors"
+                name="doctors"
+                initialValue={values.doctors}
+                handleChange={(item) =>
+                  setFieldValue("doctor", item ? item.value : null)
+                }
+                isInvalid={!!(touched.doctors && errors.doctors)}
+                errorMSG={errors.doctors}
               />
             </Col>
-          )}
+          </Row>
 
           <Col xs="6">
             <UISelect
+              label="Choose a reaserch"
               className="mb-4"
               fetchedData={researchTypes}
               placeholder="research"
@@ -147,6 +183,7 @@ const DataForm = () => {
 
           <Col xs="6">
             <UISelect
+              label="Choose which type of reaserch you have"
               fetchedData={contrastTypes}
               placeholder="contrast"
               name="contrast"
@@ -208,6 +245,47 @@ const DataForm = () => {
                 </Col>
               </Fragment>
             ))}
+
+          {values.gender === "female" && (
+            <Col xs="12">
+              <DatepickerItem
+                className="mb-4"
+                placeholder={t("period")}
+                name="period"
+                isInvalid={touched.period && errors.period}
+                errorMSG={errors.period}
+                valChange={(date) => setFieldValue("period", date)}
+                setTouched={setFieldTouched}
+              />
+            </Col>
+          )}
+
+          <Col xs="6" className="mb-4 d-flex align-items-center">
+            <Form.Check
+              inline
+              label={t("Female")}
+              name="gender"
+              type="radio"
+              id="inline-radio-1"
+              value="female"
+              checked={values.gender === "female"}
+              onChange={handleChange}
+            />
+
+            <Form.Check
+              inline
+              label={t("Male")}
+              name="gender"
+              type="radio"
+              id="inline-radio-2"
+              value="male"
+              checked={values.gender === "male"}
+              onChange={handleChange}
+            />
+            {errors.gender && (
+              <div className={styles.errorMSG}>{t(errors.gender)}</div>
+            )}
+          </Col>
 
           <Col xs="6">
             <button

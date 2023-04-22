@@ -157,7 +157,7 @@ const Base = (
 
   return (
     <div {...rest}>
-      {label && <label className="mb-2">{t(label)}</label>}
+      {label && <label className="mb-2 ms-1">{t(label)}</label>}
       <div className="position-relative">
         <Dropdown ref={nodeRef} show={disabled ? false : visible}>
           <Dropdown.Toggle

@@ -27,7 +27,7 @@ const UIFormControl = ({
 
   return (
     <div className={`w-100 ${className ? className : ""}`} {...rest}>
-      {label && <label className="mb-2">{label}</label>}
+      {label && <label className="mb-2  ms-1">{label}</label>}
       <div
         className={`d-flex align-items-center ${classes.wrapper} ${
           isInvalid ? classes.warning : ""
