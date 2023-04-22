@@ -2,16 +2,14 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Form, Row, Col } from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 import UIFormControl from "../../components/UI/FormControl/UIFormControl";
 import UISelect from "../../components/UI/UISelect";
-import initialVals from "./initial-values";
-import validations from "./validations";
+import initialValues from "./initial-values";
+import initialValidations from "./validations";
 import styles from "./Form.module.scss";
 import DatepickerItem from "../../components/UI/DatepickerItem/DatepickerItem";
 import { formatDate } from "../../static/date";
-
-let validationSchema = Yup.object().shape(validations);
 
 const researchTypes = [
   { label: "თავი", value: "თავი" },
@@ -24,12 +22,11 @@ const contrastTypes = [
   { label: "არა კონტრასტული", value: "არა კონტრასტული" },
 ];
 
-const doctors = [{ label: "Андрей Сергеевич", value: "Андрей Сергеевич" }];
+const doctors = [{ label: "Андрей Сергеевич", value: "0" }];
 
 const DataForm = () => {
   const { t } = useTranslation();
-  const [otherResearch, setOtherResearch] = useState([]);
-  const [initialValues, setInitialValues] = useState(initialVals);
+  const [validations, setValidations] = useState(initialValidations);
 
   const {
     values,
@@ -40,27 +37,141 @@ const DataForm = () => {
     handleSubmit,
     setFieldValue,
     setFieldTouched,
+    setValues,
   } = useFormik({
     initialValues,
-    validationSchema,
-    onSubmit: () =>
+    validationSchema: Yup.object().shape(validations),
+    onSubmit: (values) => {
       console.log({
         ...values,
+        birthday: values.birthday ? formatDate(values.birthday) : "",
         period: values.period ? formatDate(values.period) : "",
-      }),
+      });
+    },
   });
 
   useEffect(() => {
     if (values.gender === "female") {
       setFieldValue("period", "");
-      validationSchema = Yup.object().shape({
-        ...validations,
+
+      setValidations((state) => ({
+        ...state,
         period: Yup.string().required("Validations.Required"),
-      });
+      }));
     } else {
-      validationSchema = Yup.object().shape({ ...validations });
+      setValidations((state) =>
+        Object.keys(state)
+          .filter((key) => key !== "period")
+          .reduce((obj, key) => {
+            obj[key] = state[key];
+            return obj;
+          }, {})
+      );
     }
   }, [setFieldValue, values.gender]);
+
+  useEffect(() => {
+    if (!!+values.hasOperation) {
+      setFieldValue("operation", "");
+
+      setValidations((state) => ({
+        ...state,
+        operation: Yup.string().required("Validations.Required"),
+      }));
+    } else {
+      setValidations((state) =>
+        Object.keys(state)
+          .filter((key) => key !== "operation")
+          .reduce((obj, key) => {
+            obj[key] = state[key];
+            return obj;
+          }, {})
+      );
+    }
+  }, [setFieldValue, values.hasOperation]);
+
+  useEffect(() => {
+    if (!!+values.haschronicDisease) {
+      setFieldValue("chronicDisease", "");
+
+      setValidations((state) => ({
+        ...state,
+        chronicDisease: Yup.string().required("Validations.Required"),
+      }));
+    } else {
+      setValidations((state) =>
+        Object.keys(state)
+          .filter((key) => key !== "chronicDisease")
+          .reduce((obj, key) => {
+            obj[key] = state[key];
+            return obj;
+          }, {})
+      );
+    }
+  }, [setFieldValue, values.haschronicDisease]);
+
+  useEffect(() => {
+    if (!!+values.hasOncologicalDisease) {
+      setFieldValue("hasChemotherapy", null);
+
+      setValidations((state) => ({
+        ...state,
+        hasChemotherapy: Yup.string().required("Validations.Required"),
+      }));
+    } else {
+      setValidations((state) =>
+        Object.keys(state)
+          .filter((key) => key !== "hasChemotherapy")
+          .reduce((obj, key) => {
+            obj[key] = state[key];
+            return obj;
+          }, {})
+      );
+    }
+  }, [setFieldValue, values.hasOncologicalDisease]);
+
+  useEffect(() => {
+    if (!!+values.hasChemotherapy) {
+      setFieldValue("chemotherapy", "");
+
+      setValidations((state) => ({
+        ...state,
+        chemotherapy: Yup.string().required("Validations.Required"),
+      }));
+    } else {
+      setValidations((state) =>
+        Object.keys(state)
+          .filter((key) => key !== "chemotherapy")
+          .reduce((obj, key) => {
+            obj[key] = state[key];
+            return obj;
+          }, {})
+      );
+    }
+  }, [setFieldValue, values.hasChemotherapy]);
+
+  useEffect(() => {
+    if (
+      typeof values.purposeOfPrevention === "string" &&
+      +values.purposeOfPrevention === 0
+    ) {
+      setFieldValue("complains", "");
+
+      setValidations((state) => ({
+        ...state,
+        complains: Yup.string().required("Validations.Required"),
+      }));
+    } else {
+      setValidations((state) =>
+        Object.keys(state)
+          .filter((key) => key !== "complains")
+          .reduce((obj, key) => {
+            obj[key] = state[key];
+            return obj;
+          }, {})
+      );
+    }
+  }, [setFieldValue, values.purposeOfPrevention]);
 
   return (
     <div className={styles.wrapper}>
@@ -68,9 +179,9 @@ const DataForm = () => {
         <Row>
           <Col xs="6">
             <UIFormControl
-              label={"First Name"}
+              label={t("Name")}
               className="mb-4"
-              placeholder={t("Enter your firstname")}
+              placeholder={t("EnterFirstname")}
               name="firstName"
               value={values.firstName}
               handleChange={handleChange}
@@ -81,9 +192,9 @@ const DataForm = () => {
           </Col>
           <Col xs="6">
             <UIFormControl
-              label={"Lastname"}
+              label={t("LastName")}
               className="mb-4"
-              placeholder={t("Enter your Lastname")}
+              placeholder={t("EnterLastname")}
               name="lastName"
               value={values.lastName}
               handleChange={handleChange}
@@ -92,12 +203,11 @@ const DataForm = () => {
               errorMSG={errors.lastName}
             />
           </Col>
-
           <Col xs="6">
             <UIFormControl
-              label={"E-mail"}
+              label={t("Email")}
               className="mb-4"
-              placeholder={t("Enter your email address")}
+              placeholder={t("EnterEmailAddress")}
               name="email"
               value={values.email}
               handleChange={handleChange}
@@ -106,10 +216,9 @@ const DataForm = () => {
               errorMSG={errors.email}
             />
           </Col>
-
           <Col xs="6">
             <DatepickerItem
-              label={"Birthday"}
+              label={t("Birthday")}
               className="mb-4"
               placeholder={"dd/mm/yyyy"}
               name="birthday"
@@ -120,7 +229,8 @@ const DataForm = () => {
             />
           </Col>
 
-          <Col xs="6" className="mb-4 d-flex align-items-center">
+          <Col xs="6" className="mb-4">
+            <div className="mb-2 ms-1">{t("ChooseGender")}</div>
             <Form.Check
               inline
               label={t("Female")}
@@ -129,7 +239,7 @@ const DataForm = () => {
               id="inline-radio-1"
               value="female"
               checked={values.gender === "female"}
-              onChange={handleChange}
+              onChange={(e) => setFieldValue("gender", e.target.value)}
             />
 
             <Form.Check
@@ -140,9 +250,10 @@ const DataForm = () => {
               id="inline-radio-2"
               value="male"
               checked={values.gender === "male"}
-              onChange={handleChange}
+              onChange={(e) => setFieldValue("gender", e.target.value)}
             />
-            {errors.gender && (
+
+            {touched.gender && errors.gender && (
               <div className={styles.errorMSG}>{t(errors.gender)}</div>
             )}
           </Col>
@@ -150,27 +261,27 @@ const DataForm = () => {
           <Row>
             <Col xs="6">
               <UISelect
-                label="Choose a doctor"
+                label={t("ChooseDoctor")}
                 className="mb-4"
                 fetchedData={doctors}
-                placeholder="doctors"
-                name="doctors"
-                initialValue={values.doctors}
+                placeholder={t("Doctors")}
+                name="doctor"
+                initialValue={values.doctor}
                 handleChange={(item) =>
                   setFieldValue("doctor", item ? item.value : null)
                 }
-                isInvalid={!!(touched.doctors && errors.doctors)}
-                errorMSG={errors.doctors}
+                isInvalid={!!(touched.doctor && errors.doctor)}
+                errorMSG={errors.doctor}
               />
             </Col>
           </Row>
 
           <Col xs="6">
             <UISelect
-              label="Choose a reaserch"
+              label={t("ChooseResearch")}
               className="mb-4"
               fetchedData={researchTypes}
-              placeholder="research"
+              placeholder={t("Researches")}
               name="research"
               initialValue={values.research}
               handleChange={(item) =>
@@ -183,9 +294,9 @@ const DataForm = () => {
 
           <Col xs="6">
             <UISelect
-              label="Choose which type of reaserch you have"
+              label={t("TypeOfResearch")}
               fetchedData={contrastTypes}
-              placeholder="contrast"
+              placeholder={t("TypeOfResearch")}
               name="contrast"
               initialValue={values.contrastcontrast}
               handleChange={(item) => {
@@ -196,61 +307,121 @@ const DataForm = () => {
             />
           </Col>
 
-          {!!otherResearch.length &&
-            otherResearch.map((item) => (
-              <Fragment key={item.id}>
+          {values.otherResearches &&
+            values.otherResearches.length > 0 &&
+            values.otherResearches.map((otherResearche, index) => (
+              <Fragment key={index}>
                 <Col xs="6">
                   <UISelect
                     className="mb-4"
                     fetchedData={researchTypes}
-                    placeholder="research"
-                    name={`research-${item.id}`}
-                    initialValue={values[`research-${item.id}`]}
+                    placeholder={t("Research")}
+                    name={`otherResearches.${index}.research`}
+                    initialValue={values.otherResearches[index].research}
                     handleChange={(item) => {
                       setFieldValue(
-                        `research-${item.id}`,
+                        `otherResearches.${index}.research`,
                         item ? item.value : null
                       );
                     }}
                     isInvalid={
                       !!(
-                        touched[`research-${item.id}`] &&
-                        errors[`research-${item.id}`]
+                        errors &&
+                        errors.otherResearches &&
+                        errors.otherResearches[index] &&
+                        errors.otherResearches[index].research &&
+                        touched &&
+                        touched.otherResearches &&
+                        touched.otherResearches[index] &&
+                        touched.otherResearches[index].research
                       )
                     }
-                    errorMSG={errors[`research-${item.id}`]}
+                    errorMSG={
+                      errors &&
+                      errors.otherResearches &&
+                      errors.otherResearches[index] &&
+                      errors.otherResearches[index].research &&
+                      errors.otherResearches[index].research
+                    }
                   />
                 </Col>
 
                 <Col xs="6">
                   <UISelect
+                    className="mb-4"
                     fetchedData={contrastTypes}
-                    placeholder="contrast"
-                    name={`contrast-${item.id}`}
-                    initialValue={values[`contrast-${item.id}`]}
+                    placeholder={t("Contrast")}
+                    name={`otherResearches.${index}.contrast`}
+                    initialValue={values.otherResearches[index].contrast}
                     handleChange={(item) => {
                       setFieldValue(
-                        `contrast-${item.id}`,
+                        `otherResearches.${index}.contrast`,
                         item ? item.value : null
                       );
                     }}
                     isInvalid={
                       !!(
-                        touched[`contrast-${item.id}`] &&
-                        errors[`contrast-${item.id}`][`contrast-${item.id}`]
+                        errors &&
+                        errors.otherResearches &&
+                        errors.otherResearches[index] &&
+                        errors.otherResearches[index].contrast &&
+                        touched &&
+                        touched.otherResearches &&
+                        touched.otherResearches[index] &&
+                        touched.otherResearches[index].contrast
                       )
                     }
-                    errorMSG={errors[`contrast-${item.id}`]}
+                    errorMSG={
+                      errors &&
+                      errors.otherResearches &&
+                      errors.otherResearches[index] &&
+                      errors.otherResearches[index].contrast &&
+                      errors.otherResearches[index].contrast
+                    }
                   />
+
+                  <span
+                    onClick={() =>
+                      setValues((state) => ({
+                        ...state,
+                        otherResearches: state.otherResearches.filter(
+                          (_, i) => i !== index
+                        ),
+                      }))
+                    }
+                  >
+                    -
+                  </span>
                 </Col>
               </Fragment>
             ))}
 
+          <Col className="mb-4">
+            <Button
+              type="button"
+              onClick={() =>
+                setValues((state) => ({
+                  ...state,
+                  otherResearches: [
+                    ...state.otherResearches,
+                    {
+                      research: "",
+                      contrast: "",
+                    },
+                  ],
+                }))
+              }
+              size="sm"
+            >
+              + {t("OtherResearches")}
+            </Button>
+          </Col>
+
           {values.gender === "female" && (
-            <Col xs="12">
+            <Col xs="12" className="mb-4">
               <DatepickerItem
-                className="mb-4"
-                placeholder={t("period")}
+                label={t("LastPeriodDate")}
+                placeholder={t("LastPeriodDate")}
                 name="period"
                 isInvalid={touched.period && errors.period}
                 errorMSG={errors.period}
@@ -260,61 +431,253 @@ const DataForm = () => {
             </Col>
           )}
 
-          <Col xs="6" className="mb-4 d-flex align-items-center">
+          <Col xs="12" className="mb-4">
+            <div className="mb-2 ms-1">{t("HasSurgery")}</div>
             <Form.Check
               inline
-              label={t("Female")}
-              name="gender"
+              label={t("Yes")}
+              name="hasOperation"
               type="radio"
-              id="inline-radio-1"
-              value="female"
-              checked={values.gender === "female"}
-              onChange={handleChange}
+              id="hasOperation-1"
+              value={1}
+              checked={+values.hasOperation === 1}
+              onChange={(e) => setFieldValue("hasOperation", e.target.value)}
             />
 
             <Form.Check
               inline
-              label={t("Male")}
-              name="gender"
+              label={t("No")}
+              name="hasOperation"
               type="radio"
-              id="inline-radio-2"
-              value="male"
-              checked={values.gender === "male"}
-              onChange={handleChange}
+              id="hasOperation-2"
+              value={0}
+              checked={
+                typeof values.hasOperation === "string" &&
+                +values.hasOperation === 0
+              }
+              onChange={(e) => setFieldValue("hasOperation", e.target.value)}
             />
-            {errors.gender && (
-              <div className={styles.errorMSG}>{t(errors.gender)}</div>
+
+            {touched.hasOperation && errors.hasOperation && (
+              <div className={styles.errorMSG}>{t(errors.hasOperation)}</div>
             )}
           </Col>
 
-          <Col xs="6">
-            <button
-              type="button"
-              className="mb-4"
-              style={{ width: "fit-content" }}
-              onClick={() => {
-                setOtherResearch((state) => [
-                  ...state,
-                  {
-                    id: state.length + 1,
-                    research: null,
-                    contrast: null,
-                  },
-                ]);
+          {!!+values.hasOperation && (
+            <Col xs="12">
+              <UIFormControl
+                label={t("Operation")}
+                className="mb-4"
+                placeholder={t("Operation")}
+                name="operation"
+                value={values.operation}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                isInvalid={touched.operation && errors.operation}
+                errorMSG={errors.operation}
+              />
+            </Col>
+          )}
 
-                setInitialValues((state) => ({
-                  ...state,
-                  [`research-${otherResearch.length + 1}`]: null,
-                  [`contrast-${otherResearch.length + 1}`]: null,
-                }));
-              }}
-            >
-              სხვა კვლევები
-            </button>
+          <Col xs="12" className="mb-4">
+            <div className="mb-2 ms-1">{t("HasChronicDisease")}</div>
+            <Form.Check
+              inline
+              label={t("Yes")}
+              name="haschronicDisease"
+              type="radio"
+              id="haschronicDisease-1"
+              value={1}
+              checked={+values.haschronicDisease === 1}
+              onChange={(e) =>
+                setFieldValue("haschronicDisease", e.target.value)
+              }
+            />
+
+            <Form.Check
+              inline
+              label={t("No")}
+              name="haschronicDisease"
+              type="radio"
+              id="haschronicDisease-2"
+              value={0}
+              checked={
+                typeof values.haschronicDisease === "string" &&
+                +values.haschronicDisease === 0
+              }
+              onChange={(e) =>
+                setFieldValue("haschronicDisease", e.target.value)
+              }
+            />
+
+            {touched.haschronicDisease && errors.haschronicDisease && (
+              <div className={styles.errorMSG}>
+                {t(errors.haschronicDisease)}
+              </div>
+            )}
           </Col>
+
+          {!!+values.haschronicDisease && (
+            <Col xs="12">
+              <UIFormControl
+                label={t("ChronicDisease")}
+                className="mb-4"
+                placeholder={t("chronicDisease")}
+                name="chronicDisease"
+                value={values.chronicDisease}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                isInvalid={touched.chronicDisease && errors.chronicDisease}
+                errorMSG={errors.chronicDisease}
+              />
+            </Col>
+          )}
+
+          <Col xs="12" className="mb-4">
+            <div className="mb-2 ms-1">{t("HasOncologicalDisease")}</div>
+            <Form.Check
+              inline
+              label={t("Yes")}
+              name="hasOncologicalDisease"
+              type="radio"
+              id="hasOncologicalDisease-1"
+              value={1}
+              checked={+values.hasOncologicalDisease === 1}
+              onChange={handleChange}
+            />
+
+            <Form.Check
+              inline
+              label={t("No")}
+              name="hasOncologicalDisease"
+              type="radio"
+              id="hasOncologicalDisease-2"
+              value={0}
+              checked={
+                typeof values.hasOncologicalDisease === "string" &&
+                +values.hasOncologicalDisease === 0
+              }
+              onChange={handleChange}
+            />
+
+            {touched.hasOncologicalDisease && errors.hasOncologicalDisease && (
+              <div className={styles.errorMSG}>
+                {t(errors.hasOncologicalDisease)}
+              </div>
+            )}
+          </Col>
+
+          {!!+values.hasOncologicalDisease && (
+            <Col xs="12" className="mb-4">
+              <div className="mb-2 ms-1">{t("HasChemotherapy")}</div>
+              <Form.Check
+                inline
+                label={t("Yes")}
+                name="hasChemotherapy"
+                type="radio"
+                id="hasChemotherapy-1"
+                value={1}
+                checked={+values.hasChemotherapy === 1}
+                onChange={handleChange}
+              />
+
+              <Form.Check
+                inline
+                label={t("No")}
+                name="hasChemotherapy"
+                type="radio"
+                id="hasChemotherapy-2"
+                value={0}
+                checked={
+                  typeof values.hasChemotherapy === "string" &&
+                  +values.hasChemotherapy === 0
+                }
+                onChange={handleChange}
+              />
+
+              {touched.hasChemotherapy && errors.hasChemotherapy && (
+                <div className={styles.errorMSG}>
+                  {t(errors.hasChemotherapy)}
+                </div>
+              )}
+            </Col>
+          )}
+
+          {!!+values.hasChemotherapy && (
+            <Col xs="12">
+              <UIFormControl
+                label={t("Chemotherapy")}
+                className="mb-4"
+                placeholder={t("Chemotherapy")}
+                name="chemotherapy"
+                value={values.chemotherapy}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                isInvalid={touched.chemotherapy && errors.chemotherapy}
+                errorMSG={errors.chemotherapy}
+              />
+            </Col>
+          )}
         </Row>
 
-        <button type="submit">{t("Send")}</button>
+        <h4 className="mb-4">{t("PurposeOfPrevention")}</h4>
+
+        <Row>
+          <Col xs="12" className="mb-4">
+            <div className="mb-2 ms-1">{t("PurposeOfPrevention")}</div>
+            <Form.Check
+              inline
+              label={t("Yes")}
+              name="purposeOfPrevention"
+              type="radio"
+              id="purposeOfPrevention-1"
+              value={1}
+              checked={+values.purposeOfPrevention === 1}
+              onChange={handleChange}
+            />
+
+            <Form.Check
+              inline
+              label={t("No")}
+              name="purposeOfPrevention"
+              type="radio"
+              id="v-2"
+              value={0}
+              checked={
+                typeof values.purposeOfPrevention === "string" &&
+                +values.purposeOfPrevention === 0
+              }
+              onChange={handleChange}
+            />
+
+            {touched.purposeOfPrevention && errors.purposeOfPrevention && (
+              <div className={styles.errorMSG}>
+                {t(errors.purposeOfPrevention)}
+              </div>
+            )}
+          </Col>
+
+          {typeof values.purposeOfPrevention === "string" &&
+            +values.purposeOfPrevention === 0 && (
+              <Col xs="12">
+                <UIFormControl
+                  label={t("Complains")}
+                  className="mb-4"
+                  placeholder={t("Complains")}
+                  name="complains"
+                  value={values.complains}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  isInvalid={touched.complains && errors.complains}
+                  errorMSG={errors.complains}
+                />
+              </Col>
+            )}
+        </Row>
+
+        <Button type="submit" size="sm">
+          {t("Submit")}
+        </Button>
       </Form>
     </div>
   );
