@@ -637,7 +637,7 @@ const DataForm = () => {
           )}
         </Row>
 
-        <h4 className="mb-4">{t("PurposeOfPrevention")}</h4>
+        <h4 className="mb-4">{t("TitlePurposeOfPrevention")}</h4>
 
         <Row>
           <Col xs="12" className="mb-4">
@@ -680,7 +680,7 @@ const DataForm = () => {
                 <UIFormControl
                   label={t("Complains")}
                   className="mb-4"
-                  placeholder={t("Complains")}
+                  placeholder={t("ComplainsPlaceHolder")}
                   name="complains"
                   value={values.complains}
                   handleChange={handleChange}
