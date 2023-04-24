@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Test from "../../assets/testclinic1.jpg";
 import data from "../../static/short-data";
 import styles from "./MRI.module.scss";
 
 const MRI = () => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.container}>
       <div className={styles.info}>
@@ -47,8 +50,8 @@ const MRI = () => {
               </div>
 
               <div className={styles.links}>
-                <Link to={`/mri/${item.id}`}>რეზიუმე</Link>
-                <Link to="/form">აპლიკაცია</Link>
+                <Link to={`/mri/${item.id}`}>{t("Resume")}</Link>
+                <Link to="/form">{t("Aplication")}</Link>
               </div>
             </div>
           </div>

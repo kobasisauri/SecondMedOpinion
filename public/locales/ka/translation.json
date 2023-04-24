@@ -37,6 +37,8 @@
   "Submit": "Submit",
   "Yes": "კი",
   "No": "არა",
+  "Resume": "რეზიუმე",
+  "Aplication": "აპლიკაცია",
   "Validations": {
     "Email": "არასწორი ელ-ფოსტის ფორმატი",
     "Required": "სავალდებულო ველი",
