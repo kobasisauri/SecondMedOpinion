@@ -10,6 +10,7 @@ import initialValidations from "./validations";
 import styles from "./Form.module.scss";
 import DatepickerItem from "../../components/UI/DatepickerItem/DatepickerItem";
 import { formatDate } from "../../static/date";
+import FileUpload from "../../components/UI/FileUpload/FileUpload";
 
 const researchTypes = [
   { label: "თავი", value: "თავი" },
@@ -430,7 +431,7 @@ const DataForm = () => {
               }
               size="sm"
             >
-              + {t("OtherResearches")}
+              {t("AddResearches")}
             </Button>
           </Col>
 
@@ -447,108 +448,108 @@ const DataForm = () => {
               />
             </Col>
           )}
-
-          <Col xs="12" className="mb-4">
-            <div className="mb-2 ms-1">{t("HasSurgery")}</div>
-            <Form.Check
-              inline
-              label={t("Yes")}
-              name="hasOperation"
-              type="radio"
-              id="hasOperation-1"
-              value={1}
-              checked={+values.hasOperation === 1}
-              onChange={(e) => setFieldValue("hasOperation", e.target.value)}
-            />
-
-            <Form.Check
-              inline
-              label={t("No")}
-              name="hasOperation"
-              type="radio"
-              id="hasOperation-2"
-              value={0}
-              checked={
-                typeof values.hasOperation === "string" &&
-                +values.hasOperation === 0
-              }
-              onChange={(e) => setFieldValue("hasOperation", e.target.value)}
-            />
-
-            {touched.hasOperation && errors.hasOperation && (
-              <div className={styles.errorMSG}>{t(errors.hasOperation)}</div>
-            )}
-          </Col>
-
-          {!!+values.hasOperation && (
-            <Col xs="12">
-              <UIFormControl
-                label={t("Operation")}
-                className="mb-4"
-                placeholder={t("Operation")}
-                name="operation"
-                value={values.operation}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                isInvalid={touched.operation && errors.operation}
-                errorMSG={errors.operation}
+          <Row>
+            <Col xs="6" className="mb-4">
+              <div className="mb-2 ms-1">{t("HasSurgery")}</div>
+              <Form.Check
+                inline
+                label={t("Yes")}
+                name="hasOperation"
+                type="radio"
+                id="hasOperation-1"
+                value={1}
+                checked={+values.hasOperation === 1}
+                onChange={(e) => setFieldValue("hasOperation", e.target.value)}
               />
-            </Col>
-          )}
 
-          <Col xs="12" className="mb-4">
-            <div className="mb-2 ms-1">{t("HasChronicDisease")}</div>
-            <Form.Check
-              inline
-              label={t("Yes")}
-              name="haschronicDisease"
-              type="radio"
-              id="haschronicDisease-1"
-              value={1}
-              checked={+values.haschronicDisease === 1}
-              onChange={(e) =>
-                setFieldValue("haschronicDisease", e.target.value)
-              }
-            />
-
-            <Form.Check
-              inline
-              label={t("No")}
-              name="haschronicDisease"
-              type="radio"
-              id="haschronicDisease-2"
-              value={0}
-              checked={
-                typeof values.haschronicDisease === "string" &&
-                +values.haschronicDisease === 0
-              }
-              onChange={(e) =>
-                setFieldValue("haschronicDisease", e.target.value)
-              }
-            />
-
-            {touched.haschronicDisease && errors.haschronicDisease && (
-              <div className={styles.errorMSG}>
-                {t(errors.haschronicDisease)}
-              </div>
-            )}
-          </Col>
-
-          {!!+values.haschronicDisease && (
-            <Col xs="12">
-              <UIFormControl
-                label={t("ChronicDisease")}
-                className="mb-4"
-                placeholder={t("chronicDisease")}
-                name="chronicDisease"
-                value={values.chronicDisease}
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                isInvalid={touched.chronicDisease && errors.chronicDisease}
-                errorMSG={errors.chronicDisease}
+              <Form.Check
+                inline
+                label={t("No")}
+                name="hasOperation"
+                type="radio"
+                id="hasOperation-2"
+                value={0}
+                checked={
+                  typeof values.hasOperation === "string" &&
+                  +values.hasOperation === 0
+                }
+                onChange={(e) => setFieldValue("hasOperation", e.target.value)}
               />
+
+              {touched.hasOperation && errors.hasOperation && (
+                <div className={styles.errorMSG}>{t(errors.hasOperation)}</div>
+              )}
             </Col>
-          )}
+            <Col xs="6" className="mb-4">
+              <div className="mb-2 ms-1">{t("HasChronicDisease")}</div>
+              <Form.Check
+                inline
+                label={t("Yes")}
+                name="haschronicDisease"
+                type="radio"
+                id="haschronicDisease-1"
+                value={1}
+                checked={+values.haschronicDisease === 1}
+                onChange={(e) =>
+                  setFieldValue("haschronicDisease", e.target.value)
+                }
+              />
+
+              <Form.Check
+                inline
+                label={t("No")}
+                name="haschronicDisease"
+                type="radio"
+                id="haschronicDisease-2"
+                value={0}
+                checked={
+                  typeof values.haschronicDisease === "string" &&
+                  +values.haschronicDisease === 0
+                }
+                onChange={(e) =>
+                  setFieldValue("haschronicDisease", e.target.value)
+                }
+              />
+
+              {touched.haschronicDisease && errors.haschronicDisease && (
+                <div className={styles.errorMSG}>
+                  {t(errors.haschronicDisease)}
+                </div>
+              )}
+            </Col>
+          </Row>
+          <Row>
+            {!!+values.hasOperation && (
+              <Col xs="6">
+                <UIFormControl
+                  label={t("Operation")}
+                  className="mb-4"
+                  placeholder={t("Operation")}
+                  name="operation"
+                  value={values.operation}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  isInvalid={touched.operation && errors.operation}
+                  errorMSG={errors.operation}
+                />
+              </Col>
+            )}
+            {!!+values.haschronicDisease && (
+              <Col xs="6">
+                <UIFormControl
+                  label={t("ChronicDisease")}
+                  className="mb-4"
+                  placeholder={t("chronicDisease")}
+                  name="chronicDisease"
+                  value={values.chronicDisease}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  isInvalid={touched.chronicDisease && errors.chronicDisease}
+                  errorMSG={errors.chronicDisease}
+                />
+              </Col>
+            )}
+          </Row>
 
           <Col xs="12" className="mb-4">
             <div className="mb-2 ms-1">{t("HasOncologicalDisease")}</div>
@@ -676,20 +677,36 @@ const DataForm = () => {
 
           {typeof values.purposeOfPrevention === "string" &&
             +values.purposeOfPrevention === 0 && (
-              <Col xs="12">
-                <UIFormControl
-                  label={t("Complains")}
-                  className="mb-4"
-                  placeholder={t("ComplainsPlaceHolder")}
-                  name="complains"
-                  value={values.complains}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  isInvalid={touched.complains && errors.complains}
-                  errorMSG={errors.complains}
-                />
-              </Col>
+              <>
+                <Col xs="6">
+                  <UIFormControl
+                    label={t("Complains")}
+                    className="mb-4"
+                    placeholder={t("ComplainsPlaceHolder")}
+                    name="complains"
+                    value={values.complains}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    isInvalid={touched.complains && errors.complains}
+                    errorMSG={errors.complains}
+                  />
+                </Col>
+                <Col xs="6"></Col>
+              </>
             )}
+        </Row>
+        <h2
+          style={{
+            fontSize: "18px",
+            fontWeight: "bold",
+            display: "block",
+            marginBottom: "1rem",
+          }}
+        >
+          {t("UploadDicomFile")}
+        </h2>
+        <Row xs={6} style={{ marginBottom: "3rem" }}>
+          <FileUpload />
         </Row>
 
         <Button type="submit" size="sm">

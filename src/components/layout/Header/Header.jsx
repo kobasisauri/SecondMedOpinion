@@ -16,6 +16,7 @@ const navs = [
   { item: "MRI", link: "mri" },
   { item: "CT", link: "computer-tomography" },
   { item: "ContactUs", link: "contact-us" },
+  { item: "Application", link: "form" },
 ];
 
 const Header = ({ className }) => {

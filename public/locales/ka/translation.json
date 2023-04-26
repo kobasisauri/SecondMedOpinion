@@ -4,6 +4,8 @@
   "MRI": "Magnetic Resonance Imaging (MRI)",
   "CT": "Computer Tomography (CT)",
   "ContactUs": "კონტაქტი",
+  "Application": "ფორმა",
+
   "Name": "სახელი",
   "LastName": "გვარი",
   "EnterFirstname": "შეიყვანეთ სახელი",
@@ -33,7 +35,8 @@
   "TypeOfResearch": "TypeOfResearch",
   "Research": "Research",
   "Contrast": "Contrast",
-  "OtherResearches": "OtherResearches",
+  "AddResearches": "კვლევის დამატება",
+  "UploadDicomFile": "ატვირთეთ .dicom ფაილი",
   "Submit": "Submit",
   "Yes": "კი",
   "No": "არა",

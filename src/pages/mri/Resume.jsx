@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import useStore from "../../stores/store";
 import data from "../../static/data";
@@ -42,6 +42,9 @@ const Resume = () => {
 
                 <div className={styles.inner}>
                   {resume.profession}, <span>{resume.country}</span>
+                </div>
+                <div className={styles.links}>
+                  <Link to="/form">შეავსეთ ფორმა</Link>
                 </div>
               </Col>
 
