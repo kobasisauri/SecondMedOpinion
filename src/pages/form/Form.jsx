@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Form, Row, Col, Button, Toast } from "react-bootstrap";
+import { Form, Row, Col, Button, Toast, ToastContainer } from "react-bootstrap";
 import UIFormControl from "../../components/UI/FormControl/UIFormControl";
 import UISelect from "../../components/UI/UISelect";
 import initialValues from "./initial-values";
@@ -29,12 +29,15 @@ const DataForm = () => {
   const { t } = useTranslation();
   const [validations, setValidations] = useState(initialValidations);
   const [files, setFiles] = useState(null);
+  const [isUpload, setIsUpload] = useState(false);
 
   const onSubmit = (values) => {
     if (!files) {
-      // to do
       console.log("warninrg");
+      setIsUpload(true);
     } else {
+      setIsUpload(false);
+
       console.log({
         ...values,
         birthday: values.birthday ? formatDate(values.birthday) : "",
@@ -715,9 +718,29 @@ const DataForm = () => {
           {t("UploadDicomFile")}
         </h2>
 
-        <Row xs={12} style={{ marginBottom: "3rem" }}>
+        <Row xs={12} style={{ marginBottom: "1rem" }}>
           <FileUpload setFiles={setFiles} />
         </Row>
+        {isUpload && (
+          <ToastContainer
+            position="middle-center"
+            className={`p-3`}
+            id={styles.asdasd}
+          >
+            <Toast
+              onClose={() => setIsUpload(false)}
+              style={{ marginBottom: "3rem" }}
+            >
+              <Toast.Header>
+                <strong className="me-auto">EXPERT MED OPINION</strong>
+                {/* <small>11 mins ago</small> */}
+              </Toast.Header>
+              <Toast.Body style={{ color: "red" }}>
+                {t("AlertUpload")}
+              </Toast.Body>
+            </Toast>
+          </ToastContainer>
+        )}
 
         <Button type="submit" size="sm">
           {t("Submit")}
