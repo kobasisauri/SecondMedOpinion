@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, Toast } from "react-bootstrap";
 import UIFormControl from "../../components/UI/FormControl/UIFormControl";
 import UISelect from "../../components/UI/UISelect";
 import initialValues from "./initial-values";
@@ -28,6 +28,21 @@ const doctors = [{ label: "Андрей Сергеевич", value: "0" }];
 const DataForm = () => {
   const { t } = useTranslation();
   const [validations, setValidations] = useState(initialValidations);
+  const [files, setFiles] = useState(null);
+
+  const onSubmit = (values) => {
+    if (!files) {
+      // to do
+      console.log("warninrg");
+    } else {
+      console.log({
+        ...values,
+        birthday: values.birthday ? formatDate(values.birthday) : "",
+        period: values.period ? formatDate(values.period) : "",
+        files: files,
+      });
+    }
+  };
 
   const {
     values,
@@ -42,13 +57,7 @@ const DataForm = () => {
   } = useFormik({
     initialValues,
     validationSchema: Yup.object().shape(validations),
-    onSubmit: (values) => {
-      console.log({
-        ...values,
-        birthday: values.birthday ? formatDate(values.birthday) : "",
-        period: values.period ? formatDate(values.period) : "",
-      });
-    },
+    onSubmit,
   });
 
   useEffect(() => {
@@ -705,8 +714,9 @@ const DataForm = () => {
         >
           {t("UploadDicomFile")}
         </h2>
-        <Row xs={6} style={{ marginBottom: "3rem" }}>
-          <FileUpload />
+
+        <Row xs={12} style={{ marginBottom: "3rem" }}>
+          <FileUpload setFiles={setFiles} />
         </Row>
 
         <Button type="submit" size="sm">
