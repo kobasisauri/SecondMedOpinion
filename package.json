@@ -13,6 +13,7 @@
     "formik": "^2.2.9",
     "i18next": "^22.4.14",
     "i18next-http-backend": "^2.2.0",
+    "jszip": "^3.10.1",
     "load-script": "^2.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",

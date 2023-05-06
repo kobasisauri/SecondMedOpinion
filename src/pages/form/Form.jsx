@@ -11,6 +11,7 @@ import styles from "./Form.module.scss";
 import DatepickerItem from "../../components/UI/DatepickerItem/DatepickerItem";
 import { formatDate } from "../../static/date";
 import FileUpload from "../../components/UI/FileUpload/FileUpload";
+import JSZip from "jszip";
 
 const researchTypes = [
   { label: "თავი", value: "თავი" },
@@ -25,6 +26,26 @@ const contrastTypes = [
 
 const doctors = [{ label: "Андрей Сергеевич", value: "0" }];
 
+function generateZipFile(
+  zipName,
+  files,
+  options = { type: "blob", compression: "DEFLATE" }
+) {
+  return new Promise((resolve, reject) => {
+    const zip = new JSZip();
+    for (let i = 0; i < files.length; i++) {
+      zip.file(files[i].webkitRelativePath, files[i]);
+    }
+    zip.generateAsync(options).then(function (blob) {
+      zipName = zipName || Date.now() + ".zip";
+      const zipFile = new File([blob], zipName, {
+        type: "application/zip",
+      });
+      resolve(zipFile);
+    });
+  });
+}
+
 const DataForm = () => {
   const { t } = useTranslation();
   const [validations, setValidations] = useState(initialValidations);
@@ -32,18 +53,78 @@ const DataForm = () => {
   const [isUpload, setIsUpload] = useState(false);
 
   const onSubmit = (values) => {
+    const formData = new FormData();
+
+    // for (let i = 0; i < files.length; i++) {
+    //   formData.append(
+    //     "files",
+    //     files[i],
+    //     files[i].webkitRelativePath.replace(/\//g, "@")
+    //   );
+    // }
+    async function uploadFile() {
+      let fileList = files;
+      if (!fileList.length) return;
+      let webkitRelativePath = fileList[0].webkitRelativePath;
+      let zipFileName = webkitRelativePath.split("/")[0] + ".zip";
+      let zipFile = await generateZipFile(zipFileName, fileList);
+      upload({
+        url: "/single",
+        file: zipFile,
+        fileName: zipFileName,
+      });
+    }
+    function upload({ file, fileName, fieldName = "files" }) {
+      let formData = new FormData();
+      formData.append(fieldName, file, fileName);
+      formData.append(
+        "birthday",
+        values.birthday ? formatDate(values.birthday) : ""
+      );
+      formData.append("firstName", values.firstName);
+      formData.append("chemotherapy", values.chemotherapy);
+      formData.append("chronicDisease", values.chronicDisease);
+      formData.append("complains", values.complains);
+      formData.append("contrast", values.contrast);
+      formData.append("doctor", values.doctor);
+      formData.append("email", values.email);
+      formData.append("gender", values.gender);
+      formData.append("hasChemotherapy", values.hasChemotherapy);
+      formData.append("hasOncologicalDisease", values.hasOncologicalDisease);
+      formData.append("hasOperation", values.hasOperation);
+      formData.append("haschronicDisease", values.haschronicDisease);
+      formData.append("lastName", values.lastName);
+      formData.append("operation", values.operation);
+      formData.append("email", values.email);
+      formData.append("otherResearches", values.otherResearches);
+      formData.append("purposeOfPrevention", values.purposeOfPrevention);
+      formData.append("research", values.research);
+      formData.append("period", values.period ? formatDate(values.period) : "");
+      fetch("http://localhost:8080/data/add", {
+        method: "POST",
+        body: formData,
+      });
+    }
+
     if (!files) {
       console.log("warninrg");
       setIsUpload(true);
     } else {
+      // fetch("http://localhost:8080/data/add", {
+      //   method: "POST",
+      //   body: formData,
+      // }).then((res) => {
+      //   console.log(res);
+      // });
+      uploadFile();
+      console.log(formData);
+
       setIsUpload(false);
 
-      console.log({
-        ...values,
-        birthday: values.birthday ? formatDate(values.birthday) : "",
-        period: values.period ? formatDate(values.period) : "",
-        files: files,
-      });
+      // console.log({
+      //   ...values,
+      //   files: files,
+      // });
     }
   };
 

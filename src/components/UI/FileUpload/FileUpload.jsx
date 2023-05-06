@@ -6,6 +6,7 @@ const FileUpload = ({ setFiles }) => {
       className={styles.file}
       id="folder"
       type="file"
+      name="files"
       webkitdirectory="true"
       multiple
       onChange={(e) => setFiles(e.target.files)}
