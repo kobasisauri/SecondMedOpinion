@@ -76,7 +76,6 @@ const DataForm = () => {
     }
     function upload({ file, fileName, fieldName = "files" }) {
       let formData = new FormData();
-      formData.append(fieldName, file, fileName);
       formData.append(
         "birthday",
         values.birthday ? formatDate(values.birthday) : ""
@@ -100,6 +99,8 @@ const DataForm = () => {
       formData.append("purposeOfPrevention", values.purposeOfPrevention);
       formData.append("research", values.research);
       formData.append("period", values.period ? formatDate(values.period) : "");
+      formData.append(fieldName, file, fileName);
+
       fetch("http://localhost:8080/data/add", {
         method: "POST",
         body: formData,
