@@ -1,0 +1,117 @@
+@import '~react-datepicker/src/stylesheets/datepicker.scss';
+
+.react-datepicker {
+  font-family: $font-family;
+}
+
+.react-datepicker-popper {
+  &[data-placement^='top'] {
+    padding-bottom: 0;
+  }
+}
+
+.react-datepicker__portal {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.react-datepicker.portal-datepicker {
+  $text-color: #5e6278;
+  $header-background-color: lighten(#f5f8fa, 1%);
+  $in-range-bg-color: lighten($primary-color, 45%);
+
+  border: 1px solid $border-color;
+
+  .react-datepicker__header {
+    background-color: $header-background-color;
+    border-bottom: 1px solid $header-background-color;
+
+    &__dropdown {
+      margin: 10px 0;
+    }
+  }
+
+  .react-datepicker__current-month {
+    font-weight: normal;
+  }
+
+  .react-datepicker__navigation {
+    top: 8px;
+  }
+
+  .react-datepicker__day-name,
+  .react-datepicker__day,
+  .react-datepicker__time-name {
+    color: $text-color;
+  }
+
+  .react-datepicker__day {
+    &:hover {
+      background-color: darken(#fff, 3%);
+    }
+
+    &--today {
+      font-weight: normal;
+    }
+
+    &--disabled {
+      color: lighten($text-color, 33%);
+
+      &:hover {
+        background-color: #fff;
+      }
+    }
+
+    &--keyboard-selected {
+      background: #fff;
+    }
+
+    &--in-range,
+    &--in-selecting-range {
+      background-color: $in-range-bg-color;
+    }
+
+    &--in-range:hover {
+      background-color: darken($in-range-bg-color, 3%);
+    }
+
+    &--in-selecting-range:hover {
+      background-color: $in-range-bg-color;
+    }
+
+    &--selected,
+    &--range-end {
+      background-color: $primary-color;
+      font-weight: normal;
+      color: #fff;
+
+      &:hover {
+        background-color: $primary-color;
+      }
+    }
+  }
+
+  .react-datepicker__month-select,
+  .react-datepicker__year-select {
+    color: $text-color;
+    font-size: 1rem;
+    border: 1px solid $border-color;
+    border-radius: 0.3rem;
+
+    &::-webkit-scrollbar {
+      width: 0.4rem;
+      height: 0.4rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #eff2f5;
+    }
+
+    &:hover::-webkit-scrollbar-thumb {
+      background-color: #e9edf1;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}

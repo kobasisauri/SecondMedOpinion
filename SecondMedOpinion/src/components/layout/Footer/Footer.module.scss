@@ -1,0 +1,83 @@
+@import "../../../styles/abstracts/_variables";
+
+.container {
+  background: $body-secondary;
+  color: #fff;
+  padding-top: 2px;
+  padding-bottom: 4px;
+
+  a {
+    color: #fff;
+
+    &:hover {
+      color: $text-hover-color;
+    }
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: 1920px;
+    padding: 1.5px 7%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+
+    a {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+
+  .email {
+    margin-bottom: 10px;
+  }
+
+  .text {
+    display: flex;
+    width: 30px;
+
+    i {
+      font-size: 20px;
+      padding: 0 0.5rem;
+    }
+  }
+
+  &.dark {
+    background-color: $dark-secondary;
+    color: $dark-nav-color;
+
+    a {
+      color: $dark-nav-color;
+
+      &:hover {
+        color: #b3edff;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 660px) {
+  .container {
+    .wrapper {
+      flex-direction: row;
+    }
+
+    .logo {
+      text-align: left;
+    }
+
+    .logo,
+    .email {
+      margin-bottom: 0;
+    }
+  }
+}

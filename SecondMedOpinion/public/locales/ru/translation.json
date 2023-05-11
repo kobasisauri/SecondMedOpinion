@@ -1,0 +1,15 @@
+{
+  "Home": "test",
+  "AboutUs": "About Us",
+  "MRI": "Magnetic Resonance Imaging (MRI)",
+  "CT": "Computer Tomography (CT)",
+  "ContactUs": "Contact Us",
+  "Name": "Firstname",
+  "LastName": "Lastname",
+  "Validations": {
+    "Email": "არასწორი ელ-ფოსტის ფორმატი",
+    "Required": "Required field",
+    "ValidField": "შეიყვანეთ ვალიდური მნიშვნელობა",
+    "WrongFormat": "Wrong Format"
+  }
+}

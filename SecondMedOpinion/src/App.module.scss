@@ -1,0 +1,50 @@
+@import "./styles/abstracts/variables";
+
+.light {
+  // background-color: #e3e3e3;
+  // background-color: #fff;s
+  background-color: $body-color;
+  color: #181717;
+  // h1,
+  // h2,
+  // h6,
+  // p,
+  // a,
+  // label,
+  // border-color,
+  // border-bottom,
+  // div {
+  //   color: #181717;
+  // }
+}
+
+.dark {
+  // background-color: #1f1e1e;
+  background-color: $dark-color;
+  color: #e3e3e3;
+  // h1,
+  // h2,
+  // h6,
+  // p,
+  // label,
+  // border-color,
+  // border-bottom,
+  // a,
+  // div {
+  //   color: #e3e3e3;
+  // }
+}
+
+//   @font-face {
+//     font-family: "Roman"; /*Can be any text*/
+//     src: local("timeNewRoman"),
+//       url("./assets//Fonts/Times-New-Roman/timesNewRoman.ttf") format("truetype");
+//   }
+
+h1,
+h2,
+h6,
+p,
+div {
+  font-family: "Roman";
+}

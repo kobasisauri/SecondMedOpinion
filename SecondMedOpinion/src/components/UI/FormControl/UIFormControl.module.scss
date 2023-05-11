@@ -1,0 +1,59 @@
+@import "../../../styles/abstracts/variables";
+
+$padding-x: 0.75rem;
+$padding-y: 0.7rem;
+$disabled-color: #f8f8f8;
+
+.wrapper {
+  border: 1px solid $border-color;
+  border-radius: 5px;
+
+  svg {
+    color: $text-secondary2;
+  }
+
+  .prefix {
+    margin-left: $padding-x;
+  }
+
+  .suffix {
+    margin-right: $padding-x;
+  }
+
+  input {
+    padding: $padding-y $padding-x;
+    border-radius: 5px;
+
+    &::placeholder {
+      color: $text-secondary2;
+    }
+
+    &.disabled {
+      background-color: $disabled-color;
+      color: $text-secondary2;
+    }
+  }
+
+  &:focus-within {
+    border-color: $primary-color;
+
+    svg {
+      color: $primary-color;
+    }
+  }
+
+  &.warning {
+    border-color: $danger-color;
+
+    svg {
+      color: $danger-color;
+    }
+  }
+}
+
+.errorMSG {
+  margin-left: calc(#{$padding-x} + 2px);
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: $danger-color;
+}

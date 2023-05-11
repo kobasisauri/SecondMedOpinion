@@ -1,0 +1,143 @@
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+
+  .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    img {
+      //   max-height: 470px;
+      //   height: 100%;
+      width: 100%;
+      border-radius: 1rem;
+    }
+
+    .info-text {
+      margin-top: 1rem;
+      width: 100%;
+      line-height: 1.5rem;
+      padding: 0 0 0 1.5rem;
+
+      h2 {
+        text-align: center;
+        // margin-top: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      span {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .items {
+    padding-top: 2rem;
+
+    .item {
+      margin-top: 2rem;
+      height: 200px;
+      border-radius: 1rem;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      display: flex;
+
+      .image {
+        height: 100%;
+
+        img {
+          height: 100%;
+          border-radius: 1rem;
+        }
+      }
+
+      .main {
+        padding: 1rem 2rem;
+      }
+
+      .personal-data p {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .country {
+        font-size: 16px;
+        color: grey;
+      }
+
+      .description {
+        padding: 0 1rem;
+        width: 50%;
+
+        .experiance {
+          text-align: center;
+        }
+      }
+
+      .links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 1rem;
+
+        a {
+          text-align: center;
+          padding: 1rem 2rem;
+          border: 1px solid hsl(211, 97%, 60%);
+          border-radius: 1rem;
+          cursor: pointer;
+          &:first-child {
+            margin-bottom: 0.5rem;
+          }
+          &:last-child {
+            margin-top: 0.5rem;
+          }
+
+          &:hover {
+            background-color: hsl(211, 82%, 69%);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .container {
+    .info {
+      img {
+        width: 80%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 836px) {
+  .container {
+    .items {
+      .item {
+        overflow-x: visible;
+      }
+    }
+  }
+}
+@media only screen and (min-width: 1100px) {
+  .container {
+    .info {
+      flex-wrap: nowrap;
+      justify-content: space-between;
+
+      img {
+        width: 60%;
+        border-radius: 1rem;
+      }
+      .info-text {
+        margin-top: 0rem;
+        width: 45%;
+      }
+    }
+  }
+}

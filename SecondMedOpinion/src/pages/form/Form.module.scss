@@ -1,0 +1,26 @@
+@import "../../styles/abstracts/variables";
+
+$padding-x: 0.75rem;
+
+.wrapper {
+  width: 100%;
+  max-width: 1920px;
+  padding: 0 7%;
+  margin: 0 auto;
+}
+
+.form {
+  padding: 50px 0;
+}
+
+.errorMSG {
+  margin-left: calc(#{$padding-x} + 2px);
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: $danger-color;
+}
+
+#asdasd {
+  position: fixed !important;
+  top: 22% !important;
+}

@@ -1,0 +1,74 @@
+.wrapper {
+  width: 100%;
+  max-width: 1920px;
+  padding: 50px 7%;
+  margin: 0 auto;
+}
+
+.docto-info {
+  .name {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .inner {
+    font-size: 18px;
+    color: grey;
+    margin-bottom: 2rem;
+
+    span {
+      font-size: 16px;
+      font-style: italic;
+    }
+  }
+
+  .inner-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .year {
+    font-size: 16px;
+    color: grey;
+    margin-bottom: 0.2rem;
+  }
+
+  .desc {
+    font-size: 17px;
+    margin-bottom: 1.3rem;
+  }
+}
+
+.doctor-img {
+  width: 100%;
+  max-height: 300px;
+  max-width: 300px;
+  border-radius: 1rem;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // margin-right: 1rem;
+  width: 150px;
+
+  a {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid hsl(211, 97%, 60%);
+    border-radius: 1rem;
+    cursor: pointer;
+    &:first-child {
+      margin-bottom: 0.5rem;
+    }
+    &:last-child {
+      margin-top: 0.5rem;
+    }
+
+    &:hover {
+      background-color: hsl(211, 82%, 69%);
+    }
+  }
+}

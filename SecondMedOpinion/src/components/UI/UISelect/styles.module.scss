@@ -1,0 +1,117 @@
+@import "../../../styles/abstracts/_variables";
+
+.extended-select {
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid $border-color;
+  color: $text-secondary;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+
+  input {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    outline: none;
+
+    &::placeholder {
+      color: $text-secondary;
+    }
+  }
+
+  .actions {
+    color: $text-secondary;
+    font-size: 1.1rem;
+    margin-left: 0.5rem;
+
+    .action {
+      transition: 0.2s;
+      cursor: pointer;
+
+      &:hover {
+        color: $text-color;
+      }
+    }
+  }
+
+  &.visible {
+    border-color: $primary-color;
+
+    i {
+      color: $primary-color;
+    }
+  }
+
+  &.warning {
+    border-color: $danger-color;
+
+    i {
+      color: $danger-color;
+    }
+  }
+
+  &.disabled {
+    background-color: $disabled-color;
+    color: $text-secondary;
+  }
+
+  &.selected input::placeholder {
+    color: $text-color;
+  }
+}
+
+.error-msg {
+  margin-left: calc(0.75rem + 2px);
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: $danger-color;
+}
+
+.dropdown {
+  &-menu {
+    width: 100%;
+    max-height: 240px;
+    background: #fff;
+    border: 1px solid $border-color;
+    box-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.1);
+    overflow: auto;
+    line-height: normal;
+    padding: 0.2rem 0;
+
+    .title,
+    .item {
+      display: block;
+      padding: 0.44rem 0.82rem;
+    }
+
+    .item {
+      background: #fff;
+      cursor: pointer;
+      color: rgb(142, 142, 142);
+
+      &.nested {
+        padding: 0.44rem 0.82rem 0.44rem 1.3rem;
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $text-color;
+        background: darken(#fff, 2%);
+      }
+
+      input[type="checkbox"],
+      input[type="checkbox"] + label {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.not-found {
+  font-size: 0.96rem;
+  text-align: center;
+  text-overflow: hidden;
+  padding: 0.6rem;
+}
