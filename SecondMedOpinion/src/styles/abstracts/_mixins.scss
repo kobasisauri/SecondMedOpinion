@@ -1,4 +1,123 @@
 // BS mixins
+// @import "~bootstrap/scss/functions";
+// @import "~bootstrap/scss/variables";
+// @import "~bootstrap/scss/mixins";
+@mixin pseudo-generator($display: block, $pos: absolute, $content: "") {
+  content: $content;
+  display: $display;
+  position: $pos;
+}
+
+@mixin button-size-generator($padding-y, $padding-x, $font-size) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+}
+
+@mixin button-variant-generator($variant) {
+  $background: map-get($variant, "background");
+  $background-hover: map-get($variant, "background-hover");
+  $color: map-get($variant, "color");
+  $color-hover: map-get($variant, "color-hover");
+  $border-color: map-get($variant, "border-color");
+
+  background: $background;
+  color: $color;
+  border: 1px solid;
+  border-color: if($border-color, $border-color, $background);
+
+  &:hover {
+    background-color: if(
+      $background-hover,
+      $background-hover,
+      darken($background, 2%)
+    );
+    color: if($color-hover, $color-hover, $color);
+    border-color: if(
+      $background-hover,
+      $background-hover,
+      darken($background, 2%)
+    );
+  }
+
+  &:disabled,
+  &.disabled {
+    color: map-get($variant, "color-disabled");
+    background: map-get($variant, "background-disabled");
+    border-color: map-get($variant, "background-disabled");
+  }
+}
+
+@mixin btn-light($color, $percent) {
+  $lighten: lighten($color, $percent);
+  background: $lighten;
+  border-color: $lighten;
+  color: $color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: darken($lighten, 5%);
+    color: $color;
+  }
+}
+
+@mixin avatar($size: 37px) {
+  $border-radius: 5px;
+
+  width: $size;
+  height: $size;
+  color: white;
+  border-radius: $border-radius;
+  font-size: 0.95rem;
+
+  img {
+    width: 100%;
+    border-radius: $border-radius;
+  }
+
+  &.vendor {
+    background: $light-blue;
+  }
+
+  &.client {
+    background: $purple;
+  }
+}
+
+@mixin content-scroll {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $light-blue;
+  }
+}
+
+@mixin light-scroll {
+  &::-webkit-scrollbar {
+    width: 0.4rem;
+    height: 0.4rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: darken(#fff, 2%);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #eff2f5;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: #e9edf1;
+  }
+}
+
+// BS mixins
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";

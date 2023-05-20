@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Test from "../../assets/testclinic1.jpg";
 import data from "../../static/short-data";
+
+import QA from "./QA/QA";
 import styles from "./MRI.module.scss";
 
 const MRI = () => {
@@ -10,22 +12,21 @@ const MRI = () => {
   return (
     <div className={styles.container}>
       <div className={styles.info}>
-        <img src={Test} alt="navigation" />
         <div className={styles["info-text"]}>
           <h2>Navigation</h2>
           <p>
-            <span>Navigation</span> tests analyze how users navigate through
-            your website or application, given a specific task or goal. The
-            results help you hone critical user flows, and improve your
-            information architectureNavigation tests analyze how users navigate
-            through your website or application, given a specific task or goal.
-            The results help you hone critical user flows, and improve your
-            information architectureNavigation tests analyze how users navigate
-            through your website or application, given a specific task or goal.
-            The results help you hone critical user flows, and improve your
-            information architecture
+            მაგნიტორეზონანსული ტომოგრაფია (მრტ) არის არაინვაზიური რადიოლოგიური
+            დიაგნოსტიკის მეთოდი, რომელიც იძლევა სხეულის ნებისმიერი ორგანოთა
+            სისტემის ან ცალკეული ორგანოების სამ განზომილებიანი დეტალურ
+            გამოსახულების მიღებას. MRI სრულებით უსაფრთხოა ჯანმრთელობისათვის და
+            მისი გამოყენება დაშვებულია ორსულობის დროსაც, რადგან გამოსახულების
+            მისაღებად რენდგენის სხივის ნაცვლად გამოიყენება მაგნიტური ველი. მრტ
+            გადაღება შესაძლებელია როგორც საკონტრასტო საშუალების გამოყენებით
+            ასევე მის გარეშე.
           </p>
+          <QA />
         </div>
+        <img src={Test} alt="navigation" />
       </div>
 
       <div className={styles.items}>

@@ -20,9 +20,9 @@ const navs = [
 ];
 
 const Header = ({ className }) => {
-  const { theme, setTheme } = useStore((state) => state);
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const { theme, setTheme } = useStore((state) => state);
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -54,9 +54,14 @@ const Header = ({ className }) => {
             <i className="bi bi-telephone-fill ms-1" />
           </div>
 
-          {/* <img src={GeorgiaIcon} alt="flag" className="ms-3" /> */}
-
           <Select />
+
+          <FormControlLabel
+            style={{ height: "28px", marginLeft: "1rem" }}
+            control={
+              <IOSSwitch sx={{ m: 1 }} defaultChecked onChange={toggleTheme} />
+            }
+          />
         </div>
       </div>
 
@@ -67,7 +72,7 @@ const Header = ({ className }) => {
               <Link to="/">
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <img src={WhiteLogo} alt="logo" style={{ height: "64px" }} />
-                  <div>
+                  <div style={{ whiteSpace: "nowrap" }}>
                     <b>EXPERT</b> MED <br /> OPINION
                   </div>
                 </div>
@@ -90,7 +95,7 @@ const Header = ({ className }) => {
             </div>
 
             <div className={styles["last-child-wrapper"]}>
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={
                   <IOSSwitch
                     sx={{ m: 1 }}
@@ -98,7 +103,7 @@ const Header = ({ className }) => {
                     onChange={toggleTheme}
                   />
                 }
-              />
+              /> */}
 
               <div
                 onClick={() => setOpen(!open)}

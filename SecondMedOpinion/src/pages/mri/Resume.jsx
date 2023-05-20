@@ -44,7 +44,7 @@ const Resume = () => {
                   {resume.profession}, <span>{resume.country}</span>
                 </div>
                 <div className={styles.links}>
-                  <Link to="/form">შეავსეთ ფორმა</Link>
+                  <Link to="/form">{t("Application")}</Link>
                 </div>
               </Col>
 

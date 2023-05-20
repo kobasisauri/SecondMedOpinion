@@ -144,19 +144,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2px 0;
+  // padding: 2px 0;
 
   .items {
     display: none;
     justify-content: space-between;
-    // width: 800px;
     color: black;
-    font-size: 16px;
+    font-size: 14px;
 
     div {
-      padding: 0 20px;
+      padding: 0 10px;
       cursor: pointer;
       font-weight: 500;
+      display: flex;
+      justify-content: center;
 
       a:hover {
         color: $text-hover-color;
@@ -164,6 +165,9 @@
 
       a.active {
         color: $text-hover-color;
+      }
+      &:last-child {
+        padding-right: 0;
       }
     }
   }
@@ -173,7 +177,7 @@
   padding-left: 2.5%;
   padding-right: 2.5%;
 
-  top: 69px;
+  top: 105px;
   left: 0;
 
   position: fixed;
@@ -187,6 +191,7 @@
 
   a {
     color: #fff;
+    font-size: 14px;
 
     &:hover {
       color: $text-hover-color;
@@ -226,7 +231,17 @@
   }
 }
 
-@media only screen and (min-width: 1100px) {
+@media only screen and (min-width: 1330px) {
+  .container {
+    .items {
+      div {
+        padding: 0 20px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1202px) {
   .container {
     .items {
       display: flex;

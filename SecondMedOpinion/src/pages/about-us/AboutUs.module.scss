@@ -12,6 +12,10 @@
     justify-content: center;
     width: 100%;
 
+    h2 {
+      margin-bottom: 1rem;
+    }
+
     &:first-child {
       padding-right: 0rem;
     }
@@ -25,7 +29,7 @@
         margin-bottom: 2rem;
       }
       p {
-        text-align: center;
+        text-align: start;
         font-size: 16px;
       }
 
@@ -61,7 +65,7 @@
       }
 
       &:last-child {
-        padding-left: 2rem;
+        // padding-left: 2rem;
       }
       div {
         &:last-child {

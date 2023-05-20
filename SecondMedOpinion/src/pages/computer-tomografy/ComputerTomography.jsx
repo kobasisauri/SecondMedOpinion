@@ -1,7 +1,63 @@
-import React from "react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import Test from "../../assets/testclinic1.jpg";
+import data from "../../static/short-data";
 
-const ComputerTomography = () => {
-  return <div>ComputerTomography</div>;
+import QA from "./QA/QA";
+import styles from "./ComputerTomography.module.scss";
+
+const MRI = () => {
+  const { t } = useTranslation();
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.info}>
+        <div className={styles["info-text"]}>
+          <h2>Navigation</h2>
+          <p>
+            კომპიუტერული ტომოგრაფია კტ წარმოადგენს არაინვაზიური რადიოლოგიური
+            დიაგნოსტიკის მეთოდს, რომელიც გამოიყენებს რენდგენის სხივებსა და
+            კომპიუტერულ ტექნოლოგიებს სხეულის სხვადასხვა ნაწილებისა და ორგანოების
+            სამგანზომილებიანი გამოსახულებების მისაღებად და ეფექტურად გამოიყენება
+            ძვლოვანი სტრუქტურების, კუნთების და შინაგანი ორგანოებისა
+            დიაგნოსტირებისათვის.
+          </p>
+          <QA />
+        </div>
+        <img src={Test} alt="navigation" />
+      </div>
+
+      <div className={styles.items}>
+        {data.map((item) => (
+          <div key={item.id} className={styles.item}>
+            <div className={styles.image}>
+              <img src={item.image} alt="doctor" />
+            </div>
+
+            <div className={`d-flex justify-content-between ${styles.main}`}>
+              <div className={styles["personal-data"]}>
+                <p className={styles.name}>
+                  {item.firstname} {item.lastname}
+                </p>
+                <p className={styles.job}>{item.profession}</p>
+                <p className={styles.country}>{item.country}</p>
+              </div>
+
+              <div className={styles.description}>
+                <p className={styles.experiance}>Work experience</p>
+                <p style={{ wordBreak: "break-word" }}>{item.experiance}</p>
+              </div>
+
+              <div className={styles.links}>
+                <Link to={`/mri/${item.id}`}>{t("Resume")}</Link>
+                <Link to="/form">{t("Aplication")}</Link>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
-export default ComputerTomography;
+export default MRI;
