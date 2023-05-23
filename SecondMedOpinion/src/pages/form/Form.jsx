@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+
 import { Form, Row, Col, Button, Toast, ToastContainer } from "react-bootstrap";
 import UIFormControl from "../../components/UI/FormControl/UIFormControl";
 import UISelect from "../../components/UI/UISelect";
@@ -14,6 +15,7 @@ import FileUpload from "../../components/UI/FileUpload/FileUpload";
 import JSZip from "jszip";
 
 import Loading from "../../assets/Loading.gif";
+import { Link } from "react-router-dom";
 
 const researchTypes = [
   { label: "თავი", value: "თავი" },
@@ -856,7 +858,7 @@ const DataForm = () => {
             style={{ color: "blue", cursor: "pointer" }}
             onClick={handleClick}
           >
-            Tearms and conditions
+            <Link to="/tearms-and-conditions">Tearms and conditions</Link>
           </p>
         </div>
 

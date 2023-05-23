@@ -1,0 +1,20 @@
+.body {
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  .heading {
+    font-size: 24px;
+    text-align: center;
+  }
+  .inner-header {
+    margin-top: 2rem;
+
+    font-weight: bold;
+    font-size: 18px;
+  }
+  p {
+    margin-top: 1rem;
+  }
+}

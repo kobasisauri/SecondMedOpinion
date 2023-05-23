@@ -10,6 +10,7 @@ import {
   Error,
   ComputerTomography,
   Form,
+  TearmsAndConditions,
   Resume,
 } from "./pages";
 import styles from "./App.module.scss";
@@ -40,6 +41,10 @@ function App() {
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/form" element={<Form />} />
+            <Route
+              path="/tearms-and-conditions"
+              element={<TearmsAndConditions />}
+            />
 
             <Route path="/404" element={<Error />} />
             <Route path="/*" element={<Navigate replace to="/404" />} />
