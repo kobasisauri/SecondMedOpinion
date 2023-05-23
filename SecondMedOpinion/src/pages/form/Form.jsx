@@ -54,6 +54,11 @@ const DataForm = () => {
   const [files, setFiles] = useState(null);
   const [isUpload, setIsUpload] = useState(false);
   const [uploading, setUploading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsOpen(true);
+  };
 
   const onSubmit = (values) => {
     setUploading(false);
@@ -839,6 +844,21 @@ const DataForm = () => {
             </Toast>
           </ToastContainer>
         )}
+
+        <div className="d-flex ">
+          <Form.Check
+            type={"checkbox"}
+            id={"checkbox"}
+            // label={"Tearms and conditions"}
+          />
+          <p
+            className="ms-2"
+            style={{ color: "blue", cursor: "pointer" }}
+            onClick={handleClick}
+          >
+            Tearms and conditions
+          </p>
+        </div>
 
         <Button type="submit" size="sm">
           {t("Submit")}
