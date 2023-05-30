@@ -28,7 +28,7 @@
       padding: 8px;
       background: #fff;
       cursor: pointer;
-      color: red;
+      color: #3696fc;
       font-size: 12px;
       line-height: 16px;
 
@@ -41,7 +41,7 @@
       &:hover,
       &:focus,
       &:active {
-        color: red; // $text-color
+        color: #3696fc; // $text-color
         background: darken(#fff, 2%);
       }
 
