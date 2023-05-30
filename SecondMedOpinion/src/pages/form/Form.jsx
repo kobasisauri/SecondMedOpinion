@@ -320,6 +320,21 @@ const DataForm = () => {
               setTouched={setFieldTouched}
             />
           </Col>
+          <Col xs="6">
+            <UISelect
+              label={t("ChooseDoctor")}
+              className="mb-4"
+              fetchedData={doctors}
+              placeholder={t("Doctors")}
+              name="doctor"
+              initialValue={values.doctor}
+              handleChange={(item) =>
+                setFieldValue("doctor", item ? item.value : null)
+              }
+              isInvalid={!!(touched.doctor && errors.doctor)}
+              errorMSG={errors.doctor}
+            />
+          </Col>
 
           <Col xs="6" className="mb-4">
             <div className="mb-2 ms-1">{t("ChooseGender")}</div>
@@ -349,24 +364,6 @@ const DataForm = () => {
               <div className={styles.errorMSG}>{t(errors.gender)}</div>
             )}
           </Col>
-
-          <Row>
-            <Col xs="6">
-              <UISelect
-                label={t("ChooseDoctor")}
-                className="mb-4"
-                fetchedData={doctors}
-                placeholder={t("Doctors")}
-                name="doctor"
-                initialValue={values.doctor}
-                handleChange={(item) =>
-                  setFieldValue("doctor", item ? item.value : null)
-                }
-                isInvalid={!!(touched.doctor && errors.doctor)}
-                errorMSG={errors.doctor}
-              />
-            </Col>
-          </Row>
 
           <Col xs="6">
             <UISelect
@@ -540,37 +537,118 @@ const DataForm = () => {
             </Col>
           )}
           <Row>
-            <Col xs="6" className="mb-4">
-              <div className="mb-2 ms-1">{t("HasSurgery")}</div>
-              <Form.Check
-                inline
-                label={t("Yes")}
-                name="hasOperation"
-                type="radio"
-                id="hasOperation-1"
-                value={1}
-                checked={+values.hasOperation === 1}
-                onChange={(e) => setFieldValue("hasOperation", e.target.value)}
-              />
+            <h4 className="mb-4">{t("TitlePurposeOfPrevention")}</h4>
+            <Row>
+              <Col xs="6" className="mb-4">
+                <div className="mb-2 ms-1">{t("PurposeOfPrevention")}</div>
+                <Form.Check
+                  inline
+                  label={t("Yes")}
+                  name="purposeOfPrevention"
+                  type="radio"
+                  id="purposeOfPrevention-1"
+                  value={1}
+                  checked={+values.purposeOfPrevention === 1}
+                  onChange={handleChange}
+                />
 
-              <Form.Check
-                inline
-                label={t("No")}
-                name="hasOperation"
-                type="radio"
-                id="hasOperation-2"
-                value={0}
-                checked={
-                  typeof values.hasOperation === "string" &&
-                  +values.hasOperation === 0
-                }
-                onChange={(e) => setFieldValue("hasOperation", e.target.value)}
-              />
+                <Form.Check
+                  inline
+                  label={t("No")}
+                  name="purposeOfPrevention"
+                  type="radio"
+                  id="v-2"
+                  value={0}
+                  checked={
+                    typeof values.purposeOfPrevention === "string" &&
+                    +values.purposeOfPrevention === 0
+                  }
+                  onChange={handleChange}
+                />
 
-              {touched.hasOperation && errors.hasOperation && (
-                <div className={styles.errorMSG}>{t(errors.hasOperation)}</div>
-              )}
-            </Col>
+                {touched.purposeOfPrevention && errors.purposeOfPrevention && (
+                  <div className={styles.errorMSG}>
+                    {t(errors.purposeOfPrevention)}
+                  </div>
+                )}
+              </Col>
+              <Col xs="6" className="mb-4">
+                <div className="mb-2 ms-1">{t("HasSurgery")}</div>
+                <Form.Check
+                  inline
+                  label={t("Yes")}
+                  name="hasOperation"
+                  type="radio"
+                  id="hasOperation-1"
+                  value={1}
+                  checked={+values.hasOperation === 1}
+                  onChange={(e) =>
+                    setFieldValue("hasOperation", e.target.value)
+                  }
+                />
+
+                <Form.Check
+                  inline
+                  label={t("No")}
+                  name="hasOperation"
+                  type="radio"
+                  id="hasOperation-2"
+                  value={0}
+                  checked={
+                    typeof values.hasOperation === "string" &&
+                    +values.hasOperation === 0
+                  }
+                  onChange={(e) =>
+                    setFieldValue("hasOperation", e.target.value)
+                  }
+                />
+
+                {touched.hasOperation && errors.hasOperation && (
+                  <div className={styles.errorMSG}>
+                    {t(errors.hasOperation)}
+                  </div>
+                )}
+              </Col>
+              <Row>
+                {typeof values.purposeOfPrevention === "string" &&
+                  +values.purposeOfPrevention === 0 && (
+                    <>
+                      <Col xs="6">
+                        <UIFormControl
+                          label={t("Complains")}
+                          className="mb-4"
+                          placeholder={t("ComplainsPlaceHolder")}
+                          name="complains"
+                          value={values.complains}
+                          handleChange={handleChange}
+                          handleBlur={handleBlur}
+                          isInvalid={touched.complains && errors.complains}
+                          errorMSG={errors.complains}
+                        />
+                      </Col>
+                    </>
+                  )}
+                {!!+values.hasOperation && (
+                  <>
+                    {/* <Col xs="6"></Col> */}
+                    <Col xs="6">
+                      <UIFormControl
+                        label={t("Operation")}
+                        className="mb-4"
+                        placeholder={t("Operation")}
+                        name="operation"
+                        value={values.operation}
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        isInvalid={touched.operation && errors.operation}
+                        errorMSG={errors.operation}
+                      />
+                    </Col>
+                  </>
+                )}
+              </Row>
+            </Row>
+
             <Col xs="6" className="mb-4">
               <div className="mb-2 ms-1">{t("HasChronicDisease")}</div>
               <Form.Check
@@ -610,21 +688,6 @@ const DataForm = () => {
             </Col>
           </Row>
           <Row>
-            {!!+values.hasOperation && (
-              <Col xs="6">
-                <UIFormControl
-                  label={t("Operation")}
-                  className="mb-4"
-                  placeholder={t("Operation")}
-                  name="operation"
-                  value={values.operation}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  isInvalid={touched.operation && errors.operation}
-                  errorMSG={errors.operation}
-                />
-              </Col>
-            )}
             {!!+values.haschronicDisease && (
               <Col xs="6">
                 <UIFormControl
@@ -729,63 +792,6 @@ const DataForm = () => {
           )}
         </Row>
 
-        <h4 className="mb-4">{t("TitlePurposeOfPrevention")}</h4>
-
-        <Row>
-          <Col xs="12" className="mb-4">
-            <div className="mb-2 ms-1">{t("PurposeOfPrevention")}</div>
-            <Form.Check
-              inline
-              label={t("Yes")}
-              name="purposeOfPrevention"
-              type="radio"
-              id="purposeOfPrevention-1"
-              value={1}
-              checked={+values.purposeOfPrevention === 1}
-              onChange={handleChange}
-            />
-
-            <Form.Check
-              inline
-              label={t("No")}
-              name="purposeOfPrevention"
-              type="radio"
-              id="v-2"
-              value={0}
-              checked={
-                typeof values.purposeOfPrevention === "string" &&
-                +values.purposeOfPrevention === 0
-              }
-              onChange={handleChange}
-            />
-
-            {touched.purposeOfPrevention && errors.purposeOfPrevention && (
-              <div className={styles.errorMSG}>
-                {t(errors.purposeOfPrevention)}
-              </div>
-            )}
-          </Col>
-
-          {typeof values.purposeOfPrevention === "string" &&
-            +values.purposeOfPrevention === 0 && (
-              <>
-                <Col xs="6">
-                  <UIFormControl
-                    label={t("Complains")}
-                    className="mb-4"
-                    placeholder={t("ComplainsPlaceHolder")}
-                    name="complains"
-                    value={values.complains}
-                    handleChange={handleChange}
-                    handleBlur={handleBlur}
-                    isInvalid={touched.complains && errors.complains}
-                    errorMSG={errors.complains}
-                  />
-                </Col>
-                <Col xs="6"></Col>
-              </>
-            )}
-        </Row>
         <h2
           style={{
             fontSize: "18px",

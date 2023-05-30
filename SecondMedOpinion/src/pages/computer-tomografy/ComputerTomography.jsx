@@ -50,7 +50,7 @@ const MRI = () => {
 
               <div className={styles.links}>
                 <Link to={`/mri/${item.id}`}>{t("Resume")}</Link>
-                <Link to="/form">{t("Aplication")}</Link>
+                <Link to="/form">{t("Application")}</Link>
               </div>
             </div>
           </div>

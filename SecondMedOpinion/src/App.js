@@ -1,5 +1,5 @@
-import { Suspense } from "react";
-import { Route, Navigate, Routes } from "react-router-dom";
+import { Suspense, useEffect } from "react";
+import { Route, Navigate, Routes, useLocation } from "react-router-dom";
 import InnerLayout from "./components/layout";
 import useStore from "./stores/store";
 import {
@@ -17,7 +17,11 @@ import styles from "./App.module.scss";
 import PageLoading from "./components/UI/PageLoading";
 
 function App() {
+  const { pathname } = useLocation();
   const { theme } = useStore((state) => state);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   // to do
   // useEffect(() => {
