@@ -47,6 +47,7 @@
   background-color: $body-secondary;
   color: #fff;
   z-index: 999;
+  white-space: nowrap;
   box-shadow: 0 0.0625rem 0 0 rgb(0 0 0 / 15%);
 
   a {
@@ -177,7 +178,7 @@
   padding-left: 2.5%;
   padding-right: 2.5%;
 
-  top: 105px;
+  top: 95px;
   left: 0;
 
   position: fixed;
