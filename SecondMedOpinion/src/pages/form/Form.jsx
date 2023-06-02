@@ -385,7 +385,7 @@ const DataForm = () => {
             <UISelect
               label={t("TypeOfResearch")}
               fetchedData={contrastTypes}
-              placeholder={t("TypeOfResearch")}
+              placeholder={t("TypeOfResearchPlaceHolder")}
               name="contrast"
               initialValue={values.contrastcontrast}
               handleChange={(item) => {

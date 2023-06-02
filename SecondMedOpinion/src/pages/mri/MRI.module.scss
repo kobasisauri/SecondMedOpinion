@@ -4,11 +4,11 @@
   padding: 3rem 1rem;
 
   .info {
+    font-size: 15px;
     display: flex;
     justify-content: center;
     // align-items: center;
     flex-wrap: wrap;
-
     img {
       //   max-height: 470px;
       //   height: 100%;
@@ -19,13 +19,16 @@
 
     .info-text {
       margin-top: 1rem;
+      margin-bottom: 2rem;
+      margin-right: 1rem;
       width: 100%;
-      line-height: 1.5rem;
+      line-height: 1.4rem;
       padding: 0 0 0 1.5rem;
 
       h2 {
         text-align: center;
         // margin-top: 3rem;
+        font-size: 22px;
         margin-bottom: 1rem;
       }
 

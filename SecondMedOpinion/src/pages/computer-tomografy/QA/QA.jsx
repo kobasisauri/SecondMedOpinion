@@ -37,8 +37,21 @@ const QA = () => {
   const { t } = useTranslation();
 
   return (
-    <Accordion className="mt-5 pt-4" style={{ width: "95%" }}>
+    <Accordion className="mt-0 pt-0" style={{ width: "95%" }}>
       {/* <h2 className="fw-bold text-center mb-4">FAQ</h2> */}
+      <div className="border-bottom">
+        <CustomToggle eventKey="3" open={open} setOpen={setOpen}>
+          {t("CT.QA3.Question")}
+        </CustomToggle>
+
+        <Accordion.Collapse eventKey="3">
+          <div className={classes["item-body"]}>
+            <ul className="mb-0">
+              <li>{t("CT.QA3.Answer1")}</li>
+            </ul>
+          </div>
+        </Accordion.Collapse>
+      </div>
 
       <div className="border-bottom">
         <CustomToggle eventKey="1" open={open} setOpen={setOpen}>
@@ -67,21 +80,6 @@ const QA = () => {
               <li>{t("CT.QA2.Answer1")}</li>
               <li>{t("CT.QA2.Answer2")}</li>
               <li>{t("CT.QA2.Answer3")}</li>
-            </ul>
-          </div>
-        </Accordion.Collapse>
-      </div>
-
-      <div className="border-bottom">
-        <CustomToggle eventKey="3" open={open} setOpen={setOpen}>
-          {t("MRI.QA3.Question")}
-        </CustomToggle>
-
-        <Accordion.Collapse eventKey="3">
-          <div className={classes["item-body"]}>
-            <ul className="mb-0">
-              <li>{t("MRI.QA3.Answer1")}</li>
-              <li>{t("MRI.QA3.Answer2")}</li>
             </ul>
           </div>
         </Accordion.Collapse>

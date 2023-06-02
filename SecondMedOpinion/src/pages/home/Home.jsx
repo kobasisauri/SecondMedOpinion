@@ -4,6 +4,7 @@ import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import MainPic from "../../assets/logo-bg.jpg";
 import HomeSecondPic from "../../assets/home.jpg";
+import { useTranslation } from "react-i18next";
 
 import Test1 from "../../assets/test1.jpg";
 import Test2 from "../../assets/test2.jpg";
@@ -15,6 +16,7 @@ import ContactImage from "../../assets/contact-us.png";
 import styles from "./Home.module.scss";
 
 const Home = () => {
+  const { t } = useTranslation();
   let color = JSON.parse(localStorage.getItem("theme"));
   const [theme, setTheme] = useState("#181717");
 
@@ -105,30 +107,13 @@ const Home = () => {
         </Slider>
 
         <div style={{ maxWidth: "1920px", padding: "0 7%", marginTop: "1rem" }}>
-          <h2>ვინ ვართ ჩვენ</h2>
+          <h2>{t("WhoAreWe")}</h2>
           <div style={{ marginTop: "1rem" }}>
-            <p>
-              კომპანია Expert MED Opinion წარმოადგენს შუამავალ კომპანიას თქვენსა
-              და მსოფლიოს სხვადასხვა ქვეყნის წამყვან სპეციალისტებს შორის;
-            </p>
-            <p>
-              ჩვენი კომპანიის მიზანია მიიღოთ მაღალპროფესიონალური მომსახურება და
-              კონსულტაცია ქვეყნიდან გაუსვლელად;
-            </p>
-            <p>
-              ჩვენი კომპანია ორიენტირებულია ისეთი დიაგნოსტიკური კვლევების
-              ინტერპრეტაციაზე, როგორებიცაა მაგნიტო რეზონანსული ტომოგრაფია და
-              კომპიუტერული ტომოგრაფია;
-            </p>
-            <p>
-              ჩვენ ვთანამშრომლობთ წამყვან სპეციალისტებთან მთელი მსოფლიოს
-              მასშტაბით;
-            </p>
-            <p>
-              ჩვენი მთავარი მიზანია მოგაწოდოთ თქვენთვის სასურველი კვლევის
-              შედეგების ინტერპრეტაცია უმოკლეს დროში და მაღალი ხარისხის
-              გარანტიით.
-            </p>
+            <p>{t("WhoAreWe-1")}</p>
+            <p>{t("WhoAreWe-2")}</p>
+            <p>{t("WhoAreWe-3")}</p>
+            <p>{t("WhoAreWe-4")}</p>
+            <p>{t("WhoAreWe-5")}</p>
           </div>
         </div>
       </div>
@@ -143,28 +128,13 @@ const Home = () => {
         </div>
 
         <div className={styles["about-container"]}>
-          <h4>რატომ Expert MED Opinion?</h4>
+          <h4>{t("WhyEMO")}</h4>
           <div style={{ marginTop: "1rem" }}>
-            <p>
-              ჩვენ დაგეხმარებით უმოკლეს დროში და სახლიდან გაუსვლელად მიიღოთ
-              კონსულტაცია მსოფლიოს სხვადასხვა წამყვანი კლინიკების საუკეთესო
-              სპეციალისტებისგან;
-            </p>
-            <p>
-              საიტზე არსებული მარტივი შესავსები ფორმა საშუალებას მოგცემთ დაზოგოთ
-              თქვენი დრო;
-            </p>
-            <p>
-              თქვენ არ დაგჭირდებათ ზრუნვა სამედიცინო დოკუმენტაციის თარგმნაზე;
-            </p>
-            <p>
-              კომუნიკაციის გასამარტივებლად ჩვენ შევიმუშავეთ ფორმა, რომლიც
-              შესავსებად მხოლოდ რამდენიმე წუთი დაგჭირდებათ;
-            </p>
-            <p>
-              ჩვენ დაგეხმარებით სპეციალისტის მიერ გამოგზავნილი დასკვნის
-              თარგმანში.
-            </p>
+            <p>{t("WhyEMO-1")}</p>
+            <p>{t("WhyEMO-2")}</p>
+            <p>{t("WhyEMO-3")}</p>
+            <p>{t("WhyEMO-4")}</p>
+            <p>{t("WhyEMO-5")}</p>
           </div>
         </div>
       </div>
