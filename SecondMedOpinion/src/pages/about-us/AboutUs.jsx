@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Logo from "../../assets/home.jpg";
+
 import AboutImage from "../../assets/images/AboutUs.jpeg";
 import WhiteLogo from "../../assets/home.jpg";
 import { useTranslation } from "react-i18next";
