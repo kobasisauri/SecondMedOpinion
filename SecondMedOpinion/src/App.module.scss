@@ -35,16 +35,20 @@
   // }
 }
 
-//   @font-face {
-//     font-family: "Roman"; /*Can be any text*/
-//     src: local("timeNewRoman"),
-//       url("./assets//Fonts/Times-New-Roman/timesNewRoman.ttf") format("truetype");
-//   }
+@font-face {
+  font-family: "Mtavruli"; /*Can be any text*/
+  src: local("NiNOMtavrulo"),
+    url("./assets//Fonts/nino-mtavruli.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Sans"; /*Can be any text*/
+  src: local("Sans"), url("./assets//Fonts/sans.ttf") format("truetype");
+}
 
 h1,
 h2,
 h6,
 p,
 div {
-  font-family: "Roman";
+  font-family: "Sans", sans-serif;
 }

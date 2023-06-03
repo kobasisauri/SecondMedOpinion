@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import Test from "../../assets/testclinic1.jpg";
+
+import CTPIC from "../../assets/images/CT.jpeg";
+
 import data from "../../static/short-data";
 
 import QA from "./QA/QA";
@@ -18,7 +20,7 @@ const MRI = () => {
           <p>{t("MRI.Main-2")}</p>
           <QA />
         </div>
-        <img src={Test} alt="navigation" />
+        <img src={CTPIC} alt="navigation" />
       </div>
 
       <div className={styles.items}>

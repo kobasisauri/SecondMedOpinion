@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
-import MainPic from "../../assets/logo-bg.jpg";
-import HomeSecondPic from "../../assets/home.jpg";
+
 import { useTranslation } from "react-i18next";
 
 import Test1 from "../../assets/test1.jpg";
 import Test2 from "../../assets/test2.jpg";
 import Test3 from "../../assets/test3.jpg";
-import TestClinic1 from "../../assets/testclinic1.jpg";
-import TestClinic2 from "../../assets/testclinic2.jpg";
+
+import HomeSlider1 from "../../assets/images/HomeSlider1.jpg";
+import HomeSlider2 from "../../assets/images/HomeSlider2.jpg";
+import HomeSlider3 from "../../assets/images/HomeSlider3.jpeg";
+
+import HomeSlider5 from "../../assets/images/HomeSlider5.jpg";
 
 import ContactImage from "../../assets/contact-us.png";
 import styles from "./Home.module.scss";
@@ -86,34 +89,57 @@ const Home = () => {
           <div>
             <img
               className={styles["main-image"]}
-              src={MainPic}
+              src={HomeSlider5}
               alt="main-logo"
             />
           </div>
           <div>
             <img
               className={styles["main-image"]}
-              src={TestClinic1}
+              src={HomeSlider1}
               alt="main-logo"
             />
           </div>
           <div>
             <img
               className={styles["main-image"]}
-              src={TestClinic2}
+              src={HomeSlider3}
               alt="main-logo"
             />
           </div>
         </Slider>
 
         <div style={{ maxWidth: "1920px", padding: "0 7%", marginTop: "1rem" }}>
-          <h2>{t("WhoAreWe")}</h2>
+          <h2 style={{ fontFamily: "Mtavruli", fontWeight: "600" }}>
+            {t("WhoAreWe")}{" "}
+            <span
+              style={{
+                fontSize: "24px",
+                fontFamily: "sans-serif",
+                fontWeight: "300",
+              }}
+            >
+              ?
+            </span>
+          </h2>
           <div style={{ marginTop: "1rem" }}>
-            <p>{t("WhoAreWe-1")}</p>
+            {/* <ul> */}
+            <li>{t("WhoAreWe-1")}</li>
+            <br />
+            <li>{t("WhoAreWe-2")}</li>
+            <br />
+            <li>{t("WhoAreWe-3")}</li>
+            <br />
+            <li>{t("WhoAreWe-4")}</li>
+            <br />
+            <li>{t("WhoAreWe-5")}</li>
+            {/* </ul> */}
+
+            {/* <p>{t("WhoAreWe-1")}</p>
             <p>{t("WhoAreWe-2")}</p>
             <p>{t("WhoAreWe-3")}</p>
             <p>{t("WhoAreWe-4")}</p>
-            <p>{t("WhoAreWe-5")}</p>
+            <p>{t("WhoAreWe-5")}</p> */}
           </div>
         </div>
       </div>
@@ -122,7 +148,7 @@ const Home = () => {
         <div className={styles["about-image-container"]}>
           <img
             className={styles["about-image"]}
-            src={HomeSecondPic}
+            src={HomeSlider2}
             alt="random"
           />
         </div>

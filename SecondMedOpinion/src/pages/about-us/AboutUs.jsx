@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../../assets/home.jpg";
+import AboutImage from "../../assets/images/AboutUs.jpeg";
 import WhiteLogo from "../../assets/home.jpg";
 import { useTranslation } from "react-i18next";
 
@@ -25,7 +26,7 @@ const AboutUs = () => {
         {!theme ? (
           <img src={WhiteLogo} alt="logo" className={styles.image} />
         ) : (
-          <img src={Logo} alt="logo" className={styles.image} />
+          <img src={AboutImage} alt="logo" className={styles.image} />
         )}
       </div>
       <div className={styles.innerwrapper}>
