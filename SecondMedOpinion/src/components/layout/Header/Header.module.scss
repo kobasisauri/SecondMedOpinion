@@ -4,13 +4,18 @@
   display: flex;
   justify-content: flex-end;
   background-color: $body-secondary;
+  background-color: #ffffff;
+
   border-bottom: 1px solid $nav-border;
+  border-bottom: 1px solid #fff;
+
   color: #fff;
   padding: 4px 0;
+  color: black;
 
   a {
     color: #fff;
-
+    color: black;
     &:hover {
       color: $text-hover-color;
     }
@@ -18,11 +23,13 @@
 
   i {
     font-size: 17px;
+    color: black;
   }
 
   .call {
     height: 14px;
     cursor: pointer;
+    color: black;
   }
 
   &.dark {
@@ -45,6 +52,9 @@
   top: 0;
   left: 0;
   background-color: $body-secondary;
+  background-color: #354e7f;
+  background-color: #4369b4;
+
   color: #fff;
   z-index: 999;
   white-space: nowrap;
@@ -151,7 +161,7 @@
     display: none;
     justify-content: space-between;
     color: black;
-    font-size: 14px;
+    font-size: 16px;
 
     div {
       padding: 0 10px;
@@ -162,10 +172,12 @@
 
       a:hover {
         color: $text-hover-color;
+        color: #c7dcf6;
       }
 
       a.active {
         color: $text-hover-color;
+        color: #c7dcf6;
       }
       &:last-child {
         padding-right: 0;
@@ -188,6 +200,9 @@
   z-index: 999;
   animation: 0.5s sideBar;
   background-color: $body-secondary;
+  background-color: #354e7f;
+  background-color: #4369b4;
+
   color: #fff;
 
   a {
@@ -196,9 +211,11 @@
 
     &:hover {
       color: $text-hover-color;
+      color: #c7dcf6;
     }
 
     &.active {
+      color: #c7dcf6;
       color: $text-hover-color;
     }
   }
