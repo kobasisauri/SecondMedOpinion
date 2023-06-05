@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import AboutImage from "../../assets/images/AboutUs.jpeg";
-import WhiteLogo from "../../assets/home.jpg";
+
 import { useTranslation } from "react-i18next";
 
 import styles from "./AboutUs.module.scss";
@@ -24,7 +24,7 @@ const AboutUs = () => {
     <div className={styles.container}>
       <div className={styles.innerwrapper}>
         {!theme ? (
-          <img src={WhiteLogo} alt="logo" className={styles.image} />
+          <img src={AboutImage} alt="logo" className={styles.image} />
         ) : (
           <img src={AboutImage} alt="logo" className={styles.image} />
         )}

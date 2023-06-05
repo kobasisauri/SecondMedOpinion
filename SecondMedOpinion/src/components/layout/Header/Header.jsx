@@ -95,16 +95,6 @@ const Header = ({ className }) => {
             </div>
 
             <div className={styles["last-child-wrapper"]}>
-              {/* <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    defaultChecked
-                    onChange={toggleTheme}
-                  />
-                }
-              /> */}
-
               <div
                 onClick={() => setOpen(!open)}
                 className={`${styles["burger-wrapper"]} ${
