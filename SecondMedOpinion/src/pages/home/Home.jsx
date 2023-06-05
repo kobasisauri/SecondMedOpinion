@@ -122,16 +122,16 @@ const Home = () => {
               ?
             </span>
           </h2>
-          <div style={{ marginTop: "1rem" }}>
+          <div className={styles["home-text"]}>
             {/* <ul> */}
             <li>{t("WhoAreWe-1")}</li>
-            <br />
+
             <li>{t("WhoAreWe-2")}</li>
-            <br />
+
             <li>{t("WhoAreWe-3")}</li>
-            <br />
+
             <li>{t("WhoAreWe-4")}</li>
-            <br />
+
             <li>{t("WhoAreWe-5")}</li>
             {/* </ul> */}
 
@@ -154,13 +154,15 @@ const Home = () => {
         </div>
 
         <div className={styles["about-container"]}>
-          <h4>{t("WhyEMO")}</h4>
-          <div style={{ marginTop: "1rem" }}>
-            <p>{t("WhyEMO-1")}</p>
-            <p>{t("WhyEMO-2")}</p>
-            <p>{t("WhyEMO-3")}</p>
-            <p>{t("WhyEMO-4")}</p>
-            <p>{t("WhyEMO-5")}</p>
+          <h4 style={{ fontFamily: "Mtavruli", fontWeight: "600" }}>
+            {t("WhyEMO")}
+          </h4>
+          <div className={styles["home-text"]}>
+            <li>{t("WhyEMO-1")}</li>
+            <li>{t("WhyEMO-2")}</li>
+            <li>{t("WhyEMO-3")}</li>
+            <li>{t("WhyEMO-4")}</li>
+            <li>{t("WhyEMO-5")}</li>
           </div>
         </div>
       </div>

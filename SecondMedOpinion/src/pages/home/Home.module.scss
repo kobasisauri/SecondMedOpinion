@@ -76,6 +76,24 @@
     }
   }
 }
+.home-text {
+  margin-top: 1rem;
+  li {
+    margin-top: 1rem;
+    // list-style-image: url(../../assets/bullet.svg);
+    // list-style-image: dot;
+    list-style: none;
+
+    // background: url(../../assets/bullet.svg) no-repeat left top;
+  }
+  li:before {
+    content: url(../../assets/bullet.svg);
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+}
 .section3 {
   margin-top: 3rem;
   margin-bottom: 5rem;
