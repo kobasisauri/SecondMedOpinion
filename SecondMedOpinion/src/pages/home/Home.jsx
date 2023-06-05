@@ -89,7 +89,7 @@ const Home = () => {
           <div>
             <img
               className={styles["main-image"]}
-              src={HomeSlider5}
+              src={HomeSlider3}
               alt="main-logo"
             />
           </div>
@@ -103,7 +103,7 @@ const Home = () => {
           <div>
             <img
               className={styles["main-image"]}
-              src={HomeSlider3}
+              src={HomeSlider5}
               alt="main-logo"
             />
           </div>
