@@ -125,6 +125,10 @@
     justify-content: space-evenly;
     .contact-image {
       display: none;
+      margin-top: 3rem;
+      img {
+        width: 450px;
+      }
     }
     .form {
       margin-top: 2rem;
