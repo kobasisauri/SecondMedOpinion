@@ -12,6 +12,7 @@ import Test3 from "../../assets/test3.jpg";
 import HomeSlider1 from "../../assets/images/HomeSlider1.jpg";
 import HomeSlider2 from "../../assets/images/HomeSlider2.jpg";
 import HomeSlider3 from "../../assets/images/HomeSlider3.jpeg";
+import HomeSlider4 from "../../assets/images/HomeSlider4.jpeg";
 
 import HomeSlider5 from "../../assets/images/HomeSlider5.jpg";
 
@@ -96,7 +97,7 @@ const Home = () => {
           <div>
             <img
               className={styles["main-image"]}
-              src={HomeSlider1}
+              src={HomeSlider4}
               alt="main-logo"
             />
           </div>
