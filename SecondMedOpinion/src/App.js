@@ -12,6 +12,7 @@ import {
   Form,
   TearmsAndConditions,
   Resume,
+  PrivacyPolicy,
 } from "./pages";
 import styles from "./App.module.scss";
 import PageLoading from "./components/UI/PageLoading";
@@ -49,6 +50,7 @@ function App() {
               path="/tearms-and-conditions"
               element={<TearmsAndConditions />}
             />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
             <Route path="/404" element={<Error />} />
             <Route path="/*" element={<Navigate replace to="/404" />} />

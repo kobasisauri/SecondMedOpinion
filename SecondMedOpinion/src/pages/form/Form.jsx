@@ -850,7 +850,8 @@ const DataForm = () => {
             style={{ color: "blue", cursor: "pointer" }}
             onClick={handleClick}
           >
-            <Link to="/tearms-and-conditions">Tearms and conditions</Link>
+            <Link to="/tearms-and-conditions">Tearms and conditions </Link>
+            <Link to="/privacy-policy">/ Privacy Policy</Link>
           </p>
         </div>
 

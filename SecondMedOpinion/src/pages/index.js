@@ -7,6 +7,7 @@ import ComputerTomography from "./computer-tomografy";
 import Home from "./home";
 import Form from "./form";
 import Resume from "./mri/Resume";
+import PrivacyPolicy from "./privacy-policy";
 
 export {
   AboutUs,
@@ -18,4 +19,5 @@ export {
   Form,
   Resume,
   TearmsAndConditions,
+  PrivacyPolicy,
 };

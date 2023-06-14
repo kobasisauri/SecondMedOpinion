@@ -1,10 +1,10 @@
 {
-  "Home": "Home",
-  "AboutUs": "About Us",
-  "MRI": "Magnetic Resonance Imaging (MRI)",
-  "CT": "Computer Tomography (CT)",
-  "ContactUs": "Contact Us",
-  "Application": "Submit form",
+  "Home": "Главная страница",
+  "AboutUs": "О нас",
+  "MRI": "Магнитно-резонансная томография (МРТ)",
+  "CT": "Компьютерная томография (КТ)",
+  "ContactUs": "Контакты",
+  "Application": "Заполните форму",
 
   "WhoAreWe": "Кто мы",
   "WhoAreWe-1": "Компания Expert MED Opinion представляет собой компанию-посредника между Вами и ведущими специалистами разных стран мира",
