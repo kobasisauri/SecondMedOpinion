@@ -138,53 +138,54 @@ app.use((req, res, next) => {
 app.post("/data/add", (req, res, next) => {
   const name = `${req.body.firstName + "-" + req.body.lastName}.zip`;
   res.status(200).json({ message: "Uploaded successfully" });
-  uploadFile(name).then(({ data }) => {
-    generatePublicUrl(data.id).then(({ data }) => {
-      const MailText = `
-        name: ${req.body.firstName + " " + req.body.lastName}
-        birthday: ${req.body.birthday}
-        gender: ${req.body.gender}
-        period: ${req.body.period}
-        research: ${req.body.research}
-        contrast: ${req.body.contrast}
-        otherResearches: ${req.body.otherResearches}
-        hasOperation: ${req.body.hasOperation}
-        operation: ${req.body.operation}
-        haschronicDisease: ${req.body.haschronicDisease}
-        chronicDisease: ${req.body.chronicDisease}
-        hasOncologicalDisease: ${req.body.hasOncologicalDisease}
-        hasChemotherapy: ${req.body.hasChemotherapy}
-        chemotherapy: ${req.body.chemotherapy}
-        purposeOfPrevention: ${req.body.purposeOfPrevention}
-        complains: ${req.body.complains}
-         ${data.webViewLink} 
-        `;
+  console.log(req.data);
+  // uploadFile(name).then((data) => {
+  //   generatePublicUrl(data.id).then(({ data }) => {
+  //     const MailText = `
+  //       name: ${req.body.firstName + " " + req.body.lastName}
+  //       birthday: ${req.body.birthday}
+  //       gender: ${req.body.gender}
+  //       period: ${req.body.period}
+  //       research: ${req.body.research}
+  //       contrast: ${req.body.contrast}
+  //       otherResearches: ${req.body.otherResearches}
+  //       hasOperation: ${req.body.hasOperation}
+  //       operation: ${req.body.operation}
+  //       haschronicDisease: ${req.body.haschronicDisease}
+  //       chronicDisease: ${req.body.chronicDisease}
+  //       hasOncologicalDisease: ${req.body.hasOncologicalDisease}
+  //       hasChemotherapy: ${req.body.hasChemotherapy}
+  //       chemotherapy: ${req.body.chemotherapy}
+  //       purposeOfPrevention: ${req.body.purposeOfPrevention}
+  //       complains: ${req.body.complains}
+  //        ${data.webViewLink}
+  //       `;
 
-      translateText(MailText, "en").then((translateResponse) => {
-        console.log(translateResponse, "----11111111");
-        transporter.sendMail(
-          {
-            from: "expertmedopinion@gmail.com",
-            to: req.body.email,
-            subject: "patient",
-            text: translateResponse,
-          },
-          (err, info) => {
-            if (err) {
-              console.log(err, "error");
-            } else {
-              fs.unlink(`folders/${name}`, (err) => {
-                if (err) {
-                  throw err;
-                }
-              });
-              console.log("mail sent", info);
-            }
-          }
-        );
-      });
-    });
-  });
+  //     translateText(MailText, "en").then((translateResponse) => {
+  //       console.log(translateResponse, "----11111111");
+  //       transporter.sendMail(
+  //         {
+  //           from: "expertmedopinion@gmail.com",
+  //           to: req.body.email,
+  //           subject: "patient",
+  //           text: translateResponse,
+  //         },
+  //         (err, info) => {
+  //           if (err) {
+  //             console.log(err, "error");
+  //           } else {
+  //             fs.unlink(`folders/${name}`, (err) => {
+  //               if (err) {
+  //                 throw err;
+  //               }
+  //             });
+  //             console.log("mail sent", info);
+  //           }
+  //         }
+  //       );
+  //     });
+  //   });
+  // });
 });
 
 const PORT = process.env.PORT || 8080;

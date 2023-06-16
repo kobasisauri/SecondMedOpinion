@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -17,6 +18,14 @@ import JSZip from "jszip";
 import Loading from "../../assets/Loading.gif";
 import { Link } from "react-router-dom";
 
+const researches = [
+  {
+    label: "მაგნიტურ-რეზონანსული ტომოგრაფია",
+    value: 1,
+  },
+  { label: "კომპიუტერული ტომოგრაფია", value: 2 },
+];
+
 const researchTypes = [
   { label: "თავი", value: "თავი" },
   { label: "გული", value: "გული" },
@@ -28,7 +37,10 @@ const contrastTypes = [
   { label: "არა კონტრასტული", value: "არა კონტრასტული" },
 ];
 
-const doctors = [{ label: "Андрей Сергеевич", value: "0" }];
+const initailDoctors = [
+  { label: "Андрей Сергеевич", value: "1", tomography: 1 },
+  { label: "ქეთი", value: "2", tomography: 2 },
+];
 
 function generateZipFile(
   zipName,
@@ -57,6 +69,9 @@ const DataForm = () => {
   const [isUpload, setIsUpload] = useState(false);
   const [uploading, setUploading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [doctors, setDoctors] = useState([]);
+  const [searchParams] = useSearchParams();
+  console.log(searchParams.get("id"));
 
   const handleClick = () => {
     setIsOpen(true);
@@ -78,28 +93,51 @@ const DataForm = () => {
     }
     function upload({ file, fileName, fieldName = "files" }) {
       let formData = new FormData();
+
+      formData.append("firstName", values.firstName);
+      formData.append("lastName", values.lastName);
+      formData.append("email", values.email);
+      formData.append(
+        "tomography",
+        +values.tomography === 1
+          ? "მაგნიტურ-რეზონანსული ტომოგრაფია"
+          : "კომპიუტერული ტომოგრაფია"
+      );
+      formData.append("doctor", values.doctor);
       formData.append(
         "birthday",
         values.birthday ? formatDate(values.birthday) : ""
       );
-      formData.append("firstName", values.firstName);
-      formData.append("chemotherapy", values.chemotherapy);
-      formData.append("chronicDisease", values.chronicDisease);
-      formData.append("complains", values.complains);
-      formData.append("contrast", values.contrast);
-      formData.append("doctor", values.doctor);
-      formData.append("email", values.email);
       formData.append("gender", values.gender);
-      formData.append("hasChemotherapy", values.hasChemotherapy);
-      formData.append("hasOncologicalDisease", values.hasOncologicalDisease);
-      formData.append("hasOperation", values.hasOperation);
-      formData.append("haschronicDisease", values.haschronicDisease);
-      formData.append("lastName", values.lastName);
-      formData.append("operation", values.operation);
-      formData.append("otherResearches", values.otherResearches);
-      formData.append("purposeOfPrevention", values.purposeOfPrevention);
-      formData.append("research", values.research);
       formData.append("period", values.period ? formatDate(values.period) : "");
+      formData.append("research", values.research);
+      formData.append("contrast", values.contrast);
+      formData.append(
+        "purposeOfPrevention",
+        +values.purposeOfPrevention === 1 ? "Yes" : "No"
+      );
+      formData.append("complains", values.complains);
+      formData.append(
+        "hasOperation",
+        +values.hasOperation === 1 ? "Yes" : "No"
+      );
+      formData.append("operation", values.operation);
+      formData.append(
+        "haschronicDisease",
+        +values.haschronicDisease === 1 ? "Yes" : "No"
+      );
+      formData.append("chronicDisease", values.chronicDisease);
+      formData.append(
+        "hasOncologicalDisease",
+        +values.hasOncologicalDisease === 1 ? "Yes" : "No"
+      );
+      formData.append("oncologicalDisease", values.oncologicalDisease);
+      formData.append(
+        "hasChemotherapy",
+        +values.hasChemotherapy === 1 ? "Yes" : "No"
+      );
+      formData.append("chemotherapy", values.chemotherapy);
+      formData.append("otherResearches", values.otherResearches);
       formData.append(fieldName, file, fileName);
 
       fetch("http://localhost:8080/data/add", {
@@ -205,15 +243,19 @@ const DataForm = () => {
   useEffect(() => {
     if (!!+values.hasOncologicalDisease) {
       setFieldValue("hasChemotherapy", null);
+      setFieldValue("oncologicalDisease", "");
 
       setValidations((state) => ({
         ...state,
         hasChemotherapy: Yup.string().required("Validations.Required"),
+        oncologicalDisease: Yup.string().required("Validations.Required"),
       }));
     } else {
       setValidations((state) =>
         Object.keys(state)
-          .filter((key) => key !== "hasChemotherapy")
+          .filter(
+            (key) => key !== "hasChemotherapy" || key !== "oncologicalDisease"
+          )
           .reduce((obj, key) => {
             obj[key] = state[key];
             return obj;
@@ -264,6 +306,22 @@ const DataForm = () => {
       );
     }
   }, [setFieldValue, values.purposeOfPrevention]);
+
+  useEffect(() => {
+    if (values.tomography) {
+      setFieldValue("doctor", "");
+      setDoctors(
+        initailDoctors.filter((item) => +item.tomography === +values.tomography)
+      );
+    }
+  }, [setFieldValue, values.tomography]);
+
+  useEffect(() => {
+    if (searchParams) {
+      setFieldValue("tomography", +searchParams.get("tomography"));
+      setFieldValue("doctor", +searchParams.get("id"));
+    }
+  }, [setFieldValue, searchParams]);
 
   return (
     <div className={styles.wrapper}>
@@ -322,6 +380,21 @@ const DataForm = () => {
           </Col>
           <Col xs="6">
             <UISelect
+              label={t("Research")}
+              className="mb-4"
+              fetchedData={researches}
+              placeholder={t("Researches")}
+              name="tomography"
+              initialValue={values.tomography}
+              handleChange={(item) =>
+                setFieldValue("tomography", item ? item.value : null)
+              }
+              isInvalid={!!(touched.tomography && errors.tomography)}
+              errorMSG={errors.tomography}
+            />
+          </Col>
+          <Col xs="6">
+            <UISelect
               label={t("ChooseDoctor")}
               className="mb-4"
               fetchedData={doctors}
@@ -335,7 +408,7 @@ const DataForm = () => {
               errorMSG={errors.doctor}
             />
           </Col>
-          <Col xs="6" className="mb-4">
+          <Col xs="12" className="mb-4">
             <div className="mb-2 ms-1">{t("ChooseGender")}</div>
             <Form.Check
               inline
@@ -723,6 +796,24 @@ const DataForm = () => {
                   </div>
                 )}
             </Col>
+
+            {!!+values.hasOncologicalDisease && (
+              <Col xs="6">
+                <UIFormControl
+                  label={t("WhatkindOncologicalDisease")}
+                  className="mb-4"
+                  placeholder={t("WhatkindOncologicalDisease")}
+                  name="oncologicalDisease"
+                  value={values.oncologicalDisease}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  isInvalid={
+                    touched.oncologicalDisease && errors.oncologicalDisease
+                  }
+                  errorMSG={errors.oncologicalDisease}
+                />
+              </Col>
+            )}
 
             {!!+values.hasOncologicalDisease && (
               <Col xs="12" className="mb-4">

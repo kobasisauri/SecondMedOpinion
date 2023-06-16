@@ -30,6 +30,8 @@ const MRI = () => {
               <img src={item.image} alt="doctor" />
             </div>
 
+            {console.log(item)}
+
             <div className={`d-flex justify-content-between ${styles.main}`}>
               <div className={styles["personal-data"]}>
                 <p className={styles.name}>
@@ -46,7 +48,9 @@ const MRI = () => {
 
               <div className={styles.links}>
                 <Link to={`/mri/${item.id}`}>{t("Resume")}</Link>
-                <Link to="/form">{t("Application")}</Link>
+                <Link to={`/form?id=${item.id}&tomography=${item.tomography}`}>
+                  {t("Application")}
+                </Link>
               </div>
             </div>
           </div>
