@@ -71,7 +71,6 @@ const DataForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [doctors, setDoctors] = useState([]);
   const [searchParams] = useSearchParams();
-  console.log(searchParams.get("id"));
 
   const handleClick = () => {
     setIsOpen(true);
@@ -139,6 +138,7 @@ const DataForm = () => {
       formData.append("chemotherapy", values.chemotherapy);
       formData.append("otherResearches", values.otherResearches);
       formData.append(fieldName, file, fileName);
+      console.log(formData);
 
       fetch("http://localhost:8080/data/add", {
         method: "POST",

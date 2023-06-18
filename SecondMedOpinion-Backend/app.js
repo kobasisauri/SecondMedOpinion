@@ -33,7 +33,7 @@ const CLIENT_SECRET = "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";
 const REDIRECT_URI = "https://developers.google.com/oauthplayground";
 
 const REFRESH_TOKEN =
-  "1//04nMQoZ6a0Gl6CgYIARAAGAQSNwF-L9IrW0IySXYMWeeHpCAxRkQTRcEGc7e0iqlPKvNLerFLueqX9np8IdYvRbikbCCpkSAO0Yg";
+  "1//04yeD8pCpo8umCgYIARAAGAQSNwF-L9IrOZmQTFFq6-1O99cH-Tac56HubfmLNT-k1F1ZRLS5rMKIlXV3XC1FNLUPoHaXV93z9VY";
 const oauth2Client = new google.auth.OAuth2(
   CLIENT_ID,
   CLIENT_SECRET,
@@ -81,7 +81,7 @@ async function generatePublicUrl(id) {
       fileId: id,
       fields: "webViewLink, webContentLink",
     });
-    // console.log(result.data);
+    console.log(result.data);
 
     return result;
   } catch (error) {
@@ -138,54 +138,53 @@ app.use((req, res, next) => {
 app.post("/data/add", (req, res, next) => {
   const name = `${req.body.firstName + "-" + req.body.lastName}.zip`;
   res.status(200).json({ message: "Uploaded successfully" });
-  console.log(req.data);
-  // uploadFile(name).then((data) => {
-  //   generatePublicUrl(data.id).then(({ data }) => {
-  //     const MailText = `
-  //       name: ${req.body.firstName + " " + req.body.lastName}
-  //       birthday: ${req.body.birthday}
-  //       gender: ${req.body.gender}
-  //       period: ${req.body.period}
-  //       research: ${req.body.research}
-  //       contrast: ${req.body.contrast}
-  //       otherResearches: ${req.body.otherResearches}
-  //       hasOperation: ${req.body.hasOperation}
-  //       operation: ${req.body.operation}
-  //       haschronicDisease: ${req.body.haschronicDisease}
-  //       chronicDisease: ${req.body.chronicDisease}
-  //       hasOncologicalDisease: ${req.body.hasOncologicalDisease}
-  //       hasChemotherapy: ${req.body.hasChemotherapy}
-  //       chemotherapy: ${req.body.chemotherapy}
-  //       purposeOfPrevention: ${req.body.purposeOfPrevention}
-  //       complains: ${req.body.complains}
-  //        ${data.webViewLink}
-  //       `;
-
-  //     translateText(MailText, "en").then((translateResponse) => {
-  //       console.log(translateResponse, "----11111111");
-  //       transporter.sendMail(
-  //         {
-  //           from: "expertmedopinion@gmail.com",
-  //           to: req.body.email,
-  //           subject: "patient",
-  //           text: translateResponse,
-  //         },
-  //         (err, info) => {
-  //           if (err) {
-  //             console.log(err, "error");
-  //           } else {
-  //             fs.unlink(`folders/${name}`, (err) => {
-  //               if (err) {
-  //                 throw err;
-  //               }
-  //             });
-  //             console.log("mail sent", info);
-  //           }
-  //         }
-  //       );
-  //     });
-  //   });
-  // });
+  uploadFile(name).then((data) => {
+    generatePublicUrl(data.data.id).then((data) => {
+      console.log(data);
+      const MailText = `
+        name: ${req.body.firstName + " " + req.body.lastName}
+        birthday: ${req.body.birthday}
+        gender: ${req.body.gender}
+        period: ${req.body.period}
+        research: ${req.body.research}
+        contrast: ${req.body.contrast}
+        otherResearches: ${req.body.otherResearches}
+        hasOperation: ${req.body.hasOperation}
+        operation: ${req.body.operation}
+        haschronicDisease: ${req.body.haschronicDisease}
+        chronicDisease: ${req.body.chronicDisease}
+        hasOncologicalDisease: ${req.body.hasOncologicalDisease}
+        hasChemotherapy: ${req.body.hasChemotherapy}
+        chemotherapy: ${req.body.chemotherapy}
+        purposeOfPrevention: ${req.body.purposeOfPrevention}
+        complains: ${req.body.complains}
+         ${data.webViewLink}
+        `;
+      translateText(MailText, "en").then((translateResponse) => {
+        console.log(translateResponse, "----11111111");
+        transporter.sendMail(
+          {
+            from: "expertmedopinion@gmail.com",
+            to: req.body.email,
+            subject: "patient",
+            text: translateResponse,
+          },
+          (err, info) => {
+            if (err) {
+              console.log(err, "error");
+            } else {
+              fs.unlink(`folders/${name}`, (err) => {
+                if (err) {
+                  throw err;
+                }
+              });
+              console.log("mail sent", info);
+            }
+          }
+        );
+      });
+    });
+  });
 });
 
 const PORT = process.env.PORT || 8080;
