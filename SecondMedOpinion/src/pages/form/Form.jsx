@@ -370,7 +370,7 @@ const DataForm = () => {
             <DatepickerItem
               label={t("Birthday")}
               className="mb-4"
-              placeholder={"dd/mm/yyyy"}
+              placeholder={"01/01/2001"}
               name="birthday"
               isInvalid={touched.birthday && errors.birthday}
               errorMSG={errors.birthday}
@@ -590,21 +590,14 @@ const DataForm = () => {
               {t("AddResearches")}
             </Button>
           </Col>
-          {values.gender === "female" && (
-            <Col xs="12" className="mb-4">
-              <DatepickerItem
-                label={t("LastPeriodDate")}
-                placeholder={t("LastPeriodDate")}
-                name="period"
-                isInvalid={touched.period && errors.period}
-                errorMSG={errors.period}
-                valChange={(date) => setFieldValue("period", date)}
-                setTouched={setFieldTouched}
-              />
-            </Col>
-          )}
+
           <Row>
-            <h4 className="mb-4">{t("TitlePurposeOfPrevention")}</h4>
+            <h4
+              className="mb-4"
+              style={{ fontFamily: "Mtavruli", fontWeight: "600" }}
+            >
+              {t("TitlePurposeOfPrevention")}
+            </h4>
 
             <Col xs="12" className="mb-4">
               <div className="mb-2 ms-1">{t("PurposeOfPrevention")}</div>
@@ -868,6 +861,19 @@ const DataForm = () => {
             )}
           </Row>
         </Row>
+        {values.gender === "female" && (
+          <Col xs="3" className="mb-4">
+            <DatepickerItem
+              label={t("LastPeriodDate")}
+              placeholder={t("LastPeriodDate")}
+              name="period"
+              isInvalid={touched.period && errors.period}
+              errorMSG={errors.period}
+              valChange={(date) => setFieldValue("period", date)}
+              setTouched={setFieldTouched}
+            />
+          </Col>
+        )}
 
         <h2
           style={{

@@ -112,16 +112,7 @@ const Home = () => {
 
         <div style={{ maxWidth: "1920px", padding: "0 7%", marginTop: "1rem" }}>
           <h2 style={{ fontFamily: "Mtavruli", fontWeight: "600" }}>
-            {t("WhoAreWe")}{" "}
-            <span
-              style={{
-                fontSize: "24px",
-                fontFamily: "sans-serif",
-                fontWeight: "300",
-              }}
-            >
-              ?
-            </span>
+            {t("WhoAreWe")}
           </h2>
           <div className={styles["home-text"]}>
             {/* <ul> */}
@@ -135,12 +126,6 @@ const Home = () => {
 
             <li>{t("WhoAreWe-5")}</li>
             {/* </ul> */}
-
-            {/* <p>{t("WhoAreWe-1")}</p>
-            <p>{t("WhoAreWe-2")}</p>
-            <p>{t("WhoAreWe-3")}</p>
-            <p>{t("WhoAreWe-4")}</p>
-            <p>{t("WhoAreWe-5")}</p> */}
           </div>
         </div>
       </div>
