@@ -25,11 +25,11 @@ const ContactUs = () => {
         <div className={styles["inner-wrapper"]}>
           <div className={styles.items}>
             <h5>E-MAIL</h5>
-            <p>contact@ARVICISAXEli.com</p>
+            <p>expertmedopinion@gmail.com</p>
           </div>
 
           <div className={styles.items}>
-            <h5>ARVICISAXEli bratt</h5>
+            <h5>EXPERTMED OPINION</h5>
             <p>TBILISI</p>
           </div>
         </div>
