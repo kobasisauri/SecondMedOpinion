@@ -8,6 +8,7 @@ import React, {
 import { useTranslation } from "react-i18next";
 import { Dropdown } from "react-bootstrap";
 import useOnClickOutside from "../../../hooks/on-click-outside";
+import { ReactComponent as Arrow } from "../../../assets/chevron-right-solid.svg";
 // import Loader from '../Loader';
 import Toggle, { closeClass } from "./Toggle";
 import styles from "./styles.module.scss";
@@ -225,9 +226,17 @@ const Base = (
                   return (
                     <div key={i}>
                       <b
-                        className={styles.title}
-                        onClick={() => setShowChildren(item.value)}
+                        className={`${styles.title} ${
+                          showChildren === item.value ? styles.activeParent : ""
+                        }`}
+                        onClick={() =>
+                          setShowChildren((state) =>
+                            state ? null : item.value
+                          )
+                        }
                       >
+                        <Arrow />
+
                         {t(item.label)}
                       </b>
 

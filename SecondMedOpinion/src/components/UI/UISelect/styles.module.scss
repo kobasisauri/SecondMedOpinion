@@ -94,6 +94,18 @@
       }
     }
 
+    .title {
+      &.activeParent svg {
+        transform: rotate(90deg);
+      }
+
+      svg {
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+      }
+    }
+
     .item {
       background: #fff;
       cursor: pointer;
