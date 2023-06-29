@@ -12,11 +12,19 @@ import initialValidations from "./validations";
 import styles from "./Form.module.scss";
 import DatepickerItem from "../../components/UI/DatepickerItem/DatepickerItem";
 import { formatDate } from "../../static/date";
+import {
+  CTResearches,
+  MRIResearches,
+  headCT,
+  jawCT,
+  CnsMRI,
+} from "../../static/researches";
 import FileUpload from "../../components/UI/FileUpload/FileUpload";
 import JSZip from "jszip";
 
 import Loading from "../../assets/Loading.gif";
 import { Link } from "react-router-dom";
+// import { getResearchDetails } from "./getResearchDetails";
 
 const researches = [
   {
@@ -26,11 +34,11 @@ const researches = [
   { label: "კომპიუტერული ტომოგრაფია", value: 2 },
 ];
 
-const researchTypes = [
-  { label: "თავი", value: "თავი" },
-  { label: "გული", value: "გული" },
-  { label: "ფეხი", value: "ფეხი" },
-];
+// const researchTypes = [
+//   { label: "თავი", value: "თავი" },
+//   { label: "გული", value: "გული" },
+//   { label: "ფეხი", value: "ფეხი" },
+// ];
 
 const contrastTypes = [
   { label: "კონტრასტული", value: "კონტრასტული" },
@@ -72,6 +80,9 @@ const DataForm = () => {
   const [doctors, setDoctors] = useState([]);
   const [searchParams] = useSearchParams();
 
+  const [researchTypes, setResearchTypes] = useState([]);
+  const [researchDetails, setResearchDetails] = useState([]);
+
   const handleClick = () => {
     setIsOpen(true);
   };
@@ -110,6 +121,8 @@ const DataForm = () => {
       formData.append("gender", values.gender);
       formData.append("period", values.period ? formatDate(values.period) : "");
       formData.append("research", values.research);
+      formData.append("researchType", values.researchType);
+
       formData.append("contrast", values.contrast);
       formData.append(
         "purposeOfPrevention",
@@ -310,11 +323,30 @@ const DataForm = () => {
   useEffect(() => {
     if (values.tomography) {
       setFieldValue("doctor", "");
+      setFieldValue("research", "");
+      setFieldValue("researchType", "");
+      setFieldValue("contrast", "");
+      setFieldValue("otherResearches", []);
+
+      if (values.tomography === 1) {
+        setResearchTypes(MRIResearches);
+      } else {
+        setResearchTypes(CTResearches);
+      }
+
       setDoctors(
         initailDoctors.filter((item) => +item.tomography === +values.tomography)
       );
     }
   }, [setFieldValue, values.tomography]);
+
+  useEffect(() => {
+    if (values.research) {
+      setFieldValue("researchType", "");
+
+      // setResearchDetails(getResearchDetails(values.research));
+    }
+  }, [setFieldValue, values.research]);
 
   useEffect(() => {
     if (searchParams) {
@@ -436,7 +468,7 @@ const DataForm = () => {
               <div className={styles.errorMSG}>{t(errors.gender)}</div>
             )}
           </Col>
-          <Col xs="6">
+          <Col sm="4">
             <UISelect
               label={t("ChooseResearch")}
               className="mb-4"
@@ -444,20 +476,38 @@ const DataForm = () => {
               placeholder={t("Researches")}
               name="research"
               initialValue={values.research}
-              handleChange={(item) =>
-                setFieldValue("research", item ? item.value : null)
-              }
+              handleChange={(item) => {
+                setFieldValue("research", item ? item.value : null);
+                setResearchDetails(item ? item.innerData : []);
+              }}
               isInvalid={!!(touched.research && errors.research)}
               errorMSG={errors.research}
             />
           </Col>
-          <Col xs="6">
+
+          <Col sm="4">
+            <UISelect
+              label="კონკრეტული კვლევა"
+              className="mb-4"
+              fetchedData={researchDetails}
+              placeholder="კონკრეტული კვლევა"
+              name="researchType"
+              initialValue={values.researchType}
+              handleChange={(item) =>
+                setFieldValue("researchType", item ? item.value : null)
+              }
+              isInvalid={!!(touched.researchType && errors.researchType)}
+              errorMSG={errors.researchType}
+            />
+          </Col>
+
+          <Col sm="4">
             <UISelect
               label={t("TypeOfResearch")}
               fetchedData={contrastTypes}
               placeholder={t("TypeOfResearchPlaceHolder")}
               name="contrast"
-              initialValue={values.contrastcontrast}
+              initialValue={values.contrast}
               handleChange={(item) => {
                 setFieldValue("contrast", item ? item.value : null);
               }}
