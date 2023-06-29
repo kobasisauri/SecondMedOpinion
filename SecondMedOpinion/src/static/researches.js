@@ -259,8 +259,8 @@ export const bodyCT = [
 
 export const CTResearches = [
   {
-    label: "თავის",
-    value: "თავის",
+    label: "head",
+    value: "head",
     children: headCT,
   },
   {

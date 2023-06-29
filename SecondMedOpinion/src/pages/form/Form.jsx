@@ -18,7 +18,6 @@ import JSZip from "jszip";
 
 import Loading from "../../assets/Loading.gif";
 import { Link } from "react-router-dom";
-// import { getResearchDetails } from "./getResearchDetails";
 
 const researches = [
   {
@@ -27,12 +26,6 @@ const researches = [
   },
   { label: "კომპიუტერული ტომოგრაფია", value: 2 },
 ];
-
-// const researchTypes = [
-//   { label: "თავი", value: "თავი" },
-//   { label: "გული", value: "გული" },
-//   { label: "ფეხი", value: "ფეხი" },
-// ];
 
 const contrastTypes = [
   { label: "კონტრასტული", value: "კონტრასტული" },
@@ -113,7 +106,7 @@ const DataForm = () => {
       );
       formData.append("gender", values.gender);
       formData.append("period", values.period ? formatDate(values.period) : "");
-      formData.append("research", values.research);
+      formData.append("research", t(values.research));
 
       formData.append("contrast", values.contrast);
       formData.append(
@@ -334,9 +327,10 @@ const DataForm = () => {
   useEffect(() => {
     if (searchParams) {
       setFieldValue("tomography", +searchParams.get("tomography"));
-      setFieldValue("doctor", +searchParams.get("id"));
+
+      if (doctors.length) setFieldValue("doctor", searchParams.get("id"));
     }
-  }, [setFieldValue, searchParams]);
+  }, [setFieldValue, searchParams, doctors.length]);
 
   return (
     <div className={styles.wrapper}>
