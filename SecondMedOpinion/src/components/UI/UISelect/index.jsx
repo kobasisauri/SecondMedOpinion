@@ -29,6 +29,7 @@ const Base = (
     endpoint,
     handleChange,
     setTouched,
+    dataNotFoundText,
     ...rest
   },
   ref
@@ -43,6 +44,7 @@ const Base = (
 
   const [data, setData] = useState(null);
   const [selected, setSelected] = useState(null);
+  const [showChildren, setShowChildren] = useState(null);
 
   useEffect(() => {
     if (endpoint) {
@@ -222,16 +224,23 @@ const Base = (
                 if (item.children) {
                   return (
                     <div key={i}>
-                      <b className={styles.title}>{t(item.label)}</b>
-                      {item.children.map((subItem, j) => (
-                        <div
-                          className={`${styles.item} ${styles.nested}`}
-                          onClick={() => onSelect(subItem)}
-                          key={j}
-                        >
-                          {t(subItem.label)}
-                        </div>
-                      ))}
+                      <b
+                        className={styles.title}
+                        onClick={() => setShowChildren(item.value)}
+                      >
+                        {t(item.label)}
+                      </b>
+
+                      {showChildren === item.value &&
+                        item.children.map((subItem, j) => (
+                          <div
+                            className={`${styles.item} ${styles.nested}`}
+                            onClick={() => onSelect(subItem)}
+                            key={j}
+                          >
+                            {t(subItem.label)}
+                          </div>
+                        ))}
                     </div>
                   );
                 }
@@ -247,7 +256,9 @@ const Base = (
                 );
               })}
               {!data?.length && (
-                <div className={styles["not-found"]}>{t("DataNotFound")}</div>
+                <div className={styles["not-found"]}>
+                  {t(dataNotFoundText || "DataNotFound")}
+                </div>
               )}
             </div>
           </Dropdown.Menu>

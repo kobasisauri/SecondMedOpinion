@@ -12,13 +12,7 @@ import initialValidations from "./validations";
 import styles from "./Form.module.scss";
 import DatepickerItem from "../../components/UI/DatepickerItem/DatepickerItem";
 import { formatDate } from "../../static/date";
-import {
-  CTResearches,
-  MRIResearches,
-  headCT,
-  jawCT,
-  CnsMRI,
-} from "../../static/researches";
+import { CTResearches, MRIResearches } from "../../static/researches";
 import FileUpload from "../../components/UI/FileUpload/FileUpload";
 import JSZip from "jszip";
 
@@ -81,7 +75,6 @@ const DataForm = () => {
   const [searchParams] = useSearchParams();
 
   const [researchTypes, setResearchTypes] = useState([]);
-  const [researchDetails, setResearchDetails] = useState([]);
 
   const handleClick = () => {
     setIsOpen(true);
@@ -121,7 +114,6 @@ const DataForm = () => {
       formData.append("gender", values.gender);
       formData.append("period", values.period ? formatDate(values.period) : "");
       formData.append("research", values.research);
-      formData.append("researchType", values.researchType);
 
       formData.append("contrast", values.contrast);
       formData.append(
@@ -324,7 +316,6 @@ const DataForm = () => {
     if (values.tomography) {
       setFieldValue("doctor", "");
       setFieldValue("research", "");
-      setFieldValue("researchType", "");
       setFieldValue("contrast", "");
       setFieldValue("otherResearches", []);
 
@@ -339,14 +330,6 @@ const DataForm = () => {
       );
     }
   }, [setFieldValue, values.tomography]);
-
-  useEffect(() => {
-    if (values.research) {
-      setFieldValue("researchType", "");
-
-      // setResearchDetails(getResearchDetails(values.research));
-    }
-  }, [setFieldValue, values.research]);
 
   useEffect(() => {
     if (searchParams) {
@@ -468,7 +451,8 @@ const DataForm = () => {
               <div className={styles.errorMSG}>{t(errors.gender)}</div>
             )}
           </Col>
-          <Col sm="4">
+
+          <Col sm="6">
             <UISelect
               label={t("ChooseResearch")}
               className="mb-4"
@@ -478,30 +462,14 @@ const DataForm = () => {
               initialValue={values.research}
               handleChange={(item) => {
                 setFieldValue("research", item ? item.value : null);
-                setResearchDetails(item ? item.innerData : []);
               }}
               isInvalid={!!(touched.research && errors.research)}
               errorMSG={errors.research}
+              dataNotFoundText="აირჩიეთ ტომოგრაფიის ტიპი"
             />
           </Col>
 
-          <Col sm="4">
-            <UISelect
-              label="კონკრეტული კვლევა"
-              className="mb-4"
-              fetchedData={researchDetails}
-              placeholder="კონკრეტული კვლევა"
-              name="researchType"
-              initialValue={values.researchType}
-              handleChange={(item) =>
-                setFieldValue("researchType", item ? item.value : null)
-              }
-              isInvalid={!!(touched.researchType && errors.researchType)}
-              errorMSG={errors.researchType}
-            />
-          </Col>
-
-          <Col sm="4">
+          <Col sm="6">
             <UISelect
               label={t("TypeOfResearch")}
               fetchedData={contrastTypes}
@@ -515,6 +483,7 @@ const DataForm = () => {
               errorMSG={errors.contrast}
             />
           </Col>
+
           {values.otherResearches &&
             values.otherResearches.length > 0 &&
             values.otherResearches.map((otherResearche, index) => (
@@ -734,7 +703,6 @@ const DataForm = () => {
 
             {!!+values.hasOperation && (
               <>
-                {/* <Col xs="12"></Col> */}
                 <Col xs="6">
                   <UIFormControl
                     label={t("Operation")}

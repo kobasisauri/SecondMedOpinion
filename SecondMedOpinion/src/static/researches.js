@@ -35,12 +35,12 @@ export const CTResearches = [
   {
     label: "თავის CT",
     value: "თავის CT",
-    innerData: headCT,
+    children: headCT,
   },
   {
     label: "ყბის CT",
     value: "ყბის CT",
-    innerData: jawCT,
+    children: jawCT,
   },
 ];
 
@@ -48,11 +48,11 @@ export const MRIResearches = [
   {
     label: "ცენტრალური ნერვული სისტემა",
     value: "ცენტრალური ნერვული სისტემა",
-    innerData: CnsMRI,
+    children: CnsMRI,
   },
   {
     label: "სახსრების მაგნიტო რეზონანსული კვლევა",
     value: "სახსრების მაგნიტო რეზონანსული კვლევა",
-    innerData: [],
+    children: [],
   },
 ];

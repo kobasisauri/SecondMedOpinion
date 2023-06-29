@@ -83,6 +83,15 @@
     .item {
       display: block;
       padding: 0.44rem 0.82rem;
+      color: #000;
+      cursor: pointer;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $text-color;
+        background: darken(#fff, 2%);
+      }
     }
 
     .item {
@@ -114,4 +123,5 @@
   text-align: center;
   text-overflow: hidden;
   padding: 0.6rem;
+  color: #000;
 }

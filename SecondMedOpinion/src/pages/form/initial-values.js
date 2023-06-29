@@ -8,7 +8,6 @@ let initialValues = {
   gender: null,
   period: "",
   research: null,
-  researchType: null,
   contrast: null,
   purposeOfPrevention: null,
   complains: "",
