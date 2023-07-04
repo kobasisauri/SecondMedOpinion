@@ -325,7 +325,7 @@ const DataForm = () => {
   }, [setFieldValue, values.tomography]);
 
   useEffect(() => {
-    if (searchParams) {
+    if (+searchParams.get("tomography")) {
       setFieldValue("tomography", +searchParams.get("tomography"));
 
       if (doctors.length) setFieldValue("doctor", searchParams.get("id"));
@@ -395,9 +395,9 @@ const DataForm = () => {
               placeholder={t("Researches")}
               name="tomography"
               initialValue={values.tomography}
-              handleChange={(item) =>
-                setFieldValue("tomography", item ? item.value : null)
-              }
+              handleChange={(item) => {
+                setFieldValue("tomography", item ? item.value : null);
+              }}
               isInvalid={!!(touched.tomography && errors.tomography)}
               errorMSG={errors.tomography}
             />
