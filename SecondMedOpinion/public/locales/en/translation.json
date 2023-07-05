@@ -92,6 +92,12 @@
     "WrongFormat": ""
   },
   "WhatkindOncologicalDisease": "What kind of oncological disease?",
+  "ChooseResearchPlaceholder": "Choose study type",
+  "mri": "Magnetic Resonance Imaging",
+  "ct": "Computer Tomography",
+  "WithContrast": "contrast",
+  "WithoutContrast": "without contrast",
+
   "head": "HEAD CT",
   "jaw": "JAW CT",
   "neck": "NECK CT",
@@ -102,7 +108,7 @@
   "bone": "CT OF JOINTS AND BONES",
   "body": "WHOLE BODY CT",
 
-  "head-1": "CT of the upper and lower jaw, without contrast",
+  "head-1": "CT of the upper and lower jaw",
   "head-2": "CT scan of the temporal bones (middle and inner ear)",
   "head-3": "CT orbits (orbits)",
   "head-4": "CT of the paranasal sinuses (low dose)",

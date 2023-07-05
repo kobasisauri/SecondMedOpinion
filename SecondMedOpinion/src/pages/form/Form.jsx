@@ -19,19 +19,6 @@ import JSZip from "jszip";
 import Loading from "../../assets/Loading.gif";
 import { Link } from "react-router-dom";
 
-const researches = [
-  {
-    label: "მაგნიტურ-რეზონანსული ტომოგრაფია",
-    value: 1,
-  },
-  { label: "კომპიუტერული ტომოგრაფია", value: 2 },
-];
-
-const contrastTypes = [
-  { label: "კონტრასტული", value: "კონტრასტული" },
-  { label: "არა კონტრასტული", value: "არა კონტრასტული" },
-];
-
 const initailDoctors = [
   { label: "Андрей Сергеевич", value: "1", tomography: 1 },
   { label: "ქეთი", value: "2", tomography: 2 },
@@ -66,8 +53,20 @@ const DataForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [doctors, setDoctors] = useState([]);
   const [searchParams] = useSearchParams();
-
   const [researchTypes, setResearchTypes] = useState([]);
+
+  const researches = [
+    {
+      label: t("mri"),
+      value: 1,
+    },
+    { label: t("ct"), value: 2 },
+  ];
+
+  const contrastTypes = [
+    { label: t("WithContrast"), value: t("WithContrast") },
+    { label: t("WithoutContrast"), value: t("WithoutContrast") },
+  ];
 
   const handleClick = () => {
     setIsOpen(true);
@@ -415,6 +414,7 @@ const DataForm = () => {
               }
               isInvalid={!!(touched.doctor && errors.doctor)}
               errorMSG={errors.doctor}
+              dataNotFoundText={t("ChooseResearchPlaceholder")}
             />
           </Col>
           <Col xs="12" className="mb-4">
@@ -459,7 +459,7 @@ const DataForm = () => {
               }}
               isInvalid={!!(touched.research && errors.research)}
               errorMSG={errors.research}
-              dataNotFoundText="აირჩიეთ ტომოგრაფიის ტიპი"
+              dataNotFoundText={t("ChooseResearchPlaceholder")}
             />
           </Col>
 

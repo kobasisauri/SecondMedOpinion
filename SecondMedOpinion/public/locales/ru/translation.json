@@ -91,6 +91,12 @@
     "WrongFormat": ""
   },
   "WhatkindOncologicalDisease": "",
+  "ChooseResearchPlaceholder": "выберите тип исследования",
+  "mri": "Магнитно-резонансная томография",
+  "ct": "Компьютерная томография",
+  "WithContrast": "с контрастом",
+  "WithoutContrast": "без контрастa",
+
   "head": "КТ головы",
   "jaw": "КТ челюсти",
   "neck": "Шея",
