@@ -43,6 +43,7 @@ function App() {
               path="/computer-tomography"
               element={<ComputerTomography />}
             />
+            <Route path="/ct/:id" element={<Resume />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/form" element={<Form />} />

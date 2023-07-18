@@ -47,7 +47,7 @@ const MRI = () => {
               </div>
 
               <div className={styles.links}>
-                <Link to={`/mri/${item.id}`}>{t("Resume")}</Link>
+                <Link to={`/ct/${item.id}`}>{t("Resume")}</Link>
                 <Link to={`/form?id=${item.id}&tomography=${item.tomography}`}>
                   {t("Application")}
                 </Link>

@@ -15,7 +15,7 @@ const Resume = () => {
   useEffect(() => {
     setLoading(true);
     if (id) {
-      setResume(data.filter((item) => item.id === +id)[0]);
+      setResume(data.filter((item) => item.id === id)[0]);
     }
 
     async function load() {
