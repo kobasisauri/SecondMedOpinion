@@ -9,7 +9,6 @@ import Test1 from "../../assets/test1.jpg";
 import Test2 from "../../assets/test2.jpg";
 import Test3 from "../../assets/test3.jpg";
 
-import HomeSlider1 from "../../assets/images/HomeSlider1.jpg";
 import HomeSlider2 from "../../assets/images/HomeSlider2.jpg";
 import HomeSlider3 from "../../assets/images/HomeSlider3.jpeg";
 import HomeSlider4 from "../../assets/images/HomeSlider4.jpeg";
