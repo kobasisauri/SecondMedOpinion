@@ -33,7 +33,7 @@ const CLIENT_SECRET = "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";
 const REDIRECT_URI = "https://developers.google.com/oauthplayground";
 
 const REFRESH_TOKEN =
-  "1//04yeD8pCpo8umCgYIARAAGAQSNwF-L9IrOZmQTFFq6-1O99cH-Tac56HubfmLNT-k1F1ZRLS5rMKIlXV3XC1FNLUPoHaXV93z9VY";
+  "1//04C6u5DgYSLAiCgYIARAAGAQSNwF-L9IriHD-gwUC1FLXdvL0fdVTWoslM30vYaO-6qoJHBlskE4LVBDI0iUiHXcoG-Qt4TfUcXQ";
 const oauth2Client = new google.auth.OAuth2(
   CLIENT_ID,
   CLIENT_SECRET,
@@ -140,7 +140,6 @@ app.post("/data/add", (req, res, next) => {
   res.status(200).json({ message: "Uploaded successfully" });
   uploadFile(name).then((data) => {
     generatePublicUrl(data.data.id).then((data) => {
-      console.log(data);
       const MailText = `
         name: ${req.body.firstName + " " + req.body.lastName}
         birthday: ${req.body.birthday}
@@ -158,7 +157,7 @@ app.post("/data/add", (req, res, next) => {
         chemotherapy: ${req.body.chemotherapy}
         purposeOfPrevention: ${req.body.purposeOfPrevention}
         complains: ${req.body.complains}
-         ${data.webViewLink}
+         ${data.data.webViewLink}
         `;
       translateText(MailText, "en").then((translateResponse) => {
         console.log(translateResponse, "----11111111");
