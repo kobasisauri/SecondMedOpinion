@@ -9,7 +9,6 @@ import Test1 from "../../assets/test1.jpg";
 import Test2 from "../../assets/test2.jpg";
 import Test3 from "../../assets/test3.jpg";
 
-import HomeSlider1 from "../../assets/images/HomeSlider1.jpg";
 import HomeSlider2 from "../../assets/images/HomeSlider2.jpg";
 import HomeSlider3 from "../../assets/images/HomeSlider3.jpeg";
 import HomeSlider4 from "../../assets/images/HomeSlider4.jpeg";
@@ -112,7 +111,7 @@ const Home = () => {
 
         <div style={{ maxWidth: "1920px", padding: "0 7%", marginTop: "1rem" }}>
           <h2 style={{ fontFamily: "Mtavruli", fontWeight: "600" }}>
-            {t("WhoAreWe")}
+            {t("WhoAreWe")}?
           </h2>
           <div className={styles["home-text"]}>
             {/* <ul> */}
@@ -141,7 +140,7 @@ const Home = () => {
 
         <div className={styles["about-container"]}>
           <h4 style={{ fontFamily: "Mtavruli", fontWeight: "600" }}>
-            {t("WhyEMO")}
+            {t("WhyEMO")}?
           </h4>
           <div className={styles["home-text"]}>
             <li>{t("WhyEMO-1")}</li>

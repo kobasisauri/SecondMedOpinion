@@ -26,9 +26,11 @@
     }
 
     div {
-      &:last-child {
-        margin-bottom: 2rem;
-      }
+      max-width: 1150px;
+
+      // &:last-child {
+      //   margin-bottom: 2rem;
+      // }
       p {
         text-align: start;
         font-size: 16px;
