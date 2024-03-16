@@ -108,30 +108,15 @@ const DataForm = () => {
       formData.append("research", t(values.research));
 
       formData.append("contrast", values.contrast);
-      formData.append(
-        "purposeOfPrevention",
-        +values.purposeOfPrevention === 1 ? "Yes" : "No"
-      );
+
       formData.append("complains", values.complains);
-      formData.append(
-        "hasOperation",
-        +values.hasOperation === 1 ? "Yes" : "No"
-      );
+
       formData.append("operation", values.operation);
-      formData.append(
-        "haschronicDisease",
-        +values.haschronicDisease === 1 ? "Yes" : "No"
-      );
+
       formData.append("chronicDisease", values.chronicDisease);
-      formData.append(
-        "hasOncologicalDisease",
-        +values.hasOncologicalDisease === 1 ? "Yes" : "No"
-      );
+
       formData.append("oncologicalDisease", values.oncologicalDisease);
-      formData.append(
-        "hasChemotherapy",
-        +values.hasChemotherapy === 1 ? "Yes" : "No"
-      );
+
       formData.append("chemotherapy", values.chemotherapy);
       formData.append("otherResearches", values.otherResearches);
       formData.append(fieldName, file, fileName);
@@ -179,12 +164,11 @@ const DataForm = () => {
 
   useEffect(() => {
     if (values.gender === "female") {
-      setFieldValue("period", "");
-
-      setValidations((state) => ({
-        ...state,
-        period: Yup.string().required("Validations.Required"),
-      }));
+      // setFieldValue("period", "");
+      // setValidations((state) => ({
+      //   ...state,
+      //   period: Yup.string().required("Validations.Required"),
+      // }));
     } else {
       setValidations((state) =>
         Object.keys(state)
@@ -196,113 +180,6 @@ const DataForm = () => {
       );
     }
   }, [setFieldValue, values.gender]);
-
-  useEffect(() => {
-    if (!!+values.hasOperation) {
-      setFieldValue("operation", "");
-
-      setValidations((state) => ({
-        ...state,
-        operation: Yup.string().required("Validations.Required"),
-      }));
-    } else {
-      setValidations((state) =>
-        Object.keys(state)
-          .filter((key) => key !== "operation")
-          .reduce((obj, key) => {
-            obj[key] = state[key];
-            return obj;
-          }, {})
-      );
-    }
-  }, [setFieldValue, values.hasOperation]);
-
-  useEffect(() => {
-    if (!!+values.haschronicDisease) {
-      setFieldValue("chronicDisease", "");
-
-      setValidations((state) => ({
-        ...state,
-        chronicDisease: Yup.string().required("Validations.Required"),
-      }));
-    } else {
-      setValidations((state) =>
-        Object.keys(state)
-          .filter((key) => key !== "chronicDisease")
-          .reduce((obj, key) => {
-            obj[key] = state[key];
-            return obj;
-          }, {})
-      );
-    }
-  }, [setFieldValue, values.haschronicDisease]);
-
-  useEffect(() => {
-    if (!!+values.hasOncologicalDisease) {
-      setFieldValue("hasChemotherapy", null);
-      setFieldValue("oncologicalDisease", "");
-
-      setValidations((state) => ({
-        ...state,
-        hasChemotherapy: Yup.string().required("Validations.Required"),
-        oncologicalDisease: Yup.string().required("Validations.Required"),
-      }));
-    } else {
-      setValidations((state) =>
-        Object.keys(state)
-          .filter(
-            (key) => key !== "hasChemotherapy" || key !== "oncologicalDisease"
-          )
-          .reduce((obj, key) => {
-            obj[key] = state[key];
-            return obj;
-          }, {})
-      );
-    }
-  }, [setFieldValue, values.hasOncologicalDisease]);
-
-  useEffect(() => {
-    if (!!+values.hasChemotherapy) {
-      setFieldValue("chemotherapy", "");
-
-      setValidations((state) => ({
-        ...state,
-        chemotherapy: Yup.string().required("Validations.Required"),
-      }));
-    } else {
-      setValidations((state) =>
-        Object.keys(state)
-          .filter((key) => key !== "chemotherapy")
-          .reduce((obj, key) => {
-            obj[key] = state[key];
-            return obj;
-          }, {})
-      );
-    }
-  }, [setFieldValue, values.hasChemotherapy]);
-
-  useEffect(() => {
-    if (
-      typeof values.purposeOfPrevention === "string" &&
-      +values.purposeOfPrevention === 0
-    ) {
-      setFieldValue("complains", "");
-
-      setValidations((state) => ({
-        ...state,
-        complains: Yup.string().required("Validations.Required"),
-      }));
-    } else {
-      setValidations((state) =>
-        Object.keys(state)
-          .filter((key) => key !== "complains")
-          .reduce((obj, key) => {
-            obj[key] = state[key];
-            return obj;
-          }, {})
-      );
-    }
-  }, [setFieldValue, values.purposeOfPrevention]);
 
   useEffect(() => {
     if (values.tomography) {
@@ -612,280 +489,79 @@ const DataForm = () => {
               {t("TitlePurposeOfPrevention")}
             </h4>
 
-            <Col xs="12" className="mb-4">
-              <div className="mb-2 ms-1">{t("PurposeOfPrevention")}</div>
-              <Form.Check
-                inline
-                label={t("Yes")}
-                name="purposeOfPrevention"
-                type="radio"
-                id="purposeOfPrevention-1"
-                value={1}
-                checked={+values.purposeOfPrevention === 1}
-                onChange={handleChange}
+            <Col xs="6">
+              <UIFormControl
+                label={t("Complains")}
+                className="mb-4"
+                // placeholder={t("ComplainsPlaceHolder")}
+                name="complains"
+                value={values.complains}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                isInvalid={touched.complains && errors.complains}
+                errorMSG={errors.complains}
               />
-
-              <Form.Check
-                inline
-                label={t("No")}
-                name="purposeOfPrevention"
-                type="radio"
-                id="v-2"
-                value={0}
-                checked={
-                  typeof values.purposeOfPrevention === "string" &&
-                  +values.purposeOfPrevention === 0
-                }
-                onChange={handleChange}
-              />
-
-              {touched.purposeOfPrevention && errors.purposeOfPrevention && (
-                <div className={styles.errorMSG}>
-                  {t(errors.purposeOfPrevention)}
-                </div>
-              )}
-            </Col>
-            {typeof values.purposeOfPrevention === "string" &&
-              +values.purposeOfPrevention === 0 && (
-                <>
-                  <Col xs="6">
-                    <UIFormControl
-                      label={t("Complains")}
-                      className="mb-4"
-                      placeholder={t("ComplainsPlaceHolder")}
-                      name="complains"
-                      value={values.complains}
-                      handleChange={handleChange}
-                      handleBlur={handleBlur}
-                      isInvalid={touched.complains && errors.complains}
-                      errorMSG={errors.complains}
-                    />
-                  </Col>
-                </>
-              )}
-            <Col xs="12" className="mb-4">
-              <div className="mb-2 ms-1">{t("HasSurgery")}</div>
-              <Form.Check
-                inline
-                label={t("Yes")}
-                name="hasOperation"
-                type="radio"
-                id="hasOperation-1"
-                value={1}
-                checked={+values.hasOperation === 1}
-                onChange={(e) => setFieldValue("hasOperation", e.target.value)}
-              />
-
-              <Form.Check
-                inline
-                label={t("No")}
-                name="hasOperation"
-                type="radio"
-                id="hasOperation-2"
-                value={0}
-                checked={
-                  typeof values.hasOperation === "string" &&
-                  +values.hasOperation === 0
-                }
-                onChange={(e) => setFieldValue("hasOperation", e.target.value)}
-              />
-
-              {touched.hasOperation && errors.hasOperation && (
-                <div className={styles.errorMSG}>{t(errors.hasOperation)}</div>
-              )}
             </Col>
 
-            {!!+values.hasOperation && (
-              <>
-                <Col xs="6">
-                  <UIFormControl
-                    label={t("Operation")}
-                    className="mb-4"
-                    placeholder={t("Operation")}
-                    name="operation"
-                    value={values.operation}
-                    handleChange={handleChange}
-                    handleBlur={handleBlur}
-                    isInvalid={touched.operation && errors.operation}
-                    errorMSG={errors.operation}
-                  />
-                </Col>
-              </>
-            )}
-
-            <Col xs="12" className="mb-4">
-              <div className="mb-2 ms-1">{t("HasChronicDisease")}</div>
-              <Form.Check
-                inline
-                label={t("Yes")}
-                name="haschronicDisease"
-                type="radio"
-                id="haschronicDisease-1"
-                value={1}
-                checked={+values.haschronicDisease === 1}
-                onChange={(e) =>
-                  setFieldValue("haschronicDisease", e.target.value)
-                }
+            <Col xs="6">
+              <UIFormControl
+                label={t("Operation")}
+                className="mb-4"
+                // placeholder={t("Operation")}
+                name="operation"
+                value={values.operation}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                isInvalid={touched.operation && errors.operation}
+                errorMSG={errors.operation}
               />
-
-              <Form.Check
-                inline
-                label={t("No")}
-                name="haschronicDisease"
-                type="radio"
-                id="haschronicDisease-2"
-                value={0}
-                checked={
-                  typeof values.haschronicDisease === "string" &&
-                  +values.haschronicDisease === 0
-                }
-                onChange={(e) =>
-                  setFieldValue("haschronicDisease", e.target.value)
-                }
-              />
-
-              {touched.haschronicDisease && errors.haschronicDisease && (
-                <div className={styles.errorMSG}>
-                  {t(errors.haschronicDisease)}
-                </div>
-              )}
             </Col>
 
-            {!!+values.haschronicDisease && (
-              <Col xs="6">
-                <UIFormControl
-                  label={t("ChronicDisease")}
-                  className="mb-4"
-                  placeholder={t("chronicDisease")}
-                  name="chronicDisease"
-                  value={values.chronicDisease}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  isInvalid={touched.chronicDisease && errors.chronicDisease}
-                  errorMSG={errors.chronicDisease}
-                />
-              </Col>
-            )}
-
-            <Col xs="12" className="mb-4">
-              <div className="mb-2 ms-1">{t("HasOncologicalDisease")}</div>
-              <Form.Check
-                inline
-                label={t("Yes")}
-                name="hasOncologicalDisease"
-                type="radio"
-                id="hasOncologicalDisease-1"
-                value={1}
-                checked={+values.hasOncologicalDisease === 1}
-                onChange={handleChange}
+            <Col xs="6">
+              <UIFormControl
+                label={t("ChronicDisease")}
+                className="mb-4"
+                // placeholder={t("chronicDisease")}
+                name="chronicDisease"
+                value={values.chronicDisease}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                isInvalid={touched.chronicDisease && errors.chronicDisease}
+                errorMSG={errors.chronicDisease}
               />
-
-              <Form.Check
-                inline
-                label={t("No")}
-                name="hasOncologicalDisease"
-                type="radio"
-                id="hasOncologicalDisease-2"
-                value={0}
-                checked={
-                  typeof values.hasOncologicalDisease === "string" &&
-                  +values.hasOncologicalDisease === 0
-                }
-                onChange={handleChange}
-              />
-
-              {touched.hasOncologicalDisease &&
-                errors.hasOncologicalDisease && (
-                  <div className={styles.errorMSG}>
-                    {t(errors.hasOncologicalDisease)}
-                  </div>
-                )}
             </Col>
 
-            {!!+values.hasOncologicalDisease && (
-              <Col xs="6">
-                <UIFormControl
-                  label={t("WhatkindOncologicalDisease")}
-                  className="mb-4"
-                  placeholder={t("WhatkindOncologicalDisease")}
-                  name="oncologicalDisease"
-                  value={values.oncologicalDisease}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  isInvalid={
-                    touched.oncologicalDisease && errors.oncologicalDisease
-                  }
-                  errorMSG={errors.oncologicalDisease}
-                />
-              </Col>
-            )}
+            <Col xs="6">
+              <UIFormControl
+                label={t("WhatkindOncologicalDisease")}
+                className="mb-4"
+                // placeholder={t("WhatkindOncologicalDisease")}
+                name="oncologicalDisease"
+                value={values.oncologicalDisease}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                isInvalid={
+                  touched.oncologicalDisease && errors.oncologicalDisease
+                }
+                errorMSG={errors.oncologicalDisease}
+              />
+            </Col>
 
-            {!!+values.hasOncologicalDisease && (
-              <Col xs="12" className="mb-4">
-                <div className="mb-2 ms-1">{t("HasChemotherapy")}</div>
-                <Form.Check
-                  inline
-                  label={t("Yes")}
-                  name="hasChemotherapy"
-                  type="radio"
-                  id="hasChemotherapy-1"
-                  value={1}
-                  checked={+values.hasChemotherapy === 1}
-                  onChange={handleChange}
-                />
-
-                <Form.Check
-                  inline
-                  label={t("No")}
-                  name="hasChemotherapy"
-                  type="radio"
-                  id="hasChemotherapy-2"
-                  value={0}
-                  checked={
-                    typeof values.hasChemotherapy === "string" &&
-                    +values.hasChemotherapy === 0
-                  }
-                  onChange={handleChange}
-                />
-
-                {touched.hasChemotherapy && errors.hasChemotherapy && (
-                  <div className={styles.errorMSG}>
-                    {t(errors.hasChemotherapy)}
-                  </div>
-                )}
-              </Col>
-            )}
-
-            {!!+values.hasChemotherapy && (
-              <Col xs="6">
-                <UIFormControl
-                  label={t("Chemotherapy")}
-                  className="mb-4"
-                  placeholder={t("Chemotherapy")}
-                  name="chemotherapy"
-                  value={values.chemotherapy}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  isInvalid={touched.chemotherapy && errors.chemotherapy}
-                  errorMSG={errors.chemotherapy}
-                />
-              </Col>
-            )}
+            <Col xs="6">
+              <UIFormControl
+                label={t("Chemotherapy")}
+                className="mb-4"
+                // placeholder={t("Chemotherapy")}
+                name="chemotherapy"
+                value={values.chemotherapy}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                isInvalid={touched.chemotherapy && errors.chemotherapy}
+                errorMSG={errors.chemotherapy}
+              />
+            </Col>
           </Row>
         </Row>
-        {values.gender === "female" && (
-          <Col xs="3" className="mb-4">
-            <DatepickerItem
-              label={t("LastPeriodDate")}
-              placeholder={t("LastPeriodDate")}
-              name="period"
-              isInvalid={touched.period && errors.period}
-              errorMSG={errors.period}
-              valChange={(date) => setFieldValue("period", date)}
-              setTouched={setFieldTouched}
-            />
-          </Col>
-        )}
 
         <h2
           style={{

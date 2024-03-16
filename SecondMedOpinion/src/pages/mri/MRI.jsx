@@ -40,7 +40,7 @@ const MRI = () => {
               </div>
 
               <div className={styles.description}>
-                <p className={styles.experiance}>Work experience</p>
+                <p className={styles.experiance}>{t("workExperience")}</p>
                 <p style={{ wordBreak: "break-word" }}>{item.experiance}</p>
               </div>
 

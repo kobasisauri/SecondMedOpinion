@@ -82,12 +82,12 @@
     margin-top: 1rem;
     // list-style-image: url(../../assets/bullet.svg);
     // list-style-image: dot;
-    list-style: none;
+    // list-style: none;
 
     // background: url(../../assets/bullet.svg) no-repeat left top;
   }
   li:before {
-    content: url(../../assets/bullet.svg);
+    // content: url(../../assets/bullet.svg);
     width: 24px;
     height: 24px;
     margin-right: 5px;

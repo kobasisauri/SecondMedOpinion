@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 import { TextField } from "@mui/material";
 
@@ -7,6 +8,7 @@ import styles from "./ContactUs.module.scss";
 
 const ContactUs = () => {
   let color = JSON.parse(localStorage.getItem("theme"));
+  const { t } = useTranslation();
 
   const [theme, setTheme] = useState("#181717");
 
@@ -20,26 +22,26 @@ const ContactUs = () => {
 
   return (
     <div className={styles.container}>
-      <h2>CONTACT US</h2>
+      <h2>{t("ContactUs")}</h2>
       <div className={styles.wrapper}>
         <div className={styles["inner-wrapper"]}>
           <div className={styles.items}>
-            <h5>E-MAIL</h5>
+            <h5>{t("Email")}</h5>
             <p>expertmedopinion@gmail.com</p>
           </div>
 
           <div className={styles.items}>
             <h5>EXPERTMED OPINION</h5>
-            <p>TBILISI</p>
+            <p>{t("tbilisi")}</p>
           </div>
         </div>
 
         <div className={styles["inner-wrapper"]}>
           <form className={styles.form}>
-            <p>Full Name</p>
+            <p>{t("fullName")}</p>
             <TextField
               id="outlined-basic"
-              label="What's your full name?"
+              label={t("enterYourFullName")}
               variant="outlined"
               sx={{
                 width: "360px",
@@ -48,7 +50,7 @@ const ContactUs = () => {
                 },
               }}
             />
-            <p>Email address</p>
+            <p>{t("Email")}</p>
             <TextField
               id="outlined-basic"
               label="example@gmail.com"
@@ -60,10 +62,10 @@ const ContactUs = () => {
                 },
               }}
             />
-            <p>Message</p>
+            <p>{t("message")}</p>
             <TextField
               id="outlined-multiline-static"
-              label="Write your message for team here"
+              label={t("writeYourMessageHere")}
               multiline
               rows={3}
               sx={{
@@ -76,7 +78,7 @@ const ContactUs = () => {
 
             <div className={styles["button-wrrapper"]}>
               <Button type="submit" variant="outlined" sx={{ width: "250px" }}>
-                Submit
+                {t("Submit")}
               </Button>
             </div>
           </form>

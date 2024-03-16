@@ -111,19 +111,21 @@ const Home = () => {
 
         <div style={{ maxWidth: "1920px", padding: "0 7%", marginTop: "1rem" }}>
           <h2 style={{ fontFamily: "Mtavruli", fontWeight: "600" }}>
-            {t("WhoAreWe")}?
+            {/* {t("WhoAreWe")} */}
           </h2>
           <div className={styles["home-text"]}>
             {/* <ul> */}
-            <li>{t("WhoAreWe-1")}</li>
+            <p style={{ textIndent: "40px", lineHeight: "1.7" }}>
+              {t("WhoAreWe-1")}
 
-            <li>{t("WhoAreWe-2")}</li>
+              {t("WhoAreWe-2")}
 
-            <li>{t("WhoAreWe-3")}</li>
+              {t("WhoAreWe-3")}
 
-            <li>{t("WhoAreWe-4")}</li>
+              {t("WhoAreWe-4")}
 
-            <li>{t("WhoAreWe-5")}</li>
+              {t("WhoAreWe-5")}
+            </p>
             {/* </ul> */}
           </div>
         </div>
@@ -182,7 +184,7 @@ const Home = () => {
         </Slider>
       </div>
 
-      <div className={styles.section3}>
+      {/* <div className={styles.section3}>
         <h3>How to navigate!</h3>
         <iframe
           title="iframe"
@@ -196,18 +198,18 @@ const Home = () => {
           type="text/html"
           src="https://www.youtube.com/embed/JnXcBj7dJQk?autoplay=0&fs=1&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=https://youtubeembedcode.com"
         ></iframe>
-      </div>
-      <hr />
+      </div> */}
+      {/* <hr /> */}
 
       <div className={styles.section4}>
-        <h3>Contact Us</h3>
+        <h3>{t("ContactUs")}</h3>
         <div className={styles.wrapper}>
           <div className={styles["inner-wrapper"]}>
             <form className={styles.form}>
-              <p>Full Name</p>
+              <p>{t("fullName")}</p>
               <TextField
                 id="outlined-basic"
-                label="What's your full name?"
+                label={t("enterYourFullName")}
                 variant="outlined"
                 sx={{
                   width: "360px",
@@ -216,7 +218,7 @@ const Home = () => {
                   },
                 }}
               />
-              <p>Email address</p>
+              <p>{t("Email")}</p>
               <TextField
                 id="outlined-basic"
                 label="example@gmail.com"
@@ -228,10 +230,10 @@ const Home = () => {
                   },
                 }}
               />
-              <p>Message</p>
+              <p>{t("message")}</p>
               <TextField
                 id="outlined-multiline-static"
-                label="Write your message for team here"
+                label={t("writeYourMessageHere")}
                 multiline
                 rows={3}
                 sx={{
@@ -248,7 +250,7 @@ const Home = () => {
                   variant="outlined"
                   sx={{ width: "250px" }}
                 >
-                  Submit
+                  {t("Submit")}
                 </Button>
               </div>
             </form>

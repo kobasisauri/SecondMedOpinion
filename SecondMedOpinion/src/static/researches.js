@@ -20,7 +20,6 @@ export const MRIResearches = [
   {
     label: "mri-1",
     value: "mri-1",
-    children: CnsMRI,
   },
   {
     label: "mri-2",
@@ -49,6 +48,25 @@ export const MRIResearches = [
   {
     label: "mri-8",
     value: "mri-8",
+  },
+  {
+    label: "mri-9",
+    value: "mri-9",
+  },
+
+  {
+    label: "mri-10",
+    value: "mri-10",
+  },
+
+  {
+    label: "mri-11",
+    value: "mri-11",
+  },
+
+  {
+    label: "mri-12",
+    value: "mri-12",
   },
 ];
 
